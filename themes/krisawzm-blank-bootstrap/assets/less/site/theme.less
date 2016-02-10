@@ -1,19 +1,21 @@
-@nav-height: 75px;
+@nav-height: 90px;
 @nav-colour: #222;
 @nav-text-colour: white;
+@background-colour: #444;
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800);
 
 html {
   height: 100%;
 }
+
 body {
+  background-color: @background-colour;
   height: 100%;
   padding-top: @nav-height;
   font-family: 'Open Sans', sans-serif;
 
   text-align: center;
-  background-color: #f9f9f9;
 
   & > img {
     max-width: 100%;
@@ -25,6 +27,19 @@ body {
     background-color: @nav-colour;
     border: none;
     height: @nav-height;
+
+    .container-fluid {
+      height: 100%;
+      .navbar-header {
+        height: 100%;
+        .navbar-brand {
+          height: 100%;
+          img {
+            height: 100%;
+          }
+        }
+      }
+    }
 
     ul.nav {
       li {
@@ -41,11 +56,11 @@ body {
   .carousel {
     height: 80%;
     .carousel-inner {
-      height:100%;
+      height: 100%;
       overflow: hidden;
 
-      .item.active {
-        overflow: hidden;
+      .item {
+        height: 100%;
       }
 
       img {

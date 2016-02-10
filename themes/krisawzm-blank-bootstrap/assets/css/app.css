@@ -8387,8 +8387,9 @@ html {
   height: 100%;
 }
 body {
+  background-color: #444444;
   height: 100%;
-  padding-top: 75px;
+  padding-top: 90px;
   font-family: 'Open Sans', sans-serif;
   text-align: center;
   background-color: #f9f9f9;
@@ -8401,7 +8402,19 @@ body .navbar-default {
   color: #ffffff;
   background-color: #222222;
   border: none;
-  height: 75px;
+  height: 90px;
+}
+body .navbar-default .container-fluid {
+  height: 100%;
+}
+body .navbar-default .container-fluid .navbar-header {
+  height: 100%;
+}
+body .navbar-default .container-fluid .navbar-header .navbar-brand {
+  height: 100%;
+}
+body .navbar-default .container-fluid .navbar-header .navbar-brand img {
+  height: 100%;
 }
 body .navbar-default ul.nav li a {
   color: #ffffff;
@@ -8416,8 +8429,8 @@ body .carousel .carousel-inner {
   height: 100%;
   overflow: hidden;
 }
-body .carousel .carousel-inner .item.active {
-  overflow: hidden;
+body .carousel .carousel-inner .item {
+  height: 100%;
 }
 body .carousel .carousel-inner img {
   width: 100%;
