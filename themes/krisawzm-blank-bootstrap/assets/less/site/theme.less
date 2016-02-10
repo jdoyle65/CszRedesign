@@ -1,0 +1,57 @@
+@nav-height: 75px;
+@nav-colour: #222;
+@nav-text-colour: white;
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800);
+
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  padding-top: @nav-height;
+  font-family: 'Open Sans', sans-serif;
+
+  text-align: center;
+  background-color: #f9f9f9;
+
+  & > img {
+    max-width: 100%;
+    margin-top: 140px;
+  }
+
+  .navbar-default {
+    color: @nav-text-colour;
+    background-color: @nav-colour;
+    border: none;
+    height: @nav-height;
+
+    ul.nav {
+      li {
+        a {
+          color: @nav-text-colour;
+          text-transform: uppercase;
+          font-weight: 600;
+          font-size: 24px;
+        }
+      }
+    }
+  }
+
+  .carousel {
+    height: 80%;
+    .carousel-inner {
+      height:100%;
+      overflow: hidden;
+
+      .item.active {
+        overflow: hidden;
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+}
