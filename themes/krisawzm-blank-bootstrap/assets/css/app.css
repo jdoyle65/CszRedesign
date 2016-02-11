@@ -8392,15 +8392,20 @@ body {
   padding-top: 90px;
   font-family: 'Open Sans', sans-serif;
   text-align: center;
-  background-color: #f9f9f9;
 }
 body > img {
   max-width: 100%;
   margin-top: 140px;
 }
+body .navbar-shadow {
+  background-color: #922c2a;
+  height: 5px;
+  padding: 0;
+  margin: 0;
+}
 body .navbar-default {
   color: #ffffff;
-  background-color: #222222;
+  background-color: #ed4337;
   border: none;
   height: 90px;
 }
