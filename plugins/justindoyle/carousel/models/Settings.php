@@ -3,9 +3,9 @@
 use Model;
 
 class Settings extends Model {
-    public $implement = ['System.Behavious.SettingsModel'];
+    public $implement = ['System.Behaviors.SettingsModel'];
 
-    public $settingCode = 'justindoyle_carousel_settings';
+    public $settingsCode = 'justindoyle_carousel_settings';
 
     public $settingsFields = 'fields.yaml';
 }

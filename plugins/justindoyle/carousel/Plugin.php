@@ -19,4 +19,20 @@ class Plugin extends PluginBase {
             'JustinDoyle\Carousel\Components\Carousel' => 'carousel'
         ];
     }
+
+    public function registerSettings()
+    {
+        return [
+            'settings' => [
+                'label'       => 'Carousel Settings',
+                'description' => 'Manage carousel settings.',
+                'category'    => 'Carousel',
+                'icon'        => 'icon-cog',
+                'class'       => 'JustinDoyle\Carousel\Models\Settings',
+                'order'       => 200,
+                'keywords'    => 'carousel',
+//                'permissions' => ['justindoyle.users.access_settings']
+            ]
+        ];
+    }
 }

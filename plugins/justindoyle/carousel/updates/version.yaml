@@ -1,0 +1,6 @@
+1.0.1: First Version
+1.0.2:
+  - Create the carousel table and carousel images table.
+  - create_carousels_table.php
+  - create_carousel_images_table.php
+  - SeedCarouselsTable.php
