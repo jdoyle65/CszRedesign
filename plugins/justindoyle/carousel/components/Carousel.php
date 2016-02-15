@@ -60,8 +60,8 @@ class Carousel extends ComponentBase {
 
         foreach($this->carousel->images()->get() as $image) {
             $slide = [
-//                'image' => '/storage/app/media/'.$image->image_url,
-                'image' => 'http://placehold.it/1920x900/77DD77/ffffff',
+                'image' => '/storage/app/media'.$image->image_url,
+//                'image' => 'http://placehold.it/1920x900/77DD77/ffffff',
                 'title' => $fr?$image->title_fr:$image->title_en,
                 'description' => $fr?$image->description_fr:$image->description_en
             ];

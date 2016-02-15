@@ -1,0 +1,9 @@
+name: Carousel
+form: $/justindoyle/carousel/models/carousel/fields.yaml
+modelClass: JustinDoyle\Carousel\Models\Carousel
+
+create:
+    title: New Carousel
+    redirect: justindoyle/carousel/carousels/update/:id
+    redirectClose: justindoyle/carousel/carousels/index
+    flashSave: Carousel has been created!

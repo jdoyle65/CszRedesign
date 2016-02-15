@@ -6,3 +6,26 @@ fields:
     id:
         label: ID
         disabled: true
+
+    title_en:
+        label: Title (EN)
+    title_fr:
+        label: Title (FR)
+    description_en:
+        label: Description (EN)
+        type: textarea
+    description_fr:
+        label: Description (FR)
+        type: textarea
+
+    carousel_id:
+        label: Carousel
+        type: dropdown
+
+#    image_url:
+#            label: Image
+#            type: dropdown
+    image_url:
+        label: Image
+        type: mediafinder
+        mode: image

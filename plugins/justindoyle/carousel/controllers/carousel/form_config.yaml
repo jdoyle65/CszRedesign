@@ -1,0 +1,9 @@
+name: Carousel
+form: $/justindoyle/carousel/models/carouselimage/fields.yaml
+modelClass: JustinDoyle\Carousel\Models\CarouselImage
+
+update:
+    title: Edit Carousel Image
+    redirect: justindoyle/carousel/carousel/index
+    flashSave: Carousel updated successfully!
+    flashDelete: Carousel Image has been deleted.

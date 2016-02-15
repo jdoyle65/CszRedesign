@@ -1,9 +1,0 @@
-fields:
-  carousel_name:
-    label: Carousel Name
-    description: The name for the carousel
-
-  created_at:
-    label: Date created
-    description: The date this carousel was created
-    type: datepicker

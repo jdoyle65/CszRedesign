@@ -6,3 +6,9 @@ columns:
     id:
         label: ID
         searchable: true
+    title_en:
+        label: Title
+    description_en:
+        label: Description
+    carousel_name:
+        label: Carousel Owner

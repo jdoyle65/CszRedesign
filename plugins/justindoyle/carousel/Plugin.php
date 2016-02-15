@@ -1,8 +1,10 @@
 <?php namespace JustinDoyle\Carousel;
 
 use System\Classes\PluginBase;
+use Backend;
 
-class Plugin extends PluginBase {
+class Plugin extends PluginBase
+{
     public function pluginDetails()
     {
         return [
@@ -20,18 +22,30 @@ class Plugin extends PluginBase {
         ];
     }
 
-    public function registerSettings()
+    public function registerNavigation()
     {
         return [
-            'settings' => [
-                'label'       => 'Carousel Settings',
-                'description' => 'Manage carousel settings.',
-                'category'    => 'Carousel',
-                'icon'        => 'icon-cog',
-                'class'       => 'JustinDoyle\Carousel\Models\Settings',
-                'order'       => 200,
-                'keywords'    => 'carousel',
-//                'permissions' => ['justindoyle.users.access_settings']
+            'index' => [
+                'label' => 'Carousels',
+                'url' => Backend::url('justindoyle/carousel/carousels/index'),
+                'icon' => 'icon-pencil',
+                'permissions' => ['justindoyle.carousel.*'],
+                'order' => 500,
+
+                'sideMenu' => [
+//                    'posts' => [
+//                        'label' => 'Posts',
+//                        'icon' => 'icon-copy',
+//                        'url' => Backend::url('acme/blog/posts'),
+//                        'permissions' => ['acme.blog.access_posts']
+//                    ],
+//                    'categories' => [
+//                        'label' => 'Categories',
+//                        'icon' => 'icon-copy',
+//                        'url' => Backend::url('acme/blog/categories'),
+//                        'permissions' => ['acme.blog.access_categories']
+//                    ]
+                ]
             ]
         ];
     }

@@ -1,0 +1,9 @@
+title: Carousels
+list: ~/plugins/justindoyle/carousel/models/carouselimage/columns.yaml
+modelClass: JustinDoyle\Carousel\Models\CarouselImage
+recordUrl: justindoyle/carousel/carousel/update/:id
+
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: Find records
