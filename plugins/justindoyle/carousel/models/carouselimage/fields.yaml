@@ -22,6 +22,9 @@ fields:
         label: Carousel
         type: dropdown
 
+    link_out:
+        label: URL
+
 #    image_url:
 #            label: Image
 #            type: dropdown

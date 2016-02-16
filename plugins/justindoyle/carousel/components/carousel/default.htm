@@ -13,7 +13,12 @@
             <img src="{{slide.image}}" alt="...">
             <div class="carousel-caption">
                 <h3>{{slide.title}}</h3>
+                <br>
                 <p>{{slide.description}}</p>
+                {% if slide.link_out %}
+                <br>
+                <a class="carousel-link-out" href="{{slide.link_out}}">{{'Read more' |_}} <i class="fa fa-share"></i></a>
+                {% endif %}
             </div>
         </div>
         {% endfor %}

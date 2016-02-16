@@ -8,14 +8,27 @@ description = "Main navigation"
             </a>
         </div>
         <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-left navbar-brand-name">
+                <li>
+                    Canadian Society of Zoologists
+                    <br>
+                    Société canadienne de zoologie
+                </li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Membership</a></li>
-                <li><a href="#">Meetings</a></li>
-                <li><a href="#">Contacts</a></li>
-                <li><a href="#">Bulletin</a></li>
-                <li><a href="#">Awards</a></li>
-                <li><a href="#">News</a></li>
-                <li>{% component 'localePicker' %}</li>
+                <li><a href="#">{{'Membership'|_ }}</a></li>
+                <li><a href="#">{{'Meetings'|_ }}</a></li>
+                <li><a href="#">{{'Contacts'|_ }}</a></li>
+                <li><a href="#">{{'Bulletin'|_ }}</a></li>
+                <li><a href="#">{{'Awards'|_ }}</a></li>
+                <li><a href="#">{{'News'|_ }}</a></li>
+                {% if localePicker.activeLocale == 'fr' %}
+                <li><a href="#" data-request="onSwitchLocale" data-request-data="locale: 'en'"><img
+                        src="{{'assets/images/gb.png'|theme}}" alt="EN"></a></li>
+                {% else %}
+                <li><a href="#" data-request="onSwitchLocale" data-request-data="locale: 'fr'"><img
+                        src="{{'assets/images/fr.png'|theme}}" alt="FR"></a></li>
+                {% endif %}
             </ul>
         </div>
     </div>

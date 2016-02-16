@@ -8389,7 +8389,7 @@ html {
 body {
   background-color: #444444;
   height: 100%;
-  padding-top: 90px;
+  padding-top: 45px;
   font-family: 'Open Sans', sans-serif;
   text-align: center;
 }
@@ -8407,7 +8407,12 @@ body .navbar-default {
   color: #ffffff;
   background-color: #ed4337;
   border: none;
-  height: 90px;
+  height: 50px;
+}
+body .navbar-default .navbar-brand-name {
+  text-align: left;
+  margin-left: 12px;
+  margin-top: 5px;
 }
 body .navbar-default .container-fluid {
   height: 100%;
@@ -8417,18 +8422,25 @@ body .navbar-default .container-fluid .navbar-header {
 }
 body .navbar-default .container-fluid .navbar-header .navbar-brand {
   height: 100%;
+  padding: 5px 0 0 20px;
 }
 body .navbar-default .container-fluid .navbar-header .navbar-brand img {
   height: 100%;
+  width: 75px;
+  height: 75px;
+}
+body .navbar-default ul.nav {
+  margin-right: 75px;
 }
 body .navbar-default ul.nav li a {
   color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
   text-transform: uppercase;
-  font-weight: 600;
-  font-size: 24px;
+  font-weight: normal;
+  font-size: 18px;
 }
 body .carousel {
-  height: 80%;
+  height: 100%;
 }
 body .carousel .carousel-inner {
   height: 100%;
@@ -8436,6 +8448,28 @@ body .carousel .carousel-inner {
 }
 body .carousel .carousel-inner .item {
   height: 100%;
+}
+body .carousel .carousel-inner .item .carousel-caption {
+  text-align: left;
+  left: 20%;
+  bottom: 10%;
+  margin-left: 40px;
+}
+body .carousel .carousel-inner .item .carousel-caption h3 {
+  display: inline-block;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+body .carousel .carousel-inner .item .carousel-caption p {
+  display: inline-block;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+body .carousel .carousel-inner .item .carousel-caption a.carousel-link-out {
+  background-color: #ed4337;
+  color: white;
+  padding: 10px;
+  float: left;
 }
 body .carousel .carousel-inner img {
   width: 100%;
