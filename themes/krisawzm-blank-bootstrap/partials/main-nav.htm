@@ -1,10 +1,14 @@
 description = "Main navigation"
 ==
+function onStart() {
+    $this['activeLink'] = Request::segment(1);
+}
+==
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a href="#" class="navbar-brand">
-                <img alt="CSZ" src="/storage/app/media/cszlogo.png">
+            <a href="/" class="navbar-brand">
+                <img alt="CSZ" src="{{'assets/images/cszlogo.png'|theme}}">
             </a>
         </div>
         <div class="collapse navbar-collapse">
@@ -16,12 +20,12 @@ description = "Main navigation"
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">{{'Membership'|_ }}</a></li>
-                <li><a href="#">{{'Meetings'|_ }}</a></li>
-                <li><a href="#">{{'Contacts'|_ }}</a></li>
-                <li><a href="#">{{'Bulletin'|_ }}</a></li>
-                <li><a href="#">{{'Awards'|_ }}</a></li>
-                <li><a href="#">{{'News'|_ }}</a></li>
+                <li class="{{activeLink=='membership'?'active':''}}"><a href="/membership">{{'Membership'|_ }}</a></li>
+                <li class="{{activeLink=='meetings'?'active':''}}"><a href="/meetings">{{'Meetings'|_ }}</a></li>
+                <li class="{{activeLink=='contacts'?'active':''}}"><a href="/contacts">{{'Contacts'|_ }}</a></li>
+                <li class="{{activeLink=='bulletin'?'active':''}}"><a href="/bulletin">{{'Bulletin'|_ }}</a></li>
+                <li class="{{activeLink=='awards'?'active':''}}"><a href="/awards">{{'Awards'|_ }}</a></li>
+                <li class="{{activeLink=='news'?'active':''}}"><a href="/news">{{'News'|_ }}</a></li>
                 {% if localePicker.activeLocale == 'fr' %}
                 <li><a href="#" data-request="onSwitchLocale" data-request-data="locale: 'en'"><img
                         src="{{'assets/images/gb.png'|theme}}" alt="EN"></a></li>

@@ -8387,11 +8387,26 @@ html {
   height: 100%;
 }
 body {
-  background-color: #444444;
+  background-color: #eeeeee;
   height: 100%;
   padding-top: 45px;
   font-family: 'Open Sans', sans-serif;
-  text-align: center;
+}
+body .container {
+  background-color: #ffffff;
+  min-height: 100%;
+}
+body .container h1.main-header {
+  font-weight: 600;
+  font-size: 45px;
+  background-color: #55dc9e;
+  color: white;
+  padding: 12px;
+}
+body .container h1,
+body .container h2,
+body .container h3 {
+  color: #ed4337;
 }
 body > img {
   max-width: 100%;
@@ -8431,6 +8446,11 @@ body .navbar-default .container-fluid .navbar-header .navbar-brand img {
 }
 body .navbar-default ul.nav {
   margin-right: 75px;
+}
+body .navbar-default ul.nav li.active a {
+  color: black;
+  background-color: rgba(255, 255, 255, 0.6);
+  text-shadow: none;
 }
 body .navbar-default ul.nav li a {
   color: #ffffff;

@@ -28,6 +28,7 @@ class Carousel extends Controller
         $this->carouselId = $carouselId;
 
         // Call the ListController behavior index() method
+
         $this->asExtension('ListController')->index();
     }
 

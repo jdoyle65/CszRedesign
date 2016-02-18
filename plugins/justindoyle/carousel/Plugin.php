@@ -15,6 +15,24 @@ class Plugin extends PluginBase
         ];
     }
 
+    public function registerPermissions()
+    {
+        return [
+            'justindoyle.carousel.create_carousel' => [
+                'label' => 'Create new carousels',
+                'tab' => 'JustinDoyle Carousel'
+            ],
+            'justindoyle.carousel.delete_carousel' => [
+                'label' => 'Delete carousels',
+                'tab' => 'JustinDoyle Carousel'
+            ],
+            'justindoyle.carousel.edit_carousel' => [
+                'label' => 'Edit carousels',
+                'tab' => 'JustinDoyle Carousel'
+            ]
+        ];
+    }
+
     public function registerComponents()
     {
         return [
