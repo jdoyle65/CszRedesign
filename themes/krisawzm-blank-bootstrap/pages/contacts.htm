@@ -1,6 +1,6 @@
 title = "Contacts"
 url = "/contacts"
-layout = "two_equal_columns"
+layout = "one_column_dark"
 description = "Contacts page"
 is_hidden = 0
 
@@ -10,14 +10,64 @@ file = "contacts/contacts_left.htm"
 [editable contacts_right]
 file = "contacts/contacts_right.htm"
 ==
+<?php
+use JustinDoyle\Contacts\Models\Contact;
+
+function onStart() {
+    $this['contacts'] = Contact::all();
+}
+
+?>
+==
 {% put header %}
 <h1 class="main-header">{{'Contacts'|_}}</h1>
 {% endput %}
 
 
-{% put left_column %}
-    {% component "contacts_left" %}
-{% endput %}
-{% put right_column %}
-    {% component "contacts_right" %}
+{% put middle_column %}
+
+<style>
+    .contact-card {
+        text-align: center;
+        border-radius: 5px;
+    }
+
+
+    .contact-card  img {
+        width: 128px;
+        height: 128px;
+        border:5px solid white;
+        border-radius: 50%;
+        background-color: white;
+        position: relative;
+        z-index:1000;
+    }
+
+    .contact-card-info {
+        background-color: white;
+        border-radius: 5px;
+        margin-top: -40px;
+        padding-top: 24px;
+        padding-bottom: 15px;
+    }
+
+</style>
+
+
+<div class="row">
+    {% for contact in contacts %}
+    <div class="col col-lg-3 contact-card">
+        <img src="{{'profile_female.jpg'|media}}" alt="">
+        <div class="row">
+            <div class="col col-lg-12 contact-card-info">
+                <h3>{% if activeLocale == 'fr' %}{{contact.title_fr}}{% else %}{{contact.title_en}}{% endif %}</h3>
+                <h4>{{contact.name}}</h4>
+                Mount Allison Univ., Biology<br> 63B York St<br> SackvilleNBE4L 3G7<br> Ph: 506-364-2260<br> Email: <a href="mailto:scurrie@mta.ca">scurrie@mta.ca</a>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% component "contacts_left" %}
 {% endput %}

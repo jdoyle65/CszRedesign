@@ -8400,6 +8400,10 @@ body .content-container.container-fluid {
   background-color: #ffffff;
   min-height: 100%;
 }
+body .content-container.container.content-dark,
+body .content-container.container-fluid.content-dark {
+  background-color: #922c2a;
+}
 body .content-container.container h1.main-header,
 body .content-container.container-fluid h1.main-header {
   font-weight: 600;

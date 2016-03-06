@@ -1,0 +1,9 @@
+name: Contact
+form: $/justindoyle/contacts/models/contact/fields.yaml
+modelClass: JustinDoyle\Contacts\Models\Contact
+
+create:
+    title: New Contacts
+    redirect: justindoyle/contacts/contacts/update/:id
+    redirectClose: justindoyle/contacts/contacts/index
+    flashSave: Contact has been created!

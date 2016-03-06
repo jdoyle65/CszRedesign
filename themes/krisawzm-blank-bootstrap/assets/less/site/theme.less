@@ -4,6 +4,7 @@
 @nav-colour-dark: #922c2a;
 @nav-text-colour: white;
 @background-colour: white;
+@dark-background-colour: #922c2a;
 @container-background-colour: white;
 @carousel-caption-background: rgba(0,0,0,0.6);
 
@@ -30,6 +31,11 @@ body {
   }
   .content-container.container, .content-container.container-fluid {
     background-color: @container-background-colour;
+
+    &.content-dark {
+      background-color: @dark-background-colour;
+    }
+
     min-height: 100%;
 
     h1.main-header {

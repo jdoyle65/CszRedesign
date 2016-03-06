@@ -1,0 +1,5 @@
+1.0.1:
+  - First Version
+  - create_contacts_table.php
+  - create_categories_table.php
+  - SeedContactsTable.php
