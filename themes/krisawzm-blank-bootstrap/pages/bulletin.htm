@@ -1,0 +1,27 @@
+url = "/bulletin"
+title = "Bulletin"
+description = "New Page"
+layout = "two_equal_columns"
+is_hidden = 0
+
+[editable column_left]
+file = "bulletin/column_left.htm"
+
+[editable column_right]
+file = "bulletin/column_right.htm"
+==
+{% put header %}
+
+<h1 class="main-header">{{'Bulletin'|_}}</h1>
+
+{% endput %}
+
+
+
+
+{% put left_column %}
+{% component "column_left" %}
+{% endput %}
+{% put right_column %}
+{% component "column_right" %}
+{% endput %}

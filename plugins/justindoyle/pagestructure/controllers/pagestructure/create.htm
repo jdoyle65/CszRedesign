@@ -1,0 +1,87 @@
+<form class="form-elements" role="form">
+
+    <div class="form-group text-field span-left is-required">
+        <label>Title</label>
+        <input id="title-input" type="text" name="title" value="" class="form-control"/>
+    </div>
+
+    <div class="form-group dropdown-field span-right">
+        <label>Layout</label>
+        <select class="form-control custom-select" name="selected-layout">
+            <?php foreach($layouts as $index => $option): ?>
+            <option
+            <?php if($index== 0):?>selected="selected" <?php endif; ?> value="<?= $option->getBaseFileName()
+            ?>"><?= $option->getBaseFileName() ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+
+    <div class="form-group text-field span-left is-required">
+        <label>URL</label>
+        <input id="url-input" type="text" name="url" value="" class="form-control"/>
+    </div>
+
+
+    <div class="form-group text-field span-right is-required">
+        <label>File Name</label>
+        <input id="filename-input" type="text" name="filename" value="" class="form-control"/>
+    </div>
+
+    <button
+            type="button"
+            data-request="onCreatePage"
+            class="btn btn-success">
+        Create
+    </button>
+
+</form>
+
+<script>
+    $(function () {
+        var onlyTitleTouched = true;
+
+        $('#title-input').on('keydown keyup keypressed', function () {
+            if (onlyTitleTouched) {
+                var url = '';
+                var filename = '';
+
+                url = $(this).val().replace(/([^0-9A-Za-z\s-\/])/g, '');
+                url = url.replace(/[\s|-]+/g, '-');
+                url = '/' + url;
+                url = url.replace(/\/+/g, '/');
+                $('#url-input').val(url.toLowerCase());
+
+                filename = $(this).val().replace(/([^0-9A-Za-z\s-])/g, '');
+                filename = filename.replace(/[\s|-]+/g, '_');
+                $('#filename-input').val(filename.toLowerCase());
+            }
+        });
+        $('#url-input, #filename-input').on('keydown keyup keypressed', function () {
+            if ($(this).val().length != 0) {
+                onlyTitleTouched = false;
+            }
+        });
+
+        $('#url-input').on('keydown keyup keypressed', function () {
+            var url = '';
+
+            url = $(this).val().replace(/([^0-9A-Za-z\s-\/])/g, '');
+            url = url.replace(/[\s|-]+/g, '-');
+            url = '/' + url;
+            url = url.replace(/\/+/g, '/');
+            $(this).val(url.toLowerCase());
+
+        });
+
+        $('#filename-input').on('keydown keyup keypressed', function () {
+            var filename = '';
+
+            filename = $(this).val().replace(/([^0-9A-Za-z\s-_\/])/g, '');
+            filename = filename.replace(/[\s|-]+/g, '_');
+            filename = filename.replace(/\/+/g, '/');
+            $(this).val(filename.toLowerCase());
+
+        });
+
+    });
+</script>

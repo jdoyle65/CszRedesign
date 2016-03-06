@@ -1,9 +1,21 @@
-title = "Membership"
 url = "/membership"
-layout = "default"
+title = "Membership"
+description = "New Page"
+layout = "one_column"
 is_hidden = 0
+
+[editable column_middle]
+file = "membership/column_middle.htm"
 ==
-<div class="container">
-    <h1 class="main-header">{{'Membership'|_}}</h1>
-    {% content "membership" %}
-</div>
+{% put header %}
+
+<h1 class="main-header">{{'Membership'|_}}</h1>
+
+{% endput %}
+
+
+
+
+{% put middle_column %}
+{% component "column_middle" %}
+{% endput %}

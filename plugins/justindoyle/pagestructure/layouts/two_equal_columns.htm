@@ -1,0 +1,17 @@
+{% raw %}
+{% put header %}
+{% endraw %}
+<h1 class="main-header">{{'{{'}}'{{ title }}'|_{{'}}'}}</h1>
+{% raw %}
+{% endput %}
+{% endraw %}
+
+
+{% raw %}
+{% put left_column %}
+{% component "column_left" %}
+{% endput %}
+{% put right_column %}
+{% component "column_right" %}
+{% endput %}
+{% endraw %}

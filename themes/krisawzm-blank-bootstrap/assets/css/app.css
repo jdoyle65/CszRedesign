@@ -8447,6 +8447,11 @@ body .navbar-default .container-fluid .navbar-header .navbar-brand img {
 body .navbar-default ul.nav {
   margin-right: 75px;
 }
+body .navbar-default ul.nav li:hover a {
+  color: black;
+  background-color: rgba(255, 255, 255, 0.9);
+  text-shadow: none;
+}
 body .navbar-default ul.nav li.active a {
   color: black;
   background-color: rgba(255, 255, 255, 0.6);

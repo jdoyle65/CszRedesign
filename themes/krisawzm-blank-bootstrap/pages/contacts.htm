@@ -1,9 +1,23 @@
-title = "Membership"
-url = "/membership"
-layout = "default"
+title = "Contacts"
+url = "/contacts"
+layout = "two_equal_columns"
+description = "Contacts page"
 is_hidden = 0
+
+[editable contacts_left]
+file = "contacts/contacts_left.htm"
+
+[editable contacts_right]
+file = "contacts/contacts_right.htm"
 ==
-<div class="container">
-    <h1 class="main-header">{{'Membership'|_}}</h1>
-    {% content "membership" %}
-</div>
+{% put header %}
+<h1 class="main-header">{{'Contacts'|_}}</h1>
+{% endput %}
+
+
+{% put left_column %}
+    {% component "contacts_left" %}
+{% endput %}
+{% put right_column %}
+    {% component "contacts_right" %}
+{% endput %}
