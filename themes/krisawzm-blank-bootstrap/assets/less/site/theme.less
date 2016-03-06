@@ -3,9 +3,11 @@
 @nav-colour: #ED4337;
 @nav-colour-dark: #922c2a;
 @nav-text-colour: white;
-@background-colour: #EEE;
+@background-colour: white;
 @container-background-colour: white;
 @carousel-caption-background: rgba(0,0,0,0.6);
+
+@content-padding: 0 5% 0 5%;
 
 @main-header-color: rgb(85,220,158);
 
@@ -23,7 +25,10 @@ body {
 
   //text-align: center;
 
-  .container {
+  .content-padding {
+    padding: @content-padding;
+  }
+  .content-container.container, .content-container.container-fluid {
     background-color: @container-background-colour;
     min-height: 100%;
 
@@ -31,8 +36,10 @@ body {
       font-weight: 600;
       font-size: 45px;
       background-color: @main-header-color;
+      padding: @content-padding;
       color: white;
-      padding:12px;
+      padding-top:12px;
+      padding-bottom:12px;
     }
 
     h1,h2,h3 {
@@ -144,7 +151,8 @@ body {
       }
 
       img {
-        width: 100%;
+        max-width: inherit;
+        min-height: 100%;
       }
     }
   }

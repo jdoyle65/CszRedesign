@@ -1,0 +1,27 @@
+url = "/my-new-page"
+title = "My New Page"
+description = "New Page"
+layout = "two_equal_columns"
+is_hidden = 0
+
+[editable column_left]
+file = "my_new_page/column_left.htm"
+
+[editable column_right]
+file = "my_new_page/column_right.htm"
+==
+{% put header %}
+
+<h1 class="main-header">{{'My New Page'|_}}</h1>
+
+{% endput %}
+
+
+
+
+{% put left_column %}
+{% component "column_left" %}
+{% endput %}
+{% put right_column %}
+{% component "column_right" %}
+{% endput %}

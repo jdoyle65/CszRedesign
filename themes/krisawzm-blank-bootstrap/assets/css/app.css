@@ -8387,25 +8387,35 @@ html {
   height: 100%;
 }
 body {
-  background-color: #eeeeee;
+  background-color: #ffffff;
   height: 100%;
   padding-top: 45px;
   font-family: 'Open Sans', sans-serif;
 }
-body .container {
+body .content-padding {
+  padding: 0 5% 0 5%;
+}
+body .content-container.container,
+body .content-container.container-fluid {
   background-color: #ffffff;
   min-height: 100%;
 }
-body .container h1.main-header {
+body .content-container.container h1.main-header,
+body .content-container.container-fluid h1.main-header {
   font-weight: 600;
   font-size: 45px;
   background-color: #55dc9e;
+  padding: 0 5% 0 5%;
   color: white;
-  padding: 12px;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
-body .container h1,
-body .container h2,
-body .container h3 {
+body .content-container.container h1,
+body .content-container.container-fluid h1,
+body .content-container.container h2,
+body .content-container.container-fluid h2,
+body .content-container.container h3,
+body .content-container.container-fluid h3 {
   color: #ed4337;
 }
 body > img {
@@ -8497,5 +8507,6 @@ body .carousel .carousel-inner .item .carousel-caption a.carousel-link-out {
   float: left;
 }
 body .carousel .carousel-inner img {
-  width: 100%;
+  max-width: inherit;
+  min-height: 100%;
 }
