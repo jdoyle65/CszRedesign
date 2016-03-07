@@ -8404,10 +8404,15 @@ body .content-container.container.content-dark,
 body .content-container.container-fluid.content-dark {
   background-color: #922c2a;
 }
+body .content-container.container.content-dark h1.main-header,
+body .content-container.container-fluid.content-dark h1.main-header {
+  background-color: #6d2221;
+}
 body .content-container.container h1.main-header,
 body .content-container.container-fluid h1.main-header {
   font-weight: 600;
   font-size: 45px;
+  margin: 10px -15px 10px -15px;
   background-color: #55dc9e;
   padding: 0 5% 0 5%;
   color: white;
