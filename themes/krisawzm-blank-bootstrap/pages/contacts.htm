@@ -12,9 +12,11 @@ file = "contacts/contacts_right.htm"
 ==
 <?php
 use JustinDoyle\Contacts\Models\Contact;
+use JustinDoyle\Contacts\Models\Category;
 
 function onStart() {
     $this['contacts'] = Contact::all();
+    $this['categories'] = Category::all();
 }
 
 ?>
@@ -30,6 +32,8 @@ function onStart() {
     .contact-card {
         text-align: center;
         border-radius: 5px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
 
@@ -40,7 +44,7 @@ function onStart() {
         border-radius: 50%;
         background-color: white;
         position: relative;
-        z-index:1000;
+        z-index:100;
     }
 
     .contact-card-info {
@@ -51,23 +55,93 @@ function onStart() {
         padding-bottom: 15px;
     }
 
+    .contact-card-info-row {
+        margin:0;
+    }
+
+    .contact-category-dropdown {
+        margin-top: 20px;
+
+    }
+
 </style>
 
+{% put scripts %}
+<script>
+    $(function() {
+        $('#contact-card-category-select').change(function() {
+            var categoryId = $(this).val();
+            if(categoryId !== 'all')
+            {
+                $('.contact-card').each(function(index, card) {
+                    if($(this).data('category-id') == categoryId) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            } else {
+                $('.contact-card').show();
+            }
+        });
+    });
+</script>
+{% endput %}
 
+<div class="form-group contact-category-dropdown">
+    <label for="contact-card-category-select" style="color:white;">{{'contact_card.category'|_}}</label>
+    <select class="form-control" id="contact-card-category-select">
+        <option value="all">{{'contact_card.category.all'|_}}</option>
+        {% for category in categories %}
+        <option value="{{category.id}}">
+            {% if activeLocale == 'fr' %}
+            {{category.title_fr}}
+            {% else %}
+            {{category.title_en}}
+            {% endif %}
+        </option>
+        {% endfor %}
+    </select>
+</div>
 <div class="row">
     {% for contact in contacts %}
-    <div class="col col-lg-3 contact-card">
-        <img src="{{'profile_female.jpg'|media}}" alt="">
-        <div class="row">
+    <div class="col col-lg-3 contact-card" data-category-id="{{contact.category_id}}">
+        <img src="{{contact.profile_image|media}}" alt="">
+        <div class="row contact-card-info-row">
             <div class="col col-lg-12 contact-card-info">
                 <h3>{% if activeLocale == 'fr' %}{{contact.title_fr}}{% else %}{{contact.title_en}}{% endif %}</h3>
                 <h4>{{contact.name}}</h4>
-                Mount Allison Univ., Biology<br> 63B York St<br> SackvilleNBE4L 3G7<br> Ph: 506-364-2260<br> Email: <a href="mailto:scurrie@mta.ca">scurrie@mta.ca</a>
-
+                {% if contact.address_line_one is not empty %}
+                {{contact.address_line_one}}<br>
+                {% endif %}
+                {% if contact.address_line_two is not empty %}
+                {{contact.address_line_two}}<br>
+                {% endif %}
+                {% if contact.city is not empty %}
+                {{contact.city}}
+                {% endif %}
+                {% if contact.province is not empty %}
+                {{contact.province}}
+                {% endif %}
+                {% if contact.postal_code is not empty %}
+                {{contact.postal_code}}
+                {% endif %}
+                <br>
+                {% if contact.email is not empty %}
+                <i class="fa fa-envelope"></i> <a href="mailto:{{contact.email}}">{{contact.email}}</a><br>
+                {% endif %}
+                {% if contact.home_phone is not empty %}
+                <i class="fa fa-phone"></i> ({{'contact_card.home'|_}}) {{contact.home_phone}}<br>
+                {% endif %}
+                {% if contact.work_phone is not empty %}
+                <i class="fa fa-phone"></i> ({{'contact_card.work'|_}}) {{contact.work_phone}}<br>
+                {% endif %}
+                {% if contact.mobile_phone is not empty %}
+                <i class="fa fa-phone"></i> ({{'contact_card.mobile'|_}}) {{contact.mobile_phone}}<br>
+                {% endif %}
             </div>
         </div>
     </div>
     {% endfor %}
 </div>
-{% component "contacts_left" %}
 {% endput %}
