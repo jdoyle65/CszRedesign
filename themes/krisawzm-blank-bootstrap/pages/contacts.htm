@@ -1,6 +1,6 @@
 title = "Contacts"
 url = "/contacts"
-layout = "one_column_dark"
+layout = "one_column"
 description = "Contacts page"
 is_hidden = 0
 
@@ -18,7 +18,6 @@ function onStart() {
     $this['contacts'] = Contact::all();
     $this['categories'] = Category::all();
 }
-
 ?>
 ==
 {% put header %}
@@ -40,7 +39,8 @@ function onStart() {
     .contact-card  img {
         width: 128px;
         height: 128px;
-        border:5px solid white;
+        border:2px solid #55dc9e;
+        box-shadow: 5px 5px 5px #888888;
         border-radius: 50%;
         background-color: white;
         position: relative;
@@ -49,7 +49,9 @@ function onStart() {
 
     .contact-card-info {
         background-color: white;
+        /*border:1px solid #922c2a;*/
         border-radius: 5px;
+        box-shadow: 5px 5px 20px #888888;
         margin-top: -40px;
         padding-top: 24px;
         padding-bottom: 15px;
@@ -89,7 +91,7 @@ function onStart() {
 {% endput %}
 
 <div class="form-group contact-category-dropdown">
-    <label for="contact-card-category-select" style="color:white;">{{'contact_card.category'|_}}</label>
+    <label for="contact-card-category-select">{{'contact_card.category'|_}}</label>
     <select class="form-control" id="contact-card-category-select">
         <option value="all">{{'contact_card.category.all'|_}}</option>
         {% for category in categories %}

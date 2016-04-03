@@ -1,14 +1,14 @@
 <?php namespace AnandPatel\WysiwygEditors;
 
 use System\Classes\PluginBase;
+use System\Classes\PluginManager;
+use System\Classes\SettingsManager;
+use Cms\Classes\Theme;
 use App;
 use Backend;
-use Illuminate\Foundation\AliasLoader;
 use Event;
+use Illuminate\Foundation\AliasLoader;
 use AnandPatel\WysiwygEditors\Models\Settings;
-use System\Classes\PluginManager;
-use Cms\Classes\Theme;
-use System\Classes\SettingsManager;
 
 /**
  * Wysiwyg Editors Plugin Information File.
@@ -26,6 +26,7 @@ class Plugin extends PluginBase
             'name'        => 'anandpatel.wysiwygeditors::lang.plugin.name',
             'description' => 'anandpatel.wysiwygeditors::lang.plugin.description',
             'author'      => 'Anand Patel',
+            'icon'        => 'icon-pencil-square',
             'homepage'    => 'https://github.com/anand-patel/oc-wysiwyg-editors'
         ];
     }
@@ -48,34 +49,24 @@ class Plugin extends PluginBase
                 'description' => 'anandpatel.wysiwygeditors::lang.settings.description',
                 'icon'        => 'icon-pencil-square-o',
                 'class'       => 'AnandPatel\WysiwygEditors\Models\Settings',
-                'order'       => 100
+                'category'    => SettingsManager::CATEGORY_CMS
             ]
         ];
     }
 
     public function boot()
     {
-        \App::register('Barryvdh\Elfinder\ElfinderServiceProvider');
-
-        $this->publishes([
-            __DIR__.'/config/elfinder.php' => config_path('elfinder.php'),
-        ]);
-
-
         Event::listen('backend.form.extendFields', function($form)
         {
             /*
              * Check for the installed plugin if install then extends fields for that.
              */
-            if ($form->model instanceof \AnandPatel\WysiwygEditors\Models\Settings)
-            {
-                if (!($theme = Theme::getEditTheme()))
-                {
+            if ($form->model instanceof \AnandPatel\WysiwygEditors\Models\Settings) {
+                if (!($theme = Theme::getEditTheme())) {
                     throw new ApplicationException(Lang::get('cms::lang.theme.edit.not_found'));
                 }
 
-                if (PluginManager::instance()->hasPlugin('Radiantweb.Problog'))
-                {
+                if (PluginManager::instance()->hasPlugin('Radiantweb.Problog')) {
                     $form->addFields([
                         'radiant_problog_as_wysiwyg' => [
                             'label'   => 'anandpatel.wysiwygeditors::lang.form.problog.label',
@@ -88,8 +79,7 @@ class Plugin extends PluginBase
                     ], 'primary');
                 }
 
-                if (PluginManager::instance()->hasPlugin('Radiantweb.Proevents'))
-                {
+                if (PluginManager::instance()->hasPlugin('Radiantweb.Proevents')) {
                     $form->addFields([
                         'radiant_proevents_as_wysiwyg' => [
                             'label'   => 'anandpatel.wysiwygeditors::lang.form.proevent.label',
@@ -102,8 +92,7 @@ class Plugin extends PluginBase
                     ], 'primary');
                 }
 
-                if (PluginManager::instance()->hasPlugin('RainLab.Pages'))
-                {
+                if (PluginManager::instance()->hasPlugin('RainLab.Pages')) {
                     $form->addFields([
                         'static_page_as_wysiwyg' => [
                             'label'   => 'anandpatel.wysiwygeditors::lang.form.spages.label',
@@ -116,8 +105,7 @@ class Plugin extends PluginBase
                     ], 'primary');
                 }
 
-                if (PluginManager::instance()->hasPlugin('RainLab.Blog'))
-                {
+                if (PluginManager::instance()->hasPlugin('RainLab.Blog')) {
                     $form->addFields([
                         'blog_as_wysiwyg' => [
                             'label'   => 'anandpatel.wysiwygeditors::lang.form.blog.label',
@@ -130,8 +118,7 @@ class Plugin extends PluginBase
                     ], 'primary');
                 }
 
-                if (PluginManager::instance()->hasPlugin('Autumn.Pages'))
-                {
+                if (PluginManager::instance()->hasPlugin('Autumn.Pages')) {
                     $form->addFields([
                         'autumn_page_as_wysiwyg' => [
                             'label'   => 'anandpatel.wysiwygeditors::lang.form.apages.label',
@@ -145,86 +132,66 @@ class Plugin extends PluginBase
                 }
             }
 
-            if (Settings::get('cms_content_as_wysiwyg', false) && get_class($form->config->model) == 'Cms\Classes\Content')
-            {
+            if (Settings::get('cms_content_as_wysiwyg', false) && get_class($form->config->model) == 'Cms\Classes\Content') {
                 useWysiwyg($form);
             }
 
-            else if (Settings::get('cms_partial_as_wysiwyg', false) && get_class($form->config->model) == 'Cms\Classes\Partial')
-            {
+            else if (Settings::get('cms_partial_as_wysiwyg', false) && get_class($form->config->model) == 'Cms\Classes\Partial') {
                 useWysiwyg($form);
             }
 
-            else if (Settings::get('cms_layout_as_wysiwyg', false) && get_class($form->config->model) == 'Cms\Classes\Layout')
-            {
+            else if (Settings::get('cms_layout_as_wysiwyg', false) && get_class($form->config->model) == 'Cms\Classes\Layout') {
                 useWysiwyg($form);
             }
 
-            else if (Settings::get('cms_page_as_wysiwyg', false) && get_class($form->config->model) == 'Cms\Classes\Page')
-            {
+            else if (Settings::get('cms_page_as_wysiwyg', false) && get_class($form->config->model) == 'Cms\Classes\Page') {
                 useWysiwyg($form);
             }
 
-            else if (Settings::get('others_as_wysiwyg', false))
-            {
-                if (get_class($form->config->model) != 'Cms\Classes\Layout' && get_class($form->config->model) != 'Cms\Classes\Page' && get_class($form->config->model) != 'Cms\Classes\Content' && get_class($form->config->model) != 'Cms\Classes\Partial' )
-                {
+            else if (Settings::get('others_as_wysiwyg', false)) {
+                if (get_class($form->config->model) != 'Cms\Classes\Layout' && get_class($form->config->model) != 'Cms\Classes\Page' && get_class($form->config->model) != 'Cms\Classes\Content' && get_class($form->config->model) != 'Cms\Classes\Partial') {
                     useWysiwyg($form);
                 }
             }
 
-            else
-            {
-                if (Settings::get('radiant_problog_as_wysiwyg', false) && $form->model instanceof \Radiantweb\Problog\Models\Post)
-                {
+            else {
+                if (Settings::get('radiant_problog_as_wysiwyg', false) && $form->model instanceof \Radiantweb\Problog\Models\Post) {
                     useWysiwyg($form);
                 }
 
-                if (Settings::get('radiant_proevents_as_wysiwyg', false) && $form->model instanceof \Radiantweb\Proevents\Models\Event)
-                {
+                if (Settings::get('radiant_proevents_as_wysiwyg', false) && $form->model instanceof \Radiantweb\Proevents\Models\Event) {
                     useWysiwyg($form);
                 }
 
-                if (Settings::get('blog_as_wysiwyg', false) && $form->model instanceof \RainLab\Blog\Models\Post)
-                {
+                if (Settings::get('blog_as_wysiwyg', false) && $form->model instanceof \RainLab\Blog\Models\Post) {
                     useWysiwyg($form);
                 }
 
-                if (Settings::get('autumn_page_as_wysiwyg', false) && $form->model instanceof \Autumn\Pages\Models\Page)
-                {
+                if (Settings::get('autumn_page_as_wysiwyg', false) && $form->model instanceof \Autumn\Pages\Models\Page) {
                     useWysiwyg($form);
                 }
 
-                if (Settings::get('static_page_as_wysiwyg', false) && $form->model instanceof \RainLab\Pages\Classes\Page)
-                {
+                if (Settings::get('static_page_as_wysiwyg', false) && $form->model instanceof \RainLab\Pages\Classes\Page) {
                     useWysiwyg($form);
                 }
             }
         });
 
-        function useWysiwyg($form)
-        {
+        function useWysiwyg($form) {
             $replacable = [
                 'codeeditor', 'Eein\Wysiwyg\FormWidgets\Trumbowyg', 'richeditor', 'RainLab\Blog\FormWidgets\BlogMarkdown'
             ];
 
-            foreach ($form->getFields() as $field)
-            {
-                if (!empty($field->config['type']))
-                {
-                    if ( in_array($field->config['type'], $replacable) )
-                    {
-                        if (Settings::instance()->editor == 'richeditor')
-                        {
-                            $field->config['type'] = $field->config['widget'] = 'richeditor';
-                        }
-                        else
-                        {
-                            $field->config['type'] = $field->config['widget'] = 'AnandPatel\WysiwygEditors\FormWidgets\Editor';
-                        }
-
-                        return;
+            foreach ($form->getFields() as $field) {
+                if (!empty($field->config['type']) && in_array($field->config['type'], $replacable)) {
+                    if (Settings::instance()->editor == 'richeditor') {
+                        $field->config['type'] = $field->config['widget'] = 'richeditor';
                     }
+                    else {
+                        $field->config['type'] = $field->config['widget'] = 'AnandPatel\WysiwygEditors\FormWidgets\Editor';
+                    }
+
+                    return;
                 }
             }
         }
