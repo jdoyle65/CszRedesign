@@ -4,33 +4,44 @@ description = "Default layout"
 ==
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>{{ this.page.title }}</title>
-        {% styles %}
-        <link href="{{ [
-            'assets/css/app.css'
-        ]|theme }}" rel="stylesheet">
-    </head>
-    <body>
+<head>
+    <title>{{ this.page.title }}</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Styles -->
+    <link href="/themes/krisawzm-blank-bootstrap/assets/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="/themes/krisawzm-blank-bootstrap/assets/css/bootstrap-overrides.css" rel="stylesheet">
+    <link href="/themes/krisawzm-blank-bootstrap/assets/css/theme.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css' />
+
+    <link rel="stylesheet" href="/themes/krisawzm-blank-bootstrap/assets/css/index.css" type="text/css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/themes/krisawzm-blank-bootstrap/assets/css/lib/animate.css" media="screen, projection" />
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="/themes/krisawzm-blank-bootstrap/assets/css/features.css" rel="stylesheet">
+    <link href="/themes/krisawzm-blank-bootstrap/assets/css/style.css" rel="stylesheet">
+
+
+    {% styles %}
+</head>
+    <body class="pull_top">
         {% partial "main-nav" %}
         {% page %}
 
         <script src="{{ [
             'assets/js/jquery.js',
 
-            'assets/vendor/bootstrap/js/transition.js',
-            'assets/vendor/bootstrap/js/alert.js',
-            'assets/vendor/bootstrap/js/button.js',
-            'assets/vendor/bootstrap/js/carousel.js',
-            'assets/vendor/bootstrap/js/collapse.js',
-            'assets/vendor/bootstrap/js/dropdown.js',
-            'assets/vendor/bootstrap/js/modal.js',
-            'assets/vendor/bootstrap/js/tooltip.js',
-            'assets/vendor/bootstrap/js/popover.js',
-            'assets/vendor/bootstrap/js/scrollspy.js',
-            'assets/vendor/bootstrap/js/tab.js',
-            'assets/vendor/bootstrap/js/affix.js',
+            'assets/js/bootstrap.min.js',
+            'assets/js/theme.js',
+            'assets/js/index-slider.js',
 
             '@framework',
             '@framework.extras',

@@ -4,18 +4,79 @@ description = "New Page"
 layout = "one_column"
 is_hidden = 0
 
+[editable]
 [editable column_middle]
 file = "membership/column_middle.htm"
 ==
 {% put header %}
 
-<h1 class="main-header">{{'Membership'|_}}</h1>
+<div class="section_header">
+    <h3>{{'Membership'|_}}</h3>
+</div>
 
 {% endput %}
 
 
-
-
 {% put middle_column %}
+
+<div class="row membership-pills-row">
+    <ul class="nav nav-pills membership-nav-pills nav-stacked col-md-3">
+        <li class="active"><a href="#a" data-toggle="tab">{{ 'membership.type.ordinary'|_ }}</a></li>
+        <li><a href="#b" data-toggle="tab">{{ 'membership.type.student'|_ }}</a></li>
+        <li><a href="#c" data-toggle="tab">{{ 'membership.type.postdoctoral'|_ }}</a></li>
+        <li><a href="#d" data-toggle="tab">{{ 'membership.type.emeritus'|_ }}</a></li>
+        <li><a href="#e" data-toggle="tab">{{ 'membership.type.associate'|_ }}</a></li>
+    </ul>
+    <div class="tab-content col-md-9">
+        <div class="tab-pane active" id="a">{% component 'editable' file="membership/ordinary.htm" %}</div>
+        <div class="tab-pane" id="b">{% component 'editable' file="membership/student.htm" %}</div>
+        <div class="tab-pane" id="c">{% component 'editable' file="membership/postdoc.htm" %}</div>
+        <div class="tab-pane" id="d">{% component 'editable' file="membership/emeritus.htm" %}</div>
+        <div class="tab-pane" id="e">{% component 'editable' file="membership/associate.htm" %}</div>
+    </div>
+</div>
+<div class="row online-payment" style="margin-top: 75px;">
+    <div class="col-sm-2 circle"><i class="fa fa-desktop"></i></div>
+    <div class="col-sm-10">
+        <h5>Membership Payment Online</h5>
+        <p>
+            {% component 'editable' file="membership/onlinepayment.htm" %}
+        </p>
+    </div>
+</div>
+<div class="row online-payment" style="margin-top: 75px;">
+    <div class="col-sm-2 circle"><i class="fa fa-envelope"></i></div>
+    <div class="col-sm-10">
+        <h5>Membership Payment by Mail</h5>
+        <p>
+            {% component 'editable' file="membership/mailpayment.htm" %}
+        </p>
+    </div>
+</div>
+
+<div class="row journal-subscriptions" style="margin-top: 75px;">
+    <div class="section_header" style="margin-bottom: 20px;">
+        <h3>Journal Subscriptions</h3>
+    </div>
+    <p>The following journals offer reduced subscription rates to CSZ members:</p>
+</div>
+<div class="row journal-cards-row" style="margin-bottom: 75px;">
+    <div class="col-md-6 journal-card">
+        <div class="journal-image">
+            <img src="{{'assets/images/nrc.jpeg'|theme}}" alt="">
+        </div>
+        {% component 'editable' file="membership/nrc.htm" %}
+    </div>
+    <div class="col-md-6 journal-card">
+        <div class="journal-image">
+            <img src="{{'assets/images/cob.png'|theme}}" alt="">
+        </div>
+        {% component 'editable' file="membership/jeb.htm" %}
+    </div>
+</div>
+
+
 {% component "column_middle" %}
+
+
 {% endput %}

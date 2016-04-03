@@ -1,0 +1,95 @@
+.slider-description {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.4);
+  font-size: 18px;
+  line-height: 30px;
+  padding: 10px;
+  margin-top: 20px;
+  position: absolute;
+  bottom: 100px;
+  left: 10%;
+  width: 50%; }
+
+.navbar.navbar-inverse {
+  background-color: rgba(237, 67, 35, 0.8); }
+
+.navbar.sticky {
+  background-color: rgba(237, 67, 35, 0.9); }
+
+.membership-pills-row {
+  box-shadow: 0 1px 3px 1px #E0E0E0; }
+
+.membership-nav-pills {
+  padding-right: 0; }
+
+.membership-nav-pills > li {
+  background-color: rgba(237, 67, 35, 0.8); }
+
+.membership-nav-pills > li > a,
+.membership-nav-pills > li > a:hover,
+.membership-nav-pills > li > a:focus {
+  color: #fff; }
+
+.membership-nav-pills > li.active > a,
+.membership-nav-pills > li.active > a:hover,
+.membership-nav-pills > li.active > a:focus {
+  background-color: #fff;
+  color: #000; }
+
+.membership-nav-pills > li + li {
+  margin-top: 0px; }
+
+.membership-nav-pills > li > a, .membership-nav-pills > li > a:hover {
+  border-radius: 0px; }
+
+.membership-pills-row .tab-content {
+  padding: 20px; }
+
+.online-payment .circle {
+  background: #1189D9;
+  text-align: center;
+  border-radius: 100%;
+  margin: 14px 0 0 0;
+  width: 136px;
+  height: 136px;
+  box-shadow: 1px 1px 2px 0px #E0E0E0; }
+  .online-payment .circle i.fa {
+    color: #fff;
+    font-size: 50px;
+    margin-top: 46px; }
+.online-payment h5 {
+  font-size: 20px;
+  margin: 5px 0 10px 0; }
+.online-payment p {
+  font-size: 14px;
+  line-height: 24px;
+  color: #3F3F3F;
+  margin-bottom: 0; }
+
+.journal-cards-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap; }
+
+.journal-cards-row > [class*='col-'] {
+  display: flex;
+  flex-direction: column; }
+
+.journal-card {
+  text-align: justify;
+  margin: 0 auto;
+  width: 30em;
+  box-shadow: 1px 1px 5px 2px #E0E0E0; }
+  .journal-card h4 {
+    text-align: center; }
+  .journal-card .journal-image {
+    text-align: center;
+    margin: 0 auto 37px;
+    margin-top: 37px; }
+    .journal-card .journal-image img {
+      height: 100px;
+      width: 100px; }
+
+/*# sourceMappingURL=style.css.map */
