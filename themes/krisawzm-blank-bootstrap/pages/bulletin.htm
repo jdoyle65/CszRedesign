@@ -1,9 +1,10 @@
-url = "/bulletin"
 title = "Bulletin"
+url = "/bulletin"
+layout = "one_column"
 description = "New Page"
-layout = "two_equal_columns"
 is_hidden = 0
 
+[editable]
 [editable column_left]
 file = "bulletin/column_left.htm"
 
@@ -12,16 +13,118 @@ file = "bulletin/column_right.htm"
 ==
 {% put header %}
 
-<h1 class="main-header">{{'Bulletin'|_}}</h1>
+<div class="section_header">
+    <h3>{{'Bulletin'|_}}</h3>
+</div>
 
 {% endput %}
 
 
-
-
-{% put left_column %}
+{% put middle_column %}
 {% component "column_left" %}
-{% endput %}
-{% put right_column %}
-{% component "column_right" %}
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Year</th>
+        <th>Winter</th>
+        <th>Spring</th>
+        <th>Fall</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>2001</td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_32_01.pdf" target="_new">32-01 Winter 2001</a>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_32_02.pdf" target="_new">32-02 Spring 2001</a></td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_32_03.pdf" target="_new">32-03 Fall 2001</a></td>
+    </tr>
+    <tr>
+        <td>2002</td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_33_01.pdf" target="_new">33-01 Winter 2002</a></td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_33_02.pdf" target="_new">33-02 Spring 2002</a></td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_33_03.pdf" target="_new">33-03 Fall 2002</a></td>
+    </tr>
+    <tr>
+        <td>2003</td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_34_01.pdf" target="_new">34-01 Winter 2003</a></td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_34_02.pdf" target="_new">34-02 Spring 2003</a></td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_34_03.pdf" target="_new">34-03 Fall 2003</a></td>
+    </tr>
+    <tr>
+        <td>2004</td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_35_01.pdf" target="_new">35-01 Winter 2004</a></td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_35_02.pdf" target="_new">35-02 Spring 2004</a></td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_35_03.pdf" target="_new">35-03 Fall 2004</a></td>
+    </tr>
+    <tr>
+        <td>2005</td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_36_01.pdf" target="_new">36-01 Winter 2005</a></td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_36_02.pdf" target="_new">36-02 Spring 2005</a></td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_36_03.pdf" target="_new">36-03 Fall 2005</a></td>
+    </tr>
+    <tr>
+        <td>2006</td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_37_01.pdf" target="_new">37-01 Winter 2006</a></td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_37_02.pdf" target="_new">37-02 Spring 2006</a></td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_37_03.pdf" target="_new">37-03 Fall 2006</a></td>
+    </tr>
+    <tr>
+        <td>2007</td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_38_01.pdf" target="_new">38-01 Winter 2007</a></td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_38_02.pdf" target="_new">38-02 Spring 2007</a></td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_38_03.pdf" target="_new">38-03 Fall 2007</a></td>
+    </tr>
+    <tr>
+        <td>2008</td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_39_01.pdf" target="_new">39-01 Winter 2008</a></td>
+        <td></td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_39_03.pdf" target="_new">39-03 Fall 2008</a></td>
+    </tr>
+    <tr>
+        <td>2009</td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_40_01.pdf" target="_new">40-01 Winter 2009</a></td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_40_02.pdf" target="_new">40-02 Spring 2009</a></td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_40_03.pdf" target="_new">40-03 Fall 2009</a></td>
+    </tr>
+    <tr>
+        <td>2010</td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_41_01.pdf" target="_new">41-01 Winter 2010</a></td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_41_02.pdf" target="_new">41-02 Spring 2010</a></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>2011</td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_42_01.pdf" target="_new">42-01 Winter 2011</a></td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_42_02.pdf" target="_new">42-02 Spring 2011</a></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>2012</td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_43_01.pdf" target="_new">43-01 Winter 2012</a></td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_43_02.pdf" target="_new">43-02 Spring 2012</a></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>2013</td>
+        <td></td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_44_02.pdf" target="_new">44-02 Spring 2013</a></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>2014</td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_45_01.pdf" target="_new">45-01 Winter 2014</a></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>2015</td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_46_01.pdf" target="_new">46-01 Winter 2015</a></td>
+        <td><a href="http://www.csz-scz.ca/documents/bulletin/bulletin_46_02.pdf" target="_new">46-02 Spring 2015</a></td>
+        <td></td>
+    </tr>
+
+    </tbody>
+</table>
+
 {% endput %}
