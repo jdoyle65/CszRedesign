@@ -20,13 +20,13 @@ function onStart() {
         </div>
 
         <div class="collapse navbar-collapse navbar-ex1-collapse" role="navigation">
-            <ul class="nav navbar-nav navbar-left navbar-brand-name" style="color:#fff;">
-                <li>
-                    Canadian Society of Zoologists
-                    <br>
-                    Société canadienne de zoologie
-                </li>
-            </ul>
+            <!--<ul class="nav navbar-nav navbar-left navbar-brand-name" style="color:#fff;">-->
+                <!--<li>-->
+                    <!--Canadian Society of Zoologists-->
+                    <!--<br>-->
+                    <!--Société canadienne de zoologie-->
+                <!--</li>-->
+            <!--</ul>-->
             <ul class="nav navbar-nav navbar-right">
                 <li class="{{activeLink=='membership'?'active':''}}"><a style="text-transform: uppercase;" href="/membership">{{'Membership'|_ }}</a></li>
                 <li class="{{activeLink=='meetings'?'active':''}}"><a style="text-transform: uppercase;" href="/meetings">{{'Meetings'|_ }}</a></li>
@@ -39,6 +39,7 @@ function onStart() {
                 {% else %}
                 <li><a href="#" data-request="onSwitchLocale" data-request-data="locale: 'fr'">Français</a></li>
                 {% endif %}
+                <li><a href="/signin">{{'Sign In'|_ }}</a></li>
                 <!--<li class="dropdown">-->
                     <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">PAGES <b class="caret"></b></a>-->
                     <!--<ul class="dropdown-menu">-->

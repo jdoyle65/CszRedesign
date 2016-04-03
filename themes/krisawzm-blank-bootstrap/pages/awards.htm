@@ -9,13 +9,277 @@ file = "awards/column_middle.htm"
 ==
 {% put header %}
 
-<h1 class="main-header">{{'Awards'|_}}</h1>
+<div class="section_header">
+    <h3>{{'Awards'|_}}</h3>
+</div>
 
 {% endput %}
 
 
-
-
 {% put middle_column %}
-{% component "column_middle" %}
+
+<div class="row">
+    <div class="col-sm-12">
+        <h3>Recognition of excellence in research</h3>
+        <p>
+            The Canadian Society of Zoologists recognizes excellence in research. Many prizes and awards are given every
+            year funded by the Zoological Education Trust (ZET), the sections, members of the Society and CSZ. We
+            encourage
+            student participation at the annual meeting by many prizes for the best oral and poster presentations.
+        </p>
+    </div>
+</div>
+<div class="row" style="margin-top: 75px;">
+    <div class="col-md-12">
+        <div id="filters-container">
+            <ul id="filters">
+                <li><a href="#" data-filter="*" class="active">All</a></li>
+                <li class="separator">/</li>
+                <li>
+                    <a href="#" data-filter=".anyone">Anyone</a>
+                </li>
+                <li class="separator">/</li>
+                <li>
+                    <a href="#" data-filter=".phd">PhD</a>
+                </li>
+                <li class="separator">/</li>
+                <li>
+                    <a href="#" data-filter=".pdf">PDF</a>
+                </li>
+                <li class="separator">/</li>
+                <li>
+                    <a href="#" data-filter=".pdf-student">PDF/Student</a>
+                </li>
+                <li class="separator">/</li>
+                <li>
+                    <a href="#" data-filter=".student">Student</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div id="awards-container">
+            <div class="award-card anyone">
+                <h4>Public Awareness Award</h4>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Eligibility:</th>
+                        <td>Anyone</td>
+                    </tr>
+                    <tr>
+                        <th>Objective:</th>
+                        <td>
+                            Recognizes author of an article published in the public press about zoology
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Value:</th>
+                        <td>Scroll; $100</td>
+                    </tr>
+                    <tr>
+                        <th>Normal Deadline:</th>
+                        <td>October 1</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="award-card phd">
+                <h4>FEJ Fry Award</h4>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Eligibility:</th>
+                        <td>PhD</td>
+                    </tr>
+                    <tr>
+                        <th>Objective:</th>
+                        <td>
+                            Recognizes an outstanding contribution to zoology
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Value:</th>
+                        <td>Medal; presents “Fry Lecture”; travel costs</td>
+                    </tr>
+                    <tr>
+                        <th>Normal Deadline:</th>
+                        <td>Mid-November</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="award-card pdf">
+                <h4>PDF Award</h4>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Eligibility:</th>
+                        <td>PDF</td>
+                    </tr>
+                    <tr>
+                        <th>Objective:</th>
+                        <td>
+                            Recognizes excellence in scientific research and communication by Post-Doctoral Fellows
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Value:</th>
+                        <td>Scroll; $500</td>
+                    </tr>
+                    <tr>
+                        <th>Normal Deadline:</th>
+                        <td>Abstract submission deadline</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="award-card anyone">
+                <h4>Public Awareness Award</h4>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Eligibility:</th>
+                        <td>Anyone</td>
+                    </tr>
+                    <tr>
+                        <th>Objective:</th>
+                        <td>
+                            Recognizes author of an article published in the public press about zoology
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Value:</th>
+                        <td>Scroll; $100</td>
+                    </tr>
+                    <tr>
+                        <th>Normal Deadline:</th>
+                        <td>October 1</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="award-card anyone">
+                <h4>Public Awareness Award</h4>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Eligibility:</th>
+                        <td>Anyone</td>
+                    </tr>
+                    <tr>
+                        <th>Objective:</th>
+                        <td>
+                            Recognizes author of an article published in the public press about zoology
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Value:</th>
+                        <td>Scroll; $100</td>
+                    </tr>
+                    <tr>
+                        <th>Normal Deadline:</th>
+                        <td>October 1</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="award-card anyone">
+                <h4>Public Awareness Award</h4>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Eligibility:</th>
+                        <td>Anyone</td>
+                    </tr>
+                    <tr>
+                        <th>Objective:</th>
+                        <td>
+                            Recognizes author of an article published in the public press about zoology
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Value:</th>
+                        <td>Scroll; $100</td>
+                    </tr>
+                    <tr>
+                        <th>Normal Deadline:</th>
+                        <td>October 1</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="award-card anyone">
+                <h4>Public Awareness Award</h4>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Eligibility:</th>
+                        <td>Anyone</td>
+                    </tr>
+                    <tr>
+                        <th>Objective:</th>
+                        <td>
+                            Recognizes author of an article published in the public press about zoology
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Value:</th>
+                        <td>Scroll; $100</td>
+                    </tr>
+                    <tr>
+                        <th>Normal Deadline:</th>
+                        <td>October 1</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--{% component "column_middle" %}-->
+{% endput %}
+
+
+{% put scripts %}
+
+<script src="/themes/krisawzm-blank-bootstrap/assets/js/jquery.isotope.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+
+        var $container = $('#awards-container'),
+                $filters = $("#filters a");
+
+        $container.imagesLoaded(function () {
+            $container.isotope({
+                itemSelector: '.award-card',
+                masonry: {
+                    columnWidth: 100
+                }
+            });
+        });
+
+        // filter items when filter link is clicked
+        $filters.click(function () {
+            $filters.removeClass("active");
+            $(this).addClass("active");
+            var selector = $(this).data('filter');
+            $container.isotope({filter: selector});
+            return false;
+        });
+
+
+    });
+</script>
 {% endput %}

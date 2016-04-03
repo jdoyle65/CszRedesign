@@ -121,4 +121,29 @@
   color: #c0c0c0;
   font-weight: lighter; }
 
+.award-card {
+  padding: 10px;
+  margin-bottom: 10px;
+  float: left;
+  width: 287px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px 2px #E0E0E0; }
+
+.award-card.anyone {
+  background-color: #f0684f;
+  color: #fff; }
+
+.award-card.phd {
+  background-color: #4dd079;
+  color: #fff; }
+
+.award-card.pdf {
+  background-color: #6389d0;
+  color: #fff; }
+
+.social-feed-element {
+  background-color: #fff;
+  color: #000;
+  float: left; }
+
 /*# sourceMappingURL=style.css.map */

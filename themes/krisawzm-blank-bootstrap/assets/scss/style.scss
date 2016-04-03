@@ -164,3 +164,34 @@ $nav-colour-transparent: rgba(237, 67, 35, 0.8);
   color: #c0c0c0;
   font-weight: lighter;
 }
+
+.award-card {
+  padding: 10px;
+  margin-bottom: 10px;
+  float: left;
+  width: 287px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px 2px #E0E0E0;
+
+}
+
+.award-card.anyone {
+  background-color: rgb(240, 104, 79);
+  color: #fff;
+}
+
+.award-card.phd {
+  background-color: rgb(77, 208, 121);
+  color: #fff;
+}
+
+.award-card.pdf {
+  background-color: rgb(99, 137, 208);
+  color: #fff;
+}
+
+.social-feed-element {
+  background-color: #fff;
+  color: #000;
+  float: left;
+}
