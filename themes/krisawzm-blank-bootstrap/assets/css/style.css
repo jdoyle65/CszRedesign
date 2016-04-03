@@ -11,10 +11,11 @@
   width: 50%; }
 
 .navbar.navbar-inverse {
-  background-color: rgba(237, 67, 35, 0.8); }
+  background-color: rgba(237, 67, 35, 0.8);
+  border: none; }
 
 .navbar.sticky {
-  background-color: rgba(237, 67, 35, 0.9); }
+  background-color: #f0684f; }
 
 .membership-pills-row {
   box-shadow: 0 1px 3px 1px #E0E0E0; }

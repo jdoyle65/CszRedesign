@@ -1,4 +1,4 @@
-$nav-colour: rgba(237, 67, 35, 0.9);
+$nav-colour: rgb(240, 104, 79);
 $nav-colour-transparent: rgba(237, 67, 35, 0.8);
 
 .slider-description {
@@ -19,6 +19,7 @@ $nav-colour-transparent: rgba(237, 67, 35, 0.8);
 .navbar.navbar-inverse {
 
   background-color: $nav-colour-transparent;
+  border: none;
 
 }
 
