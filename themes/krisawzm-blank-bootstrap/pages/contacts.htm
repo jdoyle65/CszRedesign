@@ -21,7 +21,9 @@ function onStart() {
 ?>
 ==
 {% put header %}
-<h1 class="main-header">{{'Contacts'|_}}</h1>
+<div class="section_header">
+    <h3>{{'Contacts'|_}}</h3>
+</div>
 {% endput %}
 
 
@@ -69,45 +71,65 @@ function onStart() {
 </style>
 
 {% put scripts %}
-<script>
-    $(function() {
-        $('#contact-card-category-select').change(function() {
-            var categoryId = $(this).val();
-            if(categoryId !== 'all')
-            {
-                $('.contact-card').each(function(index, card) {
-                    if($(this).data('category-id') == categoryId) {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
-                });
-            } else {
-                $('.contact-card').show();
-            }
+
+<script src="/themes/krisawzm-blank-bootstrap/assets/js/jquery.isotope.min.js"></script>
+
+<script type="text/javascript">
+    $(function(){
+
+        var $container = $('#contacts-container'),
+                $filters = $("#filters a");
+
+        $container.imagesLoaded( function(){
+            $container.isotope({
+                itemSelector : '.contact-card',
+                masonry: {
+                    columnWidth: 100
+                }
+            });
         });
+
+        // filter items when filter link is clicked
+        $filters.click(function() {
+            $filters.removeClass("active");
+            $(this).addClass("active");
+            var selector = $(this).data('filter');
+            $container.isotope({ filter: selector });
+            return false;
+        });
+
+
     });
 </script>
 {% endput %}
 
-<div class="form-group contact-category-dropdown">
-    <label for="contact-card-category-select">{{'contact_card.category'|_}}</label>
-    <select class="form-control" id="contact-card-category-select">
-        <option value="all">{{'contact_card.category.all'|_}}</option>
-        {% for category in categories %}
-        <option value="{{category.id}}">
-            {% if activeLocale == 'fr' %}
-            {{category.title_fr}}
-            {% else %}
-            {{category.title_en}}
-            {% endif %}
-        </option>
-        {% endfor %}
-    </select>
-</div>
 <div class="row">
+    <div class="col-md-12">
+        <div id="filters-container">
+            <ul id="filters">
+                <li><a href="#" data-filter="*" class="active">All</a></li>
+
+                {% for category in categories %}
+
+                <li class="separator">/</li>
+                <li>
+                    <a href="#" data-filter=".category-{{ category.id }}">
+                    {% if activeLocale == 'fr' %}
+                    {{category.title_fr}}
+                    {% else %}
+                    {{category.title_en}}
+                    {% endif %}
+                    </a>
+                </li>
+
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row" id="contacts-container">
     {% for contact in contacts %}
-    <div class="col col-lg-3 contact-card" data-category-id="{{contact.category_id}}">
+    <div class="col col-lg-3 contact-card category-{{contact.category_id}}" data-category-id="{{contact.category_id}}">
         <img src="{{contact.profile_image|media}}" alt="">
         <div class="row contact-card-info-row">
             <div class="col col-lg-12 contact-card-info">
