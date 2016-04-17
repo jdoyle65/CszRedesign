@@ -109,7 +109,7 @@
             .width(this.$el.outerWidth())
             .height(this.$el.outerHeight())
             .css({
-                top: this.$el.offset().top,
+                top: this.$el.offset().top - 120,
                 left: this.$el.offset().left + this.$el.outerWidth() - this.$controlPanel.outerWidth()
             })
     }
