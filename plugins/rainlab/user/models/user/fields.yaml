@@ -4,6 +4,10 @@
 
 fields:
 
+    title:
+        label: 'Title'
+        span: auto
+
     name:
         label: rainlab.user::lang.user.name
         span: auto
@@ -11,6 +15,7 @@ fields:
     surname:
         label: rainlab.user::lang.user.surname
         span: auto
+        hidden: true
 
 tabs:
     fields:
@@ -44,7 +49,112 @@ tabs:
             label: rainlab.user::lang.user.groups
             tab: rainlab.user::lang.user.account
             type: relation
+            hidden: true
             emptyOption: rainlab.user::lang.user.empty_groups
+
+        degrees:
+            label: 'Degrees'
+            tab: rainlab.user::lang.user.account
+            span: left
+
+        institution:
+            label: 'Institution'
+            tab: rainlab.user::lang.user.account
+            span: right
+
+        address_line_one:
+            label: 'Address Line One'
+            tab: rainlab.user::lang.user.account
+            span: left
+
+        address_line_two:
+            label: 'Address Line Two'
+            tab: rainlab.user::lang.user.account
+            span: right
+
+        city:
+            label: 'City'
+            tab: rainlab.user::lang.user.account
+            span: left
+
+        province:
+            label: 'Province/State'
+            tab: rainlab.user::lang.user.account
+            span: right
+
+        country:
+            label: 'Country'
+            tab: rainlab.user::lang.user.account
+            span: left
+
+        postal_code:
+            label: 'Postal Code'
+            tab: rainlab.user::lang.user.account
+            span: right
+
+        phone_one:
+            label: 'Phone One'
+            tab: rainlab.user::lang.user.account
+            span: left
+
+        phone_two:
+            label: 'Phone Two'
+            tab: rainlab.user::lang.user.account
+            span: right
+
+        website:
+            label: 'Website'
+            tab: rainlab.user::lang.user.account
+            span: left
+
+        receive_emails:
+            label: 'Receive Emails?'
+            type: checkbox
+            tab: rainlab.user::lang.user.account
+            span: right
+
+        cmd_member:
+            label: 'CMD Member?'
+            type: checkbox
+            tab: rainlab.user::lang.user.account
+            span: left
+
+        pie_member:
+            label: 'PIE Memember?'
+            type: checkbox
+            tab: rainlab.user::lang.user.account
+            span: right
+
+        cpb_member:
+            label: 'CPB Member?'
+            type: checkbox
+            tab: rainlab.user::lang.user.account
+            span: left
+
+        eee_member:
+            label: 'EEE Member?'
+            type: checkbox
+            tab: rainlab.user::lang.user.account
+            span: right
+
+        membership_status:
+            label: 'Membership Status'
+            tab: rainlab.user::lang.user.account
+            span: left
+            type: dropdown
+            options:
+                unpaid: Unpaid
+                paid: Paid
+
+        member_number:
+            label: 'Member Number'
+            tab: rainlab.user::lang.user.account
+            span: right
+
+        membership_type:
+            label: 'Membership Type'
+            tab: rainlab.user::lang.user.account
+            span: left
 
 secondaryTabs:
     fields:
