@@ -11,7 +11,7 @@ file = "membership/column_middle.htm"
 {% put header %}
 
 <div class="section_header">
-    <h3>{{'Membership'|_}}</h3>
+    <h3>{{'Membership Types'|_}}</h3>
 </div>
 
 {% endput %}
@@ -19,28 +19,6 @@ file = "membership/column_middle.htm"
 
 {% put middle_column %}
 
-<div class="row online-payment">
-    <div class="col-sm-2 circle"><i class="fa fa-desktop"></i></div>
-    <div class="col-sm-10">
-        <h5>Membership Payment Online</h5>
-        <p>
-            {% component 'editable' file="membership/onlinepayment.htm" %}
-        </p>
-    </div>
-</div>
-<div class="row online-payment" style="margin-top: 75px;">
-    <div class="col-sm-2 circle"><i class="fa fa-envelope"></i></div>
-    <div class="col-sm-10">
-        <h5>Membership Payment by Mail</h5>
-        <p>
-            {% component 'editable' file="membership/mailpayment.htm" %}
-        </p>
-    </div>
-</div>
-
-<div class="section_header" style="margin-top: 75px;margin-bottom: 20px;">
-    <h3>Membership Types</h3>
-</div>
 <div class="row membership-pills-row">
     <ul class="nav nav-pills membership-nav-pills nav-stacked col-md-3">
         <li class="active"><a href="#a" data-toggle="tab">{{ 'membership.type.ordinary'|_ }}</a></li>
@@ -50,11 +28,26 @@ file = "membership/column_middle.htm"
         <li><a href="#e" data-toggle="tab">{{ 'membership.type.associate'|_ }}</a></li>
     </ul>
     <div class="tab-content col-md-9">
-        <div class="tab-pane active" id="a">{% component 'editable' file="membership/ordinary.htm" %}</div>
-        <div class="tab-pane" id="b">{% component 'editable' file="membership/student.htm" %}</div>
-        <div class="tab-pane" id="c">{% component 'editable' file="membership/postdoc.htm" %}</div>
-        <div class="tab-pane" id="d">{% component 'editable' file="membership/emeritus.htm" %}</div>
-        <div class="tab-pane" id="e">{% component 'editable' file="membership/associate.htm" %}</div>
+        <div class="tab-pane active" id="a">
+            {% component 'editable' file="membership/ordinary.htm" %}
+            <a href="/membership/payment" class="btn btn-info" style="margin-top: 10px;">{{'Membership Payment'|_}} >></a>
+        </div>
+        <div class="tab-pane" id="b">
+            {% component 'editable' file="membership/student.htm" %}
+            <a href="/membership/payment" class="btn btn-info" style="margin-top: 10px;">{{'Membership Payment'|_}} >></a>
+        </div>
+        <div class="tab-pane" id="c">
+            {% component 'editable' file="membership/postdoc.htm" %}
+            <a href="/membership/payment" class="btn btn-info" style="margin-top: 10px;">{{'Membership Payment'|_}} >></a>
+        </div>
+        <div class="tab-pane" id="d">
+            {% component 'editable' file="membership/emeritus.htm" %}
+            <a href="/membership/payment" class="btn btn-info" style="margin-top: 10px;">{{'Membership Payment'|_}} >></a>
+        </div>
+        <div class="tab-pane" id="e">
+            {% component 'editable' file="membership/associate.htm" %}
+            <a href="/membership/payment" class="btn btn-info" style="margin-top: 10px;">{{'Membership Payment'|_}} >></a>
+        </div>
     </div>
 </div>
 

@@ -146,4 +146,26 @@
   color: #000;
   float: left; }
 
+.card {
+  border-radius: 2px;
+  box-shadow: 1px 1px 5px 2px #E0E0E0; }
+
+.awards-awardees {
+  margin-top: 40px; }
+
+.awards-awardees ul {
+  list-style: none;
+  padding-left: 5px; }
+  .awards-awardees ul li {
+    margin-bottom: 10px; }
+
+.awards-description {
+  padding-left: 40px; }
+
+@media screen and (max-width: 991px) {
+  .awards-description {
+    padding-left: 10px; } }
+.awards-biography ul {
+  padding-left: 15px; }
+
 /*# sourceMappingURL=style.css.map */

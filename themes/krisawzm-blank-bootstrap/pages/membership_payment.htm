@@ -1,0 +1,35 @@
+url = "/membership/payment"
+title = "Membership Payment"
+description = "New Page"
+layout = "one_column"
+is_hidden = 0
+
+[editable]
+==
+{% put header %}
+
+<div class="section_header">
+    <h3>{{'Membership Payment'|_}}</h3>
+</div>
+
+{% endput %}
+
+
+{% put middle_column %}
+
+<div class="row journal-cards-row" style="margin-bottom: 75px;">
+    <div class="col-md-6 journal-card">
+        <div class="journal-image online-payment">
+            <div class="col-sm-2 circle"><i class="fa fa-desktop"></i></div>
+        </div>
+            {% component 'editable' file="membership/onlinepayment.htm" %}
+    </div>
+    <div class="col-md-6 journal-card">
+        <div class="journal-image online-payment">
+            <div class="col-sm-2 circle"><i class="fa fa-envelope"></i></div>
+        </div>
+            {% component 'editable' file="membership/mailpayment.htm" %}
+    </div>
+</div>
+
+{% endput %}

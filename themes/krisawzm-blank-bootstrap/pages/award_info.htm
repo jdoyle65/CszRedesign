@@ -1,0 +1,58 @@
+url = "/awards/:award_name"
+title = "Award"
+description = "New Page"
+layout = "one_column"
+is_hidden = 0
+
+[editable]
+==
+function onStart() {
+    $this['award_name'] = str_replace('-', '_', $this->param('award_name'));
+    $this['description_file'] = 'awards_' . $this['award_name'] . '/description.htm';
+    $this['biography_file'] = 'awards_' . $this['award_name'] . '/biography.htm';
+    $this['terms_of_reference_file'] = 'awards_' . $this['award_name'] . '/terms_of_reference.htm';
+    $this['awardees_file'] = 'awards_' . $this['award_name'] . '/awardees.htm';
+
+    $dir = base_path() . '/themes/krisawzm-blank-bootstrap/content/';
+
+    if (
+        ! file_exists($dir . $this['description_file'])
+        || ! file_exists($dir . $this['biography_file'])
+        || ! file_exists($dir . $this['terms_of_reference_file'])
+        || ! file_exists($dir . $this['awardees_file'])
+        ) {
+        return Redirect::to('/error/404');
+    }
+}
+==
+{% put header %}
+
+<div class="section_header">
+    <h3>{{'Award'|_}}</h3>
+</div>
+
+{% endput %}
+
+
+{% put middle_column %}
+
+
+<h1>Award Name Here</h1>
+
+<div class="row" style="margin-top: 40px;">
+    <div class="col col-md-4 card awards-biography">
+        <img src="{{'assets/images/fry_fred.jpg'|theme}}" alt="">
+        {% component 'editable' file=biography_file %}
+    </div>
+    <div class="col col-md-8 awards-description">
+        {% component 'editable' file=description_file %}
+        {% component 'editable' file=terms_of_reference_file %}
+    </div>
+</div>
+<div class="row">
+    <div class="col col-md-12 awards-awardees">
+        {% component 'editable' file=awardees_file %}
+    </div>
+</div>
+
+{% endput %}
