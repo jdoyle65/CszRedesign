@@ -12,6 +12,7 @@ function onStart() {
     $this['biography_file'] = 'awards_' . $this['award_name'] . '/biography.htm';
     $this['terms_of_reference_file'] = 'awards_' . $this['award_name'] . '/terms_of_reference.htm';
     $this['awardees_file'] = 'awards_' . $this['award_name'] . '/awardees.htm';
+    $this['name_file'] = 'awards_' . $this['award_name'] . '/name.htm';
 
     $dir = base_path() . '/themes/krisawzm-blank-bootstrap/content/';
 
@@ -20,6 +21,7 @@ function onStart() {
         || ! file_exists($dir . $this['biography_file'])
         || ! file_exists($dir . $this['terms_of_reference_file'])
         || ! file_exists($dir . $this['awardees_file'])
+        || ! file_exists($dir . $this['name_file'])
         ) {
         return Redirect::to('/error/404');
     }
@@ -28,7 +30,7 @@ function onStart() {
 {% put header %}
 
 <div class="section_header">
-    <h3>{{'Award'|_}}</h3>
+    {% component 'editable' file=name_file %}
 </div>
 
 {% endput %}
@@ -36,17 +38,14 @@ function onStart() {
 
 {% put middle_column %}
 
-
-<h1>Award Name Here</h1>
-
-<div class="row" style="margin-top: 40px;">
-    <div class="col col-md-4 card awards-biography">
-        <img src="{{'assets/images/fry_fred.jpg'|theme}}" alt="">
-        {% component 'editable' file=biography_file %}
-    </div>
+<div class="row">
     <div class="col col-md-8 awards-description">
         {% component 'editable' file=description_file %}
+        <br>
         {% component 'editable' file=terms_of_reference_file %}
+    </div>
+    <div class="col col-md-4 card awards-biography">
+        {% component 'editable' file=biography_file %}
     </div>
 </div>
 <div class="row">

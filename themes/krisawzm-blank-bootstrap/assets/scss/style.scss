@@ -190,6 +190,11 @@ $nav-colour-transparent: rgba(237, 67, 35, 0.8);
   color: #fff;
 }
 
+.award-card.student {
+  background-color: rgb(99, 137, 208);
+  color: #fff;
+}
+
 .social-feed-element {
   background-color: #fff;
   color: #000;
@@ -197,6 +202,7 @@ $nav-colour-transparent: rgba(237, 67, 35, 0.8);
 }
 
 .card {
+  padding: 15px;
   border-radius: 2px;
   box-shadow: 1px 1px 5px 2px #E0E0E0;
 }

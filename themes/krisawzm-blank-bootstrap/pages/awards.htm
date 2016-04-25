@@ -7,6 +7,14 @@ is_hidden = 0
 [editable column_middle]
 file = "awards/column_middle.htm"
 ==
+<?php
+use JustinDoyle\Awards\Models\Award;
+
+function onStart() {
+    $this['awards'] = Award::all();
+}
+?>
+==
 {% put header %}
 
 <div class="section_header">
@@ -58,89 +66,66 @@ file = "awards/column_middle.htm"
 <div class="row">
     <div class="col-sm-12">
         <div id="awards-container">
-            <div class="award-card anyone">
-                <a href="/awards/public-awareness" style="color: white;">
-                    <h4>Public Awareness Award</h4>
+
+            {% for award in awards %}
+
+            <div class="award-card {% if award.anyone %}anyone{% endif %} {% if award.phd %}phd{% endif %} {% if award.pdf %}pdf{% endif %} {% if award.student %}student{% endif %}">
+                <a href="/awards/{{award.url}}" style="color: white;">
+                    <h4>
+                        {% if activeLocale == 'fr' %}
+                        {{ award.name_fr }}
+                        {% else %}
+                        {{ award.name }}
+                        {% endif %}
+                    </h4>
                     <table class="table">
                         <tbody>
                         <tr>
-                            <th>Eligibility:</th>
-                            <td>Anyone</td>
-                        </tr>
-                        <tr>
-                            <th>Objective:</th>
+                            <th>{{'Eligibility'|_}}:</th>
                             <td>
-                                Recognizes author of an article published in the public press about zoology
+                                {% if activeLocale == 'fr' %}
+                                {{ award.eligibility_fr }}
+                                {% else %}
+                                {{ award.eligibility }}
+                                {% endif %}
                             </td>
                         </tr>
                         <tr>
-                            <th>Value:</th>
-                            <td>Scroll; $100</td>
+                            <th>{{'Objective'|_}}:</th>
+                            <td>
+                                {% if activeLocale == 'fr' %}
+                                {{ award.objective_fr }}
+                                {% else %}
+                                {{ award.objective }}
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
-                            <th>Normal Deadline:</th>
-                            <td>October 1</td>
+                            <th>{{'Value'|_}}:</th>
+                            <td>
+                                {% if activeLocale == 'fr' %}
+                                {{ award.value_fr }}
+                                {% else %}
+                                {{ award.value }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{'Normal Deadline'|_}}:</th>
+                            <td>
+                                {% if activeLocale == 'fr' %}
+                                {{ award.deadline_fr }}
+                                {% else %}
+                                {{ award.deadline }}
+                                {% endif %}
+                            </td>
                         </tr>
                         </tbody>
                     </table>
                 </a>
             </div>
 
-            <div class="award-card phd">
-                <a href="/awards/fej-fry" style="color: white;">
-                    <h4>FEJ Fry Award</h4>
-                    <table class="table">
-                        <tbody>
-                        <tr>
-                            <th>Eligibility:</th>
-                            <td>PhD</td>
-                        </tr>
-                        <tr>
-                            <th>Objective:</th>
-                            <td>
-                                Recognizes an outstanding contribution to zoology
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Value:</th>
-                            <td>Medal; presents “Fry Lecture”; travel costs</td>
-                        </tr>
-                        <tr>
-                            <th>Normal Deadline:</th>
-                            <td>Mid-November</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </a>
-            </div>
-
-            <div class="award-card pdf">
-                <a href="/awards/pdf" style="color: white;">
-                    <h4>PDF Award</h4>
-                    <table class="table">
-                        <tbody>
-                        <tr>
-                            <th>Eligibility:</th>
-                            <td>PDF</td>
-                        </tr>
-                        <tr>
-                            <th>Objective:</th>
-                            <td>
-                                Recognizes excellence in scientific research and communication by Post-Doctoral Fellows
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Value:</th>
-                            <td>Scroll; $500</td>
-                        </tr>
-                        <tr>
-                            <th>Normal Deadline:</th>
-                            <td>Abstract submission deadline</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </a>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>

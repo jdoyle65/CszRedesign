@@ -141,12 +141,17 @@
   background-color: #6389d0;
   color: #fff; }
 
+.award-card.student {
+  background-color: #6389d0;
+  color: #fff; }
+
 .social-feed-element {
   background-color: #fff;
   color: #000;
   float: left; }
 
 .card {
+  padding: 15px;
   border-radius: 2px;
   box-shadow: 1px 1px 5px 2px #E0E0E0; }
 
