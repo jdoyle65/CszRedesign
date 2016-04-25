@@ -70,7 +70,7 @@ function onStart() {
             {% for award in awards %}
 
             <div class="award-card {% if award.anyone %}anyone{% endif %} {% if award.phd %}phd{% endif %} {% if award.pdf %}pdf{% endif %} {% if award.student %}student{% endif %}">
-                <a href="/awards/{{award.url}}" style="color: white;">
+                <a href="/awards/{{award.url}}">
                     <h4>
                         {% if activeLocale == 'fr' %}
                         {{ award.name_fr }}

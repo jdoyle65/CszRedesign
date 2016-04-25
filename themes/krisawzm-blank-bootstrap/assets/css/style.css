@@ -127,7 +127,10 @@
   float: left;
   width: 287px;
   border-radius: 5px;
-  box-shadow: 1px 1px 5px 2px #E0E0E0; }
+  box-shadow: 1px 1px 5px 2px #E0E0E0;
+  color: #fff; }
+  .award-card a {
+    color: #fff; }
 
 .award-card.anyone {
   background-color: #f0684f;
@@ -144,6 +147,17 @@
 .award-card.student {
   background-color: #6389d0;
   color: #fff; }
+
+.award-card:hover {
+  background-color: #fff;
+  color: #000;
+  -webkit-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+  -o-transition: all 200ms linear;
+  -ms-transition: all 200ms linear;
+  transition: all 200ms linear; }
+  .award-card:hover a {
+    color: #000; }
 
 .social-feed-element {
   background-color: #fff;

@@ -172,6 +172,11 @@ $nav-colour-transparent: rgba(237, 67, 35, 0.8);
   width: 287px;
   border-radius: 5px;
   box-shadow: 1px 1px 5px 2px #E0E0E0;
+  color: #fff;
+  
+  a {
+    color: #fff;
+  }
 
 }
 
@@ -193,6 +198,20 @@ $nav-colour-transparent: rgba(237, 67, 35, 0.8);
 .award-card.student {
   background-color: rgb(99, 137, 208);
   color: #fff;
+}
+
+.award-card:hover {
+  background-color: #fff;
+  color: #000;
+
+  -webkit-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+  -o-transition: all 200ms linear;
+  -ms-transition: all 200ms linear;
+  transition: all 200ms linear;
+  a {
+    color: #000;
+  }
 }
 
 .social-feed-element {
