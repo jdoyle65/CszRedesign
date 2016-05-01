@@ -323,3 +323,27 @@ ul#pagination {
 
 }
 
+.post-pic {
+  border: 7px solid #fff;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px 1px #cfcfcf;
+}
+
+.post-pic.centered {
+  display: block;
+  margin: 0 auto;
+}
+
+.card.post {
+  padding: 0;
+  height: 450px;
+  margin-bottom: 30px;
+
+  .img img {
+    max-height: 186px;
+  }
+
+  .text {
+    padding: 15px;
+  }
+}
