@@ -337,8 +337,7 @@ ul#pagination {
 .card.post {
   padding: 0;
   height: 450px;
-  margin-bottom: 30px;
-
+  overflow: hidden;
   .img img {
     max-height: 186px;
   }

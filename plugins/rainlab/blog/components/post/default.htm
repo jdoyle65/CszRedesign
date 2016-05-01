@@ -1,6 +1,10 @@
 {% set post = __SELF__.post %}
 
-<p class="text-muted">{{ post.published_at|date('M')|_ }} {{ post.published_at|date('d, Y') }}</p>
+{% if activeLocale == 'fr' %}
+<p class="text-muted">{{ post.published_at|date('d') }} {{ post.published_at|date('M')|_ }} {{ post.published_at|date('y') }}</p>
+{% else %}
+<p class="text-muted">{{ post.published_at|date('M d, y') }}</p>
+{% endif %}
 {% if post.featured_images[0] %}
 <div class="col-sm-12">
     <img
