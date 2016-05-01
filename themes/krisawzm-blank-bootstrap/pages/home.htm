@@ -5,6 +5,61 @@ is_hidden = 0
 
 [JustinDoyle\Carousel\Components\Carousel carousel]
 selected_carousel = 1
+
+[editable]
 ==
-{% component "carousel" %}
+<div class="carousel-wrapper">
+    {% component "carousel" %}
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {% component 'editable' file='home/content.htm' %}
+        </div>
+    </div>
+</div>
+
+
+
+<!--Social Media-->
+<div class="container-fluid" style="margin-top: 100px;">
+    <div class="section_header" style="padding-left: 15px">
+        <h3>{{'Social Media'|_}}</h3>
+    </div>
+    <div class="social-feed-container">
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% put scripts %}
+<script>
+    $(function () {
+        $('.social-feed-container').socialfeed({
+            facebook: {
+                accounts: ['@csz.scz'],  //Array: Specify a list of accounts from which to pull wall posts
+                limit: 4,                                   //Integer: max number of posts to load
+                access_token: '1704694226464657|ce14482ffb5ad74fcf4e3ae724689e5c'  //String: "APP_ID|APP_SECRET"
+            },
+
+            twitter:{
+                accounts: ['@csz_scz'],                      //Array: Specify a list of accounts from which to pull tweets
+                limit: 4,                                   //Integer: max number of tweets to load
+                consumer_key: 'uo40CLbdYvyBXLjbErFnxmds8',          //String: consumer key. make sure to have your app read-only
+                consumer_secret: 'bHMWFVyPqlpvsNJLcaBuFlA5WnVLt73m2XftEStb5XBtSlMeXC',//String: consumer secret key. make sure to have your app read-only
+            },
+
+            // GENERAL SETTINGS
+            length: 200                                      //Integer: For posts with text longer than this length, show an ellipsis.
+        });
+    })
+</script>
+{% endput %}
 

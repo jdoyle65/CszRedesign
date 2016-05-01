@@ -1,5 +1,7 @@
 $nav-colour: rgb(240, 104, 79);
 $nav-colour-transparent: rgba(237, 67, 35, 0.8);
+$facebook-blue: #3b5998;
+$twitter-blue: #4099FF;
 
 .slider-description {
 
@@ -14,6 +16,18 @@ $nav-colour-transparent: rgba(237, 67, 35, 0.8);
   bottom: 100px;
   left: 10%;
   width: 50%;
+}
+
+#feature_slider {
+  .slider-description {
+    opacity: 0.0;
+  }
+}
+
+#feature_slider:hover {
+  .slider-description {
+    opacity: 1.0;
+  }
 }
 
 .navbar.navbar-inverse {
@@ -200,6 +214,14 @@ $nav-colour-transparent: rgba(237, 67, 35, 0.8);
   color: #fff;
 }
 
+.animated {
+  -webkit-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+  -o-transition: all 200ms linear;
+  -ms-transition: all 200ms linear;
+  transition: all 200ms linear;
+}
+
 .award-card:hover {
   background-color: #fff;
   color: #000;
@@ -224,6 +246,10 @@ $nav-colour-transparent: rgba(237, 67, 35, 0.8);
   padding: 15px;
   border-radius: 2px;
   box-shadow: 1px 1px 5px 2px #E0E0E0;
+}
+
+.animated.card:hover {
+  box-shadow: 3px 3px 10px 6px #E0E0E0;
 }
 
 
@@ -255,3 +281,45 @@ $nav-colour-transparent: rgba(237, 67, 35, 0.8);
     padding-left: 15px;
   }
 }
+
+ul#pagination {
+  display: none !important;
+}
+
+.carousel-wrapper {
+  box-shadow: 0 3px 5px 6px #E0E0E0;
+}
+
+.social-feed-element {
+  margin-bottom: 20px;
+  //.content {
+  //  height: 260px;
+  //}
+
+  .media-object.profile-pic {
+    width: 50px;
+  }
+  .media-body {
+    padding-left: 10px;
+
+    .author-title {
+      font-weight: bold;
+    }
+
+    .social-media-tag {
+      padding: 5px;
+      margin-right: 5px;
+    }
+    .social-media-tag.fa-facebook {
+      color: white;
+      background-color: $facebook-blue;
+    }
+    .social-media-tag.fa-twitter {
+      color: white;
+      background-color: $twitter-blue;
+    }
+
+  }
+
+}
+

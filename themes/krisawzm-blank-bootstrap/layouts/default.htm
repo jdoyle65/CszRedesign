@@ -46,12 +46,24 @@ security = "all"
             'assets/js/bootstrap.min.js',
             'assets/js/theme.js',
             'assets/js/index-slider.js',
+            'assets/js/codebird.js',
+            'assets/js/dot.min.js',
+            'assets/js/moment.min.js',
+            'assets/js/jquery.socialfeed.js',
 
             '@framework',
             '@framework.extras',
 
             'assets/js/app.js']|theme }}"></script>
+        {% if activeLocale == 'fr' %}
+        <script src="{{ ['assets/js/locale/fr-ca.js']|theme }}"></script>
+        {% else %}
+        <script src="{{ ['assets/js/locale/en-ca.js']|theme }}"></script>
+        {% endif %}
+
 
         {% scripts %}
+
+
     </body>
 </html>

@@ -1,0 +1,20 @@
+url = "/news/post/:slug"
+title = "News Post"
+description = "New Page"
+layout = "one_column"
+is_hidden = 0
+
+[blogPost]
+==
+
+{% put middle_column %}
+
+{% if post %}
+<h2>{{ post.title }}</h2>
+
+{% component 'blogPost' %}
+{% else %}
+<h2>Post not found</h2>
+{% endif %}
+
+{% endput %}

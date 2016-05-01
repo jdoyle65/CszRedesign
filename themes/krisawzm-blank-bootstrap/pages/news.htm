@@ -1,0 +1,30 @@
+title = "News"
+url = "/news/:page?"
+layout = "one_column"
+description = "New Page"
+is_hidden = 0
+
+[editable]
+
+[blogPosts]
+pageNumber = "{{ :page }}"
+postsPerPage = 5
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+categoryPage = "award_info"
+postPage = "news_post"
+==
+{% put header %}
+
+<div class="section_header">
+    <h3>{{'News'|_}}</h3>
+</div>
+
+{% endput %}
+
+
+{% put middle_column %}
+
+{% component 'blogPosts' %}
+
+{% endput %}
