@@ -131,7 +131,6 @@ class Account extends ComponentBase
             'login'    => array_get($data, 'login'),
             'password' => array_get($data, 'password')
         ];
-
         Event::fire('rainlab.user.beforeAuthenticate', [$this, $credentials]);
 
         $user = Auth::authenticate($credentials, true);
