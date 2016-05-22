@@ -138,8 +138,6 @@ class Account extends ComponentBase
             $user = Auth::authenticate($credentials, true);
         } catch(AuthException $e) {
             return response()->json(['Invalid Username/Password'], 403);
-        } finally {
-            throw $e;
         }
 
         /*
