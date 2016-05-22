@@ -34,6 +34,15 @@ function onStart() {
                 <li class="{{activeLink=='bulletin'?'active':''}}"><a style="text-transform: uppercase;" href="/bulletin">{{'Bulletin'|_ }}</a></li>
                 <li class="{{activeLink=='awards'?'active':''}}"><a style="text-transform: uppercase;" href="/awards">{{'Awards'|_ }}</a></li>
                 <li class="{{activeLink=='news'?'active':''}}"><a style="text-transform: uppercase;" href="/news">{{'News'|_ }}</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" style="text-transform: uppercase;" data-toggle="dropdown">{{'Sections'|_}} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="http://www.biology.ualberta.ca/CMD/home.htm">{{'CMD'|_}}</a></li>
+                        <li><a href="#">{{'CPB'|_}}</a></li>
+                        <li><a href="#">{{'CPB'|_}}</a></li>
+                        <li><a href="http://www.biology.ualberta.ca/parasites/ParSec/home.htm">{{'PIE'|_}}</a></li>
+                    </ul>
+                </li>
                 {% if localePicker.activeLocale == 'fr' %}
                 <li><a href="#" data-request="onSwitchLocale" data-request-data="locale: 'en'">English</a></li>
                 {% else %}
@@ -45,20 +54,6 @@ function onStart() {
                 {% else %}
                 <li><a href="/signin">{{'Sign In'|_ }}</a></li>
                 {% endif %}
-
-                <!--<li class="dropdown">-->
-                    <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">PAGES <b class="caret"></b></a>-->
-                    <!--<ul class="dropdown-menu">-->
-                        <!--<li><a href="features.html">Features</a></li>-->
-                        <!--<li><a href="services.html">Services</a></li>-->
-                        <!--<li><a href="portfolio.html">Portfolio</a></li>-->
-                        <!--<li><a href="portfolio-item.html">Portfolio Item</a></li>-->
-                        <!--<li><a href="coming-soon.html">Coming Soon</a></li>-->
-                        <!--<li><a href="sign-in.html">Sign in</a></li>-->
-                        <!--<li><a href="sign-up.html">Sign up</a></li>-->
-                        <!--<li><a href="backgrounds.html">Backgrounds</a></li>-->
-                    <!--</ul>-->
-                <!--</li>-->
             </ul>
         </div>
     </div>

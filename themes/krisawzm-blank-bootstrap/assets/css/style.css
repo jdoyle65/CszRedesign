@@ -254,4 +254,8 @@ ul#pagination {
       .navbar-brand img {
         height: 50px; } }
 
+@media screen and (max-width: 767px) {
+  #home-page-container {
+    margin-top: 65px; } }
+
 /*# sourceMappingURL=style.css.map */

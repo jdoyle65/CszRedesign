@@ -359,3 +359,9 @@ ul#pagination {
     }
   }
 }
+
+#home-page-container {
+  @media screen and (max-width: 767px) {
+    margin-top: 65px;
+  }
+}
