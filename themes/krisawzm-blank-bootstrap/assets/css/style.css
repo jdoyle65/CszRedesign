@@ -245,4 +245,13 @@ ul#pagination {
   .card.post .text {
     padding: 15px; }
 
+.navbar-brand {
+  height: 0px;
+  padding-top: 0px; }
+  .navbar-brand img {
+    margin-right: 10px; }
+    @media screen and (max-width: 991px) {
+      .navbar-brand img {
+        height: 50px; } }
+
 /*# sourceMappingURL=style.css.map */

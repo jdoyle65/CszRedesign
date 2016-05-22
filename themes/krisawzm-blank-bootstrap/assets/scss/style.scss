@@ -346,3 +346,16 @@ ul#pagination {
     padding: 15px;
   }
 }
+
+.navbar-brand {
+  height: 0px;
+  padding-top: 0px;
+
+  img {
+    margin-right: 10px;
+
+    @media screen and (max-width: 991px) {
+      height: 50px;
+    }
+  }
+}

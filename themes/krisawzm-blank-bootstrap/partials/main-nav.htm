@@ -5,7 +5,7 @@ function onStart() {
 }
 ==
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle pull-right" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -14,19 +14,19 @@ function onStart() {
                 <span class="icon-bar"></span>
             </button>
             <a href="/" class="navbar-brand">
-                <strong>CSZ</strong>
-                <!--<img src="{{ 'assets/images/cszlogo.png'|theme}}" alt="CSZ">-->
+                <!--<strong>CSZ</strong>-->
+                <img src="{{ 'assets/images/cszlogo.png'|theme}}" alt="CSZ">
             </a>
         </div>
 
         <div class="collapse navbar-collapse navbar-ex1-collapse" role="navigation">
-            <!--<ul class="nav navbar-nav navbar-left navbar-brand-name" style="color:#fff;">-->
-                <!--<li>-->
-                    <!--Canadian Society of Zoologists-->
-                    <!--<br>-->
-                    <!--Société canadienne de zoologie-->
-                <!--</li>-->
-            <!--</ul>-->
+            <ul class="nav navbar-nav navbar-left navbar-brand-name" style="color:#fff;">
+                <li>
+                    Canadian Society of Zoologists
+                    <br>
+                    Société canadienne de zoologie
+                </li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="{{activeLink=='membership'?'active':''}}"><a style="text-transform: uppercase;" href="/membership">{{'Membership'|_ }}</a></li>
                 <li class="{{activeLink=='meetings'?'active':''}}"><a style="text-transform: uppercase;" href="/meetings">{{'Meetings'|_ }}</a></li>
