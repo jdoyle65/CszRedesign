@@ -207,6 +207,7 @@ ul#pagination {
   display: none !important; }
 
 .carousel-wrapper {
+  margin-top: 60px;
   box-shadow: 0 3px 5px 6px #E0E0E0; }
 
 .social-feed-element {
