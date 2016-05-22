@@ -6,6 +6,7 @@ use Mail;
 use Event;
 use Flash;
 use Input;
+use October\Rain\Auth\AuthException;
 use Request;
 use Redirect;
 use Validator;
@@ -133,7 +134,13 @@ class Account extends ComponentBase
         ];
         Event::fire('rainlab.user.beforeAuthenticate', [$this, $credentials]);
 
-        $user = Auth::authenticate($credentials, true);
+        try {
+            $user = Auth::authenticate($credentials, true);
+        } catch(AuthException $e) {
+            return response()->json(['Invalid Username/Password'], 403);
+        } finally {
+            throw $e;
+        }
 
         /*
          * Redirect to the intended page after successful sign in

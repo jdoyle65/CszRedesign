@@ -1,6 +1,8 @@
 <form
     data-request="onSignin"
-    data-request-data="redirect: '/profile'">
+    data-request-data="redirect: '/profile'"
+    data-request-error="displayErrors()"
+>
     <div class="form-group">
         <label for="userSigninLogin">{{ loginAttributeLabel }}</label>
         <input
@@ -19,7 +21,20 @@
             class="form-control"
             id="userSigninPassword"
             placeholder="Enter your password" />
+        <span id="login-error-block" class="help-block" style="display: none;">{{ 'Invalid username or password'|_ }}</span>
     </div>
 
     <button type="submit" class="btn btn-default">Sign in</button>
 </form>
+
+{% put scripts %}
+<script>
+    function displayErrors() {
+        $(function() {
+            $('input[name="login"]').closest('.form-group').addClass('has-error');
+            $('input[name="password"]').closest('.form-group').addClass('has-error');
+            $('#login-error-block').show();
+        });
+    }
+</script>
+{% endput %}
