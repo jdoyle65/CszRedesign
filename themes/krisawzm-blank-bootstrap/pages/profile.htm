@@ -117,115 +117,109 @@ return $user;
               data-request-error="handleValidationError(jqXHR, textStatus, errorThrown)"
               class="form-horizontal">
             <div class="form-group">
-                <label for="title" class="col-sm-2 control-label">Title</label>
+                <label for="title" class="col-sm-2 control-label">{{'Title'|_}}</label>
                 <div class="col-sm-10">
                     <input type="text" name="title" value="{{ user.title }}" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label for="title" class="col-sm-2 control-label">Name</label>
+                <label for="title" class="col-sm-2 control-label">{{'Name'|_}}</label>
                 <div class="col-sm-10">
                     <input type="text" name="name" value="{{ user.name }}" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label for="title" class="col-sm-2 control-label">Degrees</label>
+                <label for="title" class="col-sm-2 control-label">{{'Degrees'|_}}</label>
                 <div class="col-sm-10">
                     <input type="text" name="degrees" value="{{ user.degrees }}" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label for="title" class="col-sm-2 control-label">Institution</label>
+                <label for="title" class="col-sm-2 control-label">{{'Institution'|_}}</label>
                 <div class="col-sm-10">
                     <input type="text" name="institution" value="{{ user.institution }}" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label for="title" class="col-sm-2 control-label">Address 1</label>
+                <label for="title" class="col-sm-2 control-label">{{'Address 1'|_}}</label>
                 <div class="col-sm-10">
                     <input type="text" name="address-line-one" value="{{ user.address_line_one }}" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label for="title" class="col-sm-2 control-label">Address 2</label>
+                <label for="title" class="col-sm-2 control-label">{{'Address 2'|_}}</label>
                 <div class="col-sm-10">
                     <input type="text" name="address-line-two" value="{{ user.address_line_two }}" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label for="title" class="col-sm-2 control-label">City</label>
+                <label for="title" class="col-sm-2 control-label">{{'City'|_}}</label>
                 <div class="col-sm-10">
                     <input type="text" name="city" value="{{ user.city }}" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label for="title" class="col-sm-2 control-label">Province/State</label>
+                <label for="title" class="col-sm-2 control-label">{{'Province/State'|_}}</label>
                 <div class="col-sm-10">
                     <input type="text" name="province" value="{{ user.province }}" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label for="title" class="col-sm-2 control-label">Country</label>
+                <label for="title" class="col-sm-2 control-label">{{'Country'|_}}</label>
                 <div class="col-sm-10">
                     <input type="text" name="country" value="{{ user.country }}" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label for="title" class="col-sm-2 control-label">Postal/Zip Code</label>
+                <label for="title" class="col-sm-2 control-label">{{'Postal/Zip Code'|_}}</label>
                 <div class="col-sm-10">
                     <input type="text" name="postal-code" value="{{ user.postal_code }}" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label for="title" class="col-sm-2 control-label">Phone 1</label>
+                <label for="title" class="col-sm-2 control-label">{{'Phone 1'|_}}</label>
                 <div class="col-sm-10">
                     <input type="text" name="phone-one" value="{{ user.phone_one }}" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label for="title" class="col-sm-2 control-label">Phone 2</label>
+                <label for="title" class="col-sm-2 control-label">{{'Phone 2'|_}}</label>
                 <div class="col-sm-10">
                     <input type="text" name="phone-two" value="{{ user.phone_two }}" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label for="title" class="col-sm-2 control-label">Email</label>
+                <label for="title" class="col-sm-2 control-label">{{'Email'|_}}</label>
                 <div class="col-sm-10">
                     <input type="text" name="email" value="{{ user.email }}" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label for="title" class="col-sm-2 control-label">Website URL</label>
+                <label for="title" class="col-sm-2 control-label">{{'Website URL'|_}}</label>
                 <div class="col-sm-10">
                     <input type="text" name="website" value="{{ user.website }}" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label for="title" class="col-sm-2 control-label">Receive Emails?</label>
-                <div class="col-sm-10">
-                    <input type="checkbox" name="receive-emails" {% if user.receive_emails %}checked{% endif %}>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="title" class="col-sm-2 control-label">CMD Member</label>
+                <label for="title" class="col-sm-2 control-label">{{'CMD Member'|_}}</label>
                 <div class="col-sm-2">
                     <input type="checkbox" name="cmd-member" {% if user.cmd_member %}checked{% endif %}>
                 </div>
             </div>
             <div class="form-group">
-                <label for="title" class="col-sm-2 control-label">PIE Member</label>
+                <label for="title" class="col-sm-2 control-label">{{'PIE Member'|_}}</label>
                 <div class="col-sm-2">
                     <input type="checkbox" name="pie-member" {% if user.pie_member %}checked{% endif %}>
                 </div>
             </div>
             <div class="form-group">
-                <label for="title" class="col-sm-2 control-label">CPB Member</label>
+                <label for="title" class="col-sm-2 control-label">{{'CPB Member'|_}}</label>
                 <div class="col-sm-2">
                     <input type="checkbox" name="cpb-member" {% if user.cpb_member %}checked{% endif %}>
                 </div>
             </div>
             <div class="form-group">
-                <label for="title" class="col-sm-2 control-label">EEE Member</label>
+                <label for="title" class="col-sm-2 control-label">{{'EEE Member'|_}}</label>
                 <div class="col-sm-2">
                     <input type="checkbox" name="eee-member" {% if user.eee_member %}checked{% endif %}>
                 </div>
