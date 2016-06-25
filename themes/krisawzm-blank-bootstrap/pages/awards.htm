@@ -6,6 +6,9 @@ is_hidden = 0
 
 [editable column_middle]
 file = "awards/column_middle.htm"
+
+[editable]
+file = "awards/award_blurb.htm"
 ==
 <?php
 use JustinDoyle\Awards\Models\Award;
@@ -28,23 +31,17 @@ function onStart() {
 
 <div class="row">
     <div class="col-sm-12">
-        <h3>Recognition of excellence in research</h3>
-        <p>
-            The Canadian Society of Zoologists recognizes excellence in research. Many prizes and awards are given every
-            year funded by the Zoological Education Trust (ZET), the sections, members of the Society and CSZ. We
-            encourage
-            student participation at the annual meeting by many prizes for the best oral and poster presentations.
-        </p>
+        {% component 'editable' file='awards/award_blurb.htm'%}
     </div>
 </div>
 <div class="row" style="margin-top: 75px;">
     <div class="col-md-12">
         <div id="filters-container">
             <ul id="filters">
-                <li><a href="#" data-filter="*" class="active">All</a></li>
+                <li><a href="#" data-filter="*" class="active">{{'All'|_}}</a></li>
                 <li class="separator">/</li>
                 <li>
-                    <a href="#" data-filter=".anyone">Anyone</a>
+                    <a href="#" data-filter=".anyone">{{'Anyone'|_}}</a>
                 </li>
                 <li class="separator">/</li>
                 <li>
