@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'default' => 'sqlite',
+    'default' => 'mysql',
 
     /*
     |--------------------------------------------------------------------------
@@ -54,11 +54,11 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => 'localhost',
+            'host'      => 'csz-mysql.cpgline6hcxe.us-west-2.rds.amazonaws.com',
             'port'      => '3306',
-            'database'  => 'csz_october',
-            'username'  => 'root',
-            'password'  => '4662abCD',
+            'database'  => 'october',
+            'username'  => 'jdoyle65',
+            'password'  => '4662abCD!238541',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
