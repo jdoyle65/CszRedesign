@@ -1,0 +1,12 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+    title_en:
+        label: Title (EN)
+    title_fr:
+        label: Title (FR)

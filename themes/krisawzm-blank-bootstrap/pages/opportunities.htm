@@ -1,0 +1,171 @@
+title = "Contacts"
+url = "/contacts"
+layout = "one_column"
+description = "Contacts page"
+is_hidden = 0
+
+[editable contacts_left]
+file = "contacts/contacts_left.htm"
+
+[editable contacts_right]
+file = "contacts/contacts_right.htm"
+==
+<?php
+use JustinDoyle\Contacts\Models\Contact;
+use JustinDoyle\Contacts\Models\Category;
+
+function onStart() {
+    $this['contacts'] = Contact::orderBy('order')->get();
+    $this['categories'] = Category::all();
+}
+?>
+==
+{% put header %}
+<div class="section_header">
+    <h3>{{'Contacts'|_}}</h3>
+</div>
+{% endput %}
+
+
+{% put middle_column %}
+
+<style>
+    .contact-card {
+        text-align: center;
+        border-radius: 5px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+
+    .contact-card  img {
+        width: 128px;
+        height: 128px;
+        border:2px solid #55dc9e;
+        box-shadow: 1px 1px 5px 2px #E0E0E0;
+        border-radius: 50%;
+        background-color: white;
+        position: relative;
+        z-index:100;
+    }
+
+    .contact-card-info {
+        background-color: white;
+        /*border:1px solid #922c2a;*/
+        border-radius: 5px;
+        /*box-shadow: 1px 1px 5px 2px #E0E0E0;*/
+        margin-top: -40px;
+        padding-top: 24px;
+        padding-bottom: 15px;
+    }
+
+    .contact-card-info-row {
+        margin:0;
+    }
+
+    .contact-category-dropdown {
+        margin-top: 20px;
+
+    }
+
+</style>
+
+{% put scripts %}
+
+<script src="/themes/krisawzm-blank-bootstrap/assets/js/jquery.isotope.min.js"></script>
+
+<script type="text/javascript">
+    $(function(){
+
+        var $container = $('#contacts-container'),
+                $filters = $("#filters a");
+
+        $container.imagesLoaded( function(){
+            $container.isotope({
+                itemSelector : '.contact-card',
+                masonry: {
+                    columnWidth: 100
+                }
+            });
+        });
+
+        // filter items when filter link is clicked
+        $filters.click(function() {
+            $filters.removeClass("active");
+            $(this).addClass("active");
+            var selector = $(this).data('filter');
+            $container.isotope({ filter: selector });
+            return false;
+        });
+
+
+    });
+</script>
+{% endput %}
+
+<div class="row">
+    <div class="col-md-12">
+        <div id="filters-container">
+            <ul id="filters">
+                <li><a href="#" data-filter="*" class="active">All</a></li>
+
+                {% for category in categories %}
+
+                <li class="separator">/</li>
+                <li>
+                    <a href="#" data-filter=".category-{{ category.id }}">
+                    {% if activeLocale == 'fr' %}
+                    {{category.title_fr}}
+                    {% else %}
+                    {{category.title_en}}
+                    {% endif %}
+                    </a>
+                </li>
+
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row" id="contacts-container">
+    {% for contact in contacts %}
+    <div class="col col-sm-3 contact-card category-{{contact.category_id}}" data-category-id="{{contact.category_id}}">
+        <img src="{{contact.profile_image|media}}" alt="">
+        <div class="row contact-card-info-row">
+            <div class="col col-lg-12 contact-card-info">
+                <h3>{% if activeLocale == 'fr' %}{{contact.title_fr}}{% else %}{{contact.title_en}}{% endif %}</h3>
+                <h4>{{contact.name}}</h4>
+                {% if contact.address_line_one is not empty %}
+                {{contact.address_line_one}}<br>
+                {% endif %}
+                {% if contact.address_line_two is not empty %}
+                {{contact.address_line_two}}<br>
+                {% endif %}
+                {% if contact.city is not empty %}
+                {{contact.city}}
+                {% endif %}
+                {% if contact.province is not empty %}
+                {{contact.province}}
+                {% endif %}
+                {% if contact.postal_code is not empty %}
+                {{contact.postal_code}}
+                {% endif %}
+                <br>
+                {% if contact.email is not empty %}
+                <i class="fa fa-envelope"></i> <a href="mailto:{{contact.email}}">{{contact.email}}</a><br>
+                {% endif %}
+                {% if contact.home_phone is not empty %}
+                <i class="fa fa-phone"></i> ({{'contact_card.home'|_}}) {{contact.home_phone}}<br>
+                {% endif %}
+                {% if contact.work_phone is not empty %}
+                <i class="fa fa-phone"></i> ({{'contact_card.work'|_}}) {{contact.work_phone}}<br>
+                {% endif %}
+                {% if contact.mobile_phone is not empty %}
+                <i class="fa fa-phone"></i> ({{'contact_card.mobile'|_}}) {{contact.mobile_phone}}<br>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endput %}

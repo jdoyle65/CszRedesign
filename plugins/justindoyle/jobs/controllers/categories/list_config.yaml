@@ -1,0 +1,9 @@
+title: Categories
+list: ~/plugins/justindoyle/contacts/models/category/columns.yaml
+modelClass: JustinDoyle\Contacts\Models\Category
+recordUrl: justindoyle/contacts/categories/update/:id
+
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: Find records

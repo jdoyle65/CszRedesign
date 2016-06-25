@@ -1,0 +1,9 @@
+name: Category
+form: $/justindoyle/contacts/models/category/fields.yaml
+modelClass: JustinDoyle\Contacts\Models\Category
+
+create:
+    title: New Categories
+    redirect: justindoyle/contacts/categories/index
+    redirectClose: justindoyle/contacts/categories/index
+    flashSave: Category has been created!
