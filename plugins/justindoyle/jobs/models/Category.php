@@ -1,4 +1,4 @@
-<?php namespace JustinDoyle\Contacts\Models;
+<?php namespace JustinDoyle\Jobs\Models;
 
 use Model;
 
@@ -11,7 +11,7 @@ class Category extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'justindoyle_contacts_categories';
+    public $table = 'justindoyle_jobs_categories';
 
     /**
      * @var array Guarded fields

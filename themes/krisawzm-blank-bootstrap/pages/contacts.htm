@@ -15,8 +15,8 @@ use JustinDoyle\Contacts\Models\Contact;
 use JustinDoyle\Contacts\Models\Category;
 
 function onStart() {
-    $this['contacts'] = Contact::all();
-    $this['categories'] = Category::orderBy('order')->get();
+    $this['contacts'] = Contact::orderBy('order')->get();
+    $this['categories'] = Category::all();
 }
 ?>
 ==

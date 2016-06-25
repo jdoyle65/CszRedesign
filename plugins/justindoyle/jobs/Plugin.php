@@ -1,4 +1,4 @@
-<?php namespace JustinDoyle\Contacts;
+<?php namespace JustinDoyle\Jobs;
 
 use System\Classes\PluginBase;
 use Backend;
@@ -8,52 +8,48 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name' => 'Manage Contact for Contact page',
-            'description' => 'An easy way to manage a list of contacts.',
+            'name' => 'Manage Job for Jobs page',
+            'description' => 'An easy way to manage a list of jobs.',
             'author' => 'Justin Doyle',
-            'icon' => 'icon-users'
+            'icon' => 'icon-briefcase'
         ];
     }
 
     public function registerPermissions()
     {
         return [
-            'justindoyle.contacts.manage' => [
-                'label' => 'Manage Contacts',
-                'tab' => 'JustinDoyle Contacts'
+            'justindoyle.jobs.manage' => [
+                'label' => 'Manage Jobs',
+                'tab' => 'JustinDoyle Jobs'
             ]
         ];
     }
 
     public function registerComponents()
-    {
-//        return [
-//            'JustinDoyle\Carousel\Components\Carousel' => 'carousel'
-//        ];
-    }
+    {}
 
     public function registerNavigation()
     {
         return [
             'index' => [
-                'label' => 'Contacts',
-                'url' => Backend::url('justindoyle/contacts/contacts/index'),
-                'icon' => 'icon-users',
-                'permissions' => ['justindoyle.contacts.*'],
+                'label' => 'Jobs',
+                'url' => Backend::url('justindoyle/jobs/jobs/index'),
+                'icon' => 'icon-briefcase',
+                'permissions' => ['justindoyle.jobs.*'],
                 'order' => 20,
 
                 'sideMenu' => [
                     'contacts' => [
-                        'label' => 'Contacts',
-                        'url' => Backend::url('justindoyle/contacts/contacts/index'),
-                        'icon' => 'icon-users',
-                        'permissions' => ['justindoyle.contacts.*']
+                        'label' => 'Jobs',
+                        'url' => Backend::url('justindoyle/jobs/jobs/index'),
+                        'icon' => 'icon-briefcase',
+                        'permissions' => ['justindoyle.jobs.*']
                     ],
                     'categories' => [
                         'label' => 'Categories',
-                        'url' => Backend::url('justindoyle/contacts/categories/index'),
+                        'url' => Backend::url('justindoyle/jobs/categories/index'),
                         'icon' => 'icon-sitemap',
-                        'permissions' => ['justindoyle.contacts.*']
+                        'permissions' => ['justindoyle.jobs.*']
                     ]
                 ]
             ]

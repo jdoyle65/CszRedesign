@@ -1,9 +1,9 @@
-name: Contact
-form: $/justindoyle/contacts/models/contact/fields.yaml
-modelClass: JustinDoyle\Contacts\Models\Contact
+name: Job
+form: $/justindoyle/jobs/models/job/fields.yaml
+modelClass: JustinDoyle\Jobs\Models\Job
 
 create:
-    title: New Contacts
-    redirect: justindoyle/contacts/contacts/update/:id
-    redirectClose: justindoyle/contacts/contacts/index
-    flashSave: Contact has been created!
+    title: New Jobs
+    redirect: justindoyle/jobs/jobs/update/:id
+    redirectClose: justindoyle/jobs/jobs/index
+    flashSave: Job has been created!

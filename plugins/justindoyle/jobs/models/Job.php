@@ -1,17 +1,17 @@
-<?php namespace JustinDoyle\Contacts\Models;
+<?php namespace JustinDoyle\Jobs\Models;
 
 use Model;
 
 /**
- * Carousel Model
+ * Job Model
  */
-class Contact extends Model
+class Job extends Model
 {
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'justindoyle_contacts_contacts';
+    public $table = 'justindoyle_jobs_jobs';
 
     /**
      * @var array Guarded fields
@@ -23,13 +23,15 @@ class Contact extends Model
      */
     protected $fillable = ['*'];
 
+    protected $dates = ['closing'];
+
     /**
      * @var array Relations
      */
     public $hasOne = [];
     public $hasMany = [];
     public $belongsTo = [
-        'category' => 'JustinDoyle\Contacts\Models\Category'
+        'category' => 'JustinDoyle\Jobs\Models\Category'
     ];
     public $belongsToMany = [];
     public $morphTo = [];

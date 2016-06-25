@@ -19,6 +19,8 @@ class CreateJobsTable extends Migration
             $table->string('level_en');
             $table->string('level_fr');
             $table->datetime('closing')->nullable();
+            $table->string('link_out')->nullable();
+            $table->integer('category_id');
             $table->integer('order')->default(1);
             $table->timestamps();
         });

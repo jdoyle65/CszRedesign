@@ -2,6 +2,7 @@
 #  Form Field Definitions
 # ===================================
 
+
 fields:
     id:
         label: ID
@@ -13,29 +14,19 @@ fields:
     category_id:
         label: Category
         type: dropdown
-    name:
-        label: Name
-    address_line_one:
-        label: Address Line One
-    address_line_two:
-        label: Address Line Two
-    city:
-        label: City
-    province:
-        label: Province
-    postal_code:
-        label: Postal Code
-    email:
-        label: Email
-    home_phone:
-        label: Home Phone
-    work_phone:
-        label: Work Phone
-    mobile_phone:
-        label: Mobile Phone
-    profile_image:
-        label: Profile Image
-        type: mediafinder
-        mode: image
+    institution_en:
+        label: Institution (EN)
+    institution_fr:
+        label: Institution (FR)
+    level_en:
+        label: Level (EN)
+    level_fr:
+        label: Level (FR)
+    closing:
+        label: Closing Date
+        type: datepicker
+        mode: date
+    link_out:
+        label: More Information Link
     order:
         label: Listing Order

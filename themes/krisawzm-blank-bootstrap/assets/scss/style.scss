@@ -290,7 +290,9 @@ ul#pagination {
   margin-top: 60px;
   box-shadow: 0 3px 5px 6px #E0E0E0;
 }
-
+.social-feed-element:nth-child(5) {
+  clear: both;
+}
 .social-feed-element {
   margin-bottom: 20px;
   //.content {

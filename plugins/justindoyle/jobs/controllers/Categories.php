@@ -1,4 +1,4 @@
-<?php namespace JustinDoyle\Contacts\Controllers;
+<?php namespace JustinDoyle\Jobs\Controllers;
 
 use Backend\Classes\Controller;
 use BackendMenu;
@@ -17,7 +17,7 @@ class Categories extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('JustinDoyle.Contacts', 'index', 'categories');
+        BackendMenu::setContext('JustinDoyle.Jobs', 'index', 'categories');
 
     }
 }

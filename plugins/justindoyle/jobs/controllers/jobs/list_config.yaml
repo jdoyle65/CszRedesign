@@ -1,7 +1,7 @@
-title: Contacts
-list: ~/plugins/justindoyle/contacts/models/contact/columns.yaml
-modelClass: JustinDoyle\Contacts\Models\Contact
-recordUrl: justindoyle/contacts/contacts/update/:id
+title: Jobs
+list: ~/plugins/justindoyle/jobs/models/job/columns.yaml
+modelClass: JustinDoyle\Jobs\Models\Job
+recordUrl: justindoyle/jobs/jobs/update/:id
 
 toolbar:
     buttons: list_toolbar
