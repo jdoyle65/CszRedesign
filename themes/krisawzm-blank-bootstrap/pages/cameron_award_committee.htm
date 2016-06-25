@@ -1,0 +1,20 @@
+title = "Cameron Award Committee"
+url = "/cameron_award_committee"
+layout = "one_column"
+description = "The makeup of the Cameron Award Committee."
+is_hidden = 0
+
+[editable middle_column]
+file = "cameron_award_committee/column_middle.htm"
+==
+{% put header %}
+
+<h1 class="main-header">{{'Cameron Award Committee'|_}}</h1>
+
+{% endput %}
+
+{% put middle_column %}
+
+{% component "middle_column" %}
+
+{% endput %}
