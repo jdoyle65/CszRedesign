@@ -1,0 +1,69 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+        hidden: true
+
+    name:
+        label: Award Name (EN)
+        span: left
+
+    name_fr:
+        label: Award Name (FR)
+        span: right
+
+    url:
+        label: Award URL
+        span: auto
+
+    eligibility:
+        label: Eligibility (EN)
+        span: left
+
+    eligibility_fr:
+        label: Eligibility (FR)
+        span: right
+
+    objective:
+        label: Objective (EN)
+        span: left
+
+    objective_fr:
+        label: Objective (FR)
+        span: right
+
+    value:
+        label: Value (EN)
+        span: left
+
+    value_fr:
+        label: Value (FR)
+        span: right
+
+    deadline:
+        label: Normal Deadline (EN)
+        span: left
+
+    deadline_fr:
+        label: Normal Deadline (FR)
+        span: right
+
+    anyone:
+        label: Anyone Filter?
+        type: checkbox
+
+    phd:
+        label: PhD Filter?
+        type: checkbox
+
+    pdf:
+        label: PDF Filter?
+        type: checkbox
+
+    student:
+        label: Student Filter?
+        type: checkbox
