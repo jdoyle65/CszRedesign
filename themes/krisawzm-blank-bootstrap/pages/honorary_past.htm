@@ -1,0 +1,23 @@
+title = "Honorary and Past"
+url = "/honorary-past"
+layout = "one_column"
+description = "New Page"
+is_hidden = 0
+
+[editable middle_col]
+file = "honorary_past/middle_column.htm"
+==
+{% put header %}
+
+<div class="section_header">
+    <h3>{{'Honorary Members'|_}}/{{'Past Presidents'|_}}</h3>
+</div>
+
+{% endput %}
+
+
+{% put middle_column %}
+
+{% component "middle_col" %}
+
+{% endput %}

@@ -84,7 +84,7 @@ function onStart() {
             $container.isotope({
                 itemSelector : '.contact-card',
                 masonry: {
-                    columnWidth: 100
+//                    columnWidth: 313
                 }
             });
         });
@@ -127,9 +127,14 @@ function onStart() {
         </div>
     </div>
 </div>
+<div class="row" style="margin-bottom: 20px;">
+    <div class="col-md-12 text-center">
+        <a href="/honorary-past" style="font-size:18px;font-style: italic;">({{'View Honarary Members and Past Presidents'|_}})</a>
+    </div>
+</div>
 <div class="row" id="contacts-container">
     {% for contact in contacts %}
-    <div class="col col-sm-3 contact-card category-{{contact.category_id}}" data-category-id="{{contact.category_id}}">
+    <div class="col col-sm-4 contact-card category-{{contact.category_id}}" data-category-id="{{contact.category_id}}">
         <img src="{{contact.profile_image|media}}" alt="">
         <div class="row contact-card-info-row">
             <div class="col col-lg-12 contact-card-info">

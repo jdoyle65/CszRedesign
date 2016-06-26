@@ -3,6 +3,15 @@ $nav-colour-transparent: rgba(237, 67, 35, 0.8);
 $facebook-blue: #3b5998;
 $twitter-blue: #4099FF;
 
+.navbar-inverse .navbar-nav>.dropdown>a .caret {
+  border-top-color: white;
+  border-bottom-color: white;
+}
+
+.navbar-inverse .navbar-nav>.dropdown.open> a {
+  background-color: $nav-colour-transparent;
+}
+
 .slider-description {
 
   color: #fff;

@@ -33,12 +33,18 @@ function onStart() {
                 <li class="{{activeLink=='membership'?'active':''}}"><a style="text-transform: uppercase;" href="/membership">{{'Membership'|_ }}</a></li>
                 <li class="{{activeLink=='meetings'?'active':''}}"><a style="text-transform: uppercase;" href="/meetings">{{'Meetings'|_ }}</a></li>
                 <li class="{{activeLink=='contacts'?'active':''}}"><a style="text-transform: uppercase;" href="/contacts">{{'Contacts'|_ }}</a></li>
-                <li class="{{activeLink=='opportunities'?'active':''}}"><a style="text-transform: uppercase;" href="/opportunities">{{'Opportunities'|_ }}</a></li>
+                <li class="dropdown">
+                    <a style="text-transform: uppercase;" href="#" data-toggle="dropdown">{{'Opportunities'|_ }} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/jobs">{{'Jobs'|_}}</a></li>
+                        <li><a href="/careers">{{'Career Information'|_}}</a></li>
+                    </ul>
+                </li>
                 <li class="{{activeLink=='awards'?'active':''}}"><a style="text-transform: uppercase;" href="/awards">{{'Awards'|_ }}</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" style="text-transform: uppercase;" data-toggle="dropdown">{{'News'|_}} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/news">{{'news'|_}}</a></li>
+                        <li><a href="/news">{{'News'|_}}</a></li>
                         <li><a href="/bulletin">{{'Bulletin'|_}}</a></li>
                     </ul>
                 </li><li class="dropdown">

@@ -1,0 +1,23 @@
+title = "Career Info"
+url = "/careers"
+layout = "one_column"
+description = "New Page"
+is_hidden = 0
+
+[editable middle_col]
+file = "careers/middle_column.htm"
+==
+{% put header %}
+
+<div class="section_header">
+    <h3>{{'Career Information'|_}}</h3>
+</div>
+
+{% endput %}
+
+
+{% put middle_column %}
+
+{% component "middle_col" %}
+
+{% endput %}
