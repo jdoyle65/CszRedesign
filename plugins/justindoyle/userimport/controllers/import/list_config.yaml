@@ -1,0 +1,9 @@
+title: Awards
+list: ~/plugins/justindoyle/awards/models/award/columns.yaml
+modelClass: JustinDoyle\Awards\Models\Award
+recordUrl: justindoyle/awards/awards/update/:id
+
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: Find records

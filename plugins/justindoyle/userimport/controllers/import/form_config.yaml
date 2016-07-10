@@ -1,0 +1,9 @@
+name: Award
+form: $/justindoyle/awards/models/award/fields.yaml
+modelClass: JustinDoyle\Awards\Models\Award
+
+create:
+    title: New Awards
+    redirect: justindoyle/awards/awards/update/:id
+    redirectClose: justindoyle/awards/awards/index
+    flashSave: Award has been created!
