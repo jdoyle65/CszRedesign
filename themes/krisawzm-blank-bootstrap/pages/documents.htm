@@ -1,0 +1,23 @@
+title = "Documents"
+url = "/documents"
+layout = "one_column"
+description = "Policy, planning, and related documents of interest to the CSZ membership."
+is_hidden = 0
+
+[editable column_middle]
+file = "documents/column_middle.htm"
+==
+{% put header %}
+
+<div class="section_header">
+    <h3>{{'Documents'|_}}</h3>
+</div>
+
+{% endput %}
+
+
+
+
+{% put middle_column %}
+{% component "column_middle" %}
+{% endput %}
