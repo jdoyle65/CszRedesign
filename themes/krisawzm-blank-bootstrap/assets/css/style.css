@@ -269,4 +269,29 @@ ul#pagination {
   #home-page-container {
     margin-top: 65px; } }
 
+.site-footer {
+  background-color: #f0684f;
+  color: white;
+  height: 50px; }
+  .site-footer p {
+    margin: 0;
+    padding: 0; }
+  .site-footer .container {
+    height: 100%; }
+    .site-footer .container .row {
+      height: 100%; }
+      .site-footer .container .row .vcenter-parent {
+        height: 100%; }
+  .site-footer a {
+    color: white;
+    text-decoration: underline; }
+
+.vcenter-parent {
+  display: table;
+  table-layout: fixed; }
+
+.vcenter {
+  display: table-cell;
+  vertical-align: middle; }
+
 /*# sourceMappingURL=style.css.map */

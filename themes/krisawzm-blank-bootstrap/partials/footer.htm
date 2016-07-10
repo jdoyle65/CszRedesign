@@ -1,0 +1,23 @@
+description = "Site Footer"
+==
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 vcenter-parent">
+                <div class="vcenter">
+                    <p class="">
+                        Copyright © CSZ-SCZ. All Rights Reserved.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 vcenter-parent">
+                <div class="vcenter">
+                    <a href="{% if activeLocale == 'fr' %}{{ 'assets/privacy_statement_fr.pdf'|theme}}{% else %}{{ 'assets/privacy_statement_en.pdf'|theme}}{% endif %}">
+                        {{ 'Private Statement'|_ }}
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+    </div>
+</footer>

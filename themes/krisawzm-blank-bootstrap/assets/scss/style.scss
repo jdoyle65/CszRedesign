@@ -377,3 +377,37 @@ ul#pagination {
     margin-top: 65px;
   }
 }
+
+.site-footer {
+  background-color: $nav-colour;
+  color: white;
+  height: 50px;
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    height: 100%;
+    .row {
+      height: 100%;
+      .vcenter-parent {
+        height: 100%;
+      }
+    }
+  }
+  
+  a {
+    color: white;
+    text-decoration: underline;
+  }
+}
+.vcenter-parent {
+  display: table;
+  table-layout: fixed;
+}
+.vcenter {
+  display:table-cell;
+  vertical-align:middle;
+}
