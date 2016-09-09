@@ -36,6 +36,7 @@ function onStart() {
         margin-top: 10px;
         margin-bottom: 10px;
     }
+    
 
 
     .contact-card  img {
@@ -58,6 +59,7 @@ function onStart() {
         padding-top: 24px;
         padding-bottom: 15px;
     }
+    
 
     .contact-card-info-row {
         margin:0;
@@ -129,7 +131,7 @@ function onStart() {
 </div>
 <div class="row" style="margin-bottom: 20px;">
     <div class="col-md-12 text-center">
-        <a href="/honorary-past" style="font-size:18px;font-style: italic;">({{'View Honarary Members and Past Presidents'|_}})</a>
+        <a href="/honorary-past" style="font-size:18px;font-style: italic;">({{'View Honorary Members and Past Presidents'|_}})</a>
     </div>
 </div>
 <div class="row" id="contacts-container">
@@ -138,35 +140,95 @@ function onStart() {
         <img src="{{contact.profile_image|media}}" alt="">
         <div class="row contact-card-info-row">
             <div class="col col-lg-12 contact-card-info">
-                <h3>{% if activeLocale == 'fr' %}{{contact.title_fr}}{% else %}{{contact.title_en}}{% endif %}</h3>
-                <h4>{{contact.name}}</h4>
+                <div class="row text-left">
+                    <div class="col-md-10 col-md-offset-2">
+                        <h3 style="line-height: 28px;">{% if activeLocale == 'fr' %}{{contact.title_fr}}{% else %}{{contact.title_en}}{% endif %}</h3>
+                    </div>
+                </div>
+                <div class="row text-left">
+                    <div class="col-md-10 col-md-offset-2">
+                        <h4>{{contact.name}}</h4>
+                    </div>
+                </div>
+                {% if contact.end_date is not null %}
+                <div class="row text-left">
+                    <div class="col-md-10 col-md-offset-2">
+                        <h5>{{'Retiring'|_}} {% if activeLocale == 'fr' %}{{contact.end_date|date("m/Y")}}{% else %}{{contact.end_date|date('M Y')}}{% endif %}</h5>
+                    </div>
+                </div>
+                {% endif %}
                 {% if contact.address_line_one is not empty %}
-                {{contact.address_line_one}}<br>
+                <div class="row text-left">
+                    <div class="col-md-2">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-md-10">
+                        {{contact.address_line_one}}
+                    </div>
+                </div>
                 {% endif %}
                 {% if contact.address_line_two is not empty %}
-                {{contact.address_line_two}}<br>
+                <div class="row text-left">
+                    <div class="col-md-10 col-md-offset-2">
+                        {{contact.address_line_two}}
+                    </div>
+                </div>
                 {% endif %}
-                {% if contact.city is not empty %}
-                {{contact.city}}
-                {% endif %}
-                {% if contact.province is not empty %}
-                {{contact.province}}
-                {% endif %}
-                {% if contact.postal_code is not empty %}
-                {{contact.postal_code}}
+                {% if contact.city is not empty or contact.province is not empty or contact.postal_code is not empty %}
+                    <div class="row text-left">
+                    <div class="col-md-10 col-md-offset-2">
+                        {% if contact.city is not empty %}
+                        {{contact.city}}
+                        {% endif %}
+                        {% if contact.province is not empty %}
+                        {{contact.province}}
+                        {% endif %}
+                        {% if contact.postal_code is not empty %}
+                        {{contact.postal_code}}
+                        {% endif %}
+                    </div>
+                    </div>
                 {% endif %}
                 <br>
                 {% if contact.email is not empty %}
-                <i class="fa fa-envelope"></i> <a href="mailto:{{contact.email}}">{{contact.email}}</a><br>
+                <div class="row text-left">
+                    <div class="col-md-2">
+                        <i class="fa fa-at"></i>
+                    </div>
+                    <div class="col-md-10">
+                        <a href="mailto:{{contact.email}}">{{contact.email}}</a>
+                    </div>
+                </div>
                 {% endif %}
                 {% if contact.home_phone is not empty %}
-                <i class="fa fa-phone"></i> ({{'contact_card.home'|_}}) {{contact.home_phone}}<br>
+                <div class="row text-left">
+                    <div class="col-md-2" style="white-space: nowrap;">
+                        <i class="fa fa-phone"></i> <small class="text-muted">({{'contact_card.home'|_}})</small>
+                    </div>
+                    <div class="col-md-10">
+                        {{contact.home_phone}}
+                    </div>
+                </div>
                 {% endif %}
                 {% if contact.work_phone is not empty %}
-                <i class="fa fa-phone"></i> ({{'contact_card.work'|_}}) {{contact.work_phone}}<br>
+                <div class="row text-left">
+                    <div class="col-md-2" style="white-space: nowrap;">
+                        <i class="fa fa-phone"></i> <small class="text-muted">({{'contact_card.work'|_}})</small>
+                    </div>
+                    <div class="col-md-10">
+                        {{contact.work_phone}}
+                    </div>
+                </div>
                 {% endif %}
                 {% if contact.mobile_phone is not empty %}
-                <i class="fa fa-phone"></i> ({{'contact_card.mobile'|_}}) {{contact.mobile_phone}}<br>
+                <div class="row text-left">
+                    <div class="col-md-2" style="white-space: nowrap;">
+                        <i class="fa fa-phone"></i> <small class="text-muted">({{'contact_card.mobile'|_}})</small>
+                    </div>
+                    <div class="col-md-10">
+                        {{contact.mobile_phone}}
+                    </div>
+                </div>
                 {% endif %}
             </div>
         </div>

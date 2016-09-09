@@ -37,11 +37,17 @@ class Plugin extends PluginBase
                 'order' => 20,
 
                 'sideMenu' => [
-                    'contacts' => [
+                    'import' => [
                         'label' => 'Import',
                         'url' => Backend::url('justindoyle/userimport/import/index'),
                         'icon' => 'icon-users',
                         'permissions' => ['justindoyle.userimport.*']
+                    ],
+                    'notify' => [
+                        'label' => 'Notify',
+                        'url' => Backend::url('justindoyle/userimport/notify/index'),
+                        'icon' => 'icon-envelope-o',
+                        'permission' => ['justindoyle.userimport.*']
                     ]
                 ]
             ]

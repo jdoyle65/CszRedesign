@@ -1,15 +1,8 @@
-<?php Block::put('breadcrumb') ?>
-    <ul>
-        <li><a href="<?= Backend::url('system/settings') ?>"><?= e(trans('system::lang.settings.menu_label')) ?></a></li>
-        <li><?= e(trans($this->pageTitle)) ?></li>
-    </ul>
-<?php Block::endPut() ?>
-
-<div class="padded-container">
+<div class="callout-container">
     <?= $this->makeHintPartial('translation_messages_hint', 'hint') ?>
 </div>
 
-<?= Form::open(['id' => 'messagesForm', 'class'=>'layout-item stretch layout-column']) ?>
+<?= Form::open(['id' => 'messagesForm', 'class'=>'layout-item stretch layout-column', 'onsubmit'=>'return false']) ?>
 
     <div id="messagesContainer">
         <?= $this->makePartial('messages') ?>
@@ -23,9 +16,11 @@
 
 <!-- Set the Header values in the Grid -->
 <script>
-$(document).render(function(){
-    $.translateMessages.setGridElement('#<?= $grid->getId() ?>')
-    $.translateMessages.setTitleContents('#<?= $this->getId('fromTitle') ?>', '#<?= $this->getId('toTitle') ?>')
-})
-</script>
 
+$(document).render(function() {
+    $.translateMessages.setTableElement('#<?= $table->getId() ?>')
+    $.translateMessages.setTitleContents('#<?= $this->getId('fromTitle') ?>', '#<?= $this->getId('toTitle') ?>')
+    $.translateMessages.setToolbarContents('#<?= $this->getId('tableToolbar') ?>')
+})
+
+</script>

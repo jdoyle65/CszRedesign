@@ -3,36 +3,13 @@
 # ===================================
 
 columns:
-    id:
-        label: ID
-        searchable: true
     title_en:
-        label: Title (EN)
-    title_fr:
-        label: Title (FR)
-    category_id:
-        label: Contact Category
+        label: Title
+        searchable: true
     name:
         label: Name
-    address_line_one:
-        label: Address Line One
-    address_line_two:
-        label: Address Line Two
-    city:
-        label: City
-    province:
-        label: Province
-    postal_code:
-        label: Postal Code
+        searchable: true
     email:
         label: Email
-    home_phone:
-        label: Home Phone
-    work_phone:
-        label: Work Phone
-    mobile_phone:
-        label: Mobile Phone
-    profile_image:
-        label: Profile Image
     order:
         label: Listing Order

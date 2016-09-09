@@ -1,7 +1,9 @@
 html, body {
-  height: 100%; }
-  html > .container, body > .container {
-    min-height: 100%; }
+  height: 100%; 
+  }
+  html > .container, body > .container:not(.home-page-container) {
+    min-height: 100%; 
+    }
 
 .navbar-inverse .navbar-nav > .dropdown > a .caret {
   border-top-color: white;

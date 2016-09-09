@@ -1,0 +1,114 @@
+url = "/activate/:activation_token"
+title = "Activate Account"
+description = "New Page"
+layout = "one_column"
+is_hidden = 0
+
+==
+function onStart() {
+    $this->page->activationToken = $this->param('activation_token');
+}
+
+function onActivate() {
+    $email = Input::get('email');
+    $token = Input::get('activationToken');
+    $password = Input::get('password');
+    $passwordConfirmation = Input::get('password_confirmation');
+
+    $user = \RainLab\User\Models\User::where('email', $email)->first();
+
+    if($user === null) {
+        return ['errors' => ['email' => 'Incorrect email address.']];
+    }
+
+    if($user->activation_code !== $token) {
+        return ['errors' => ['email' => 'Email address does not match activation code.']];
+    }
+
+    if($password !== $passwordConfirmation) {
+        return ['errors' => ['password_confirmation' => 'New Password and Confirm Password do not match.']];
+    }
+    if(empty($password) || strlen($password) < 4 || strlen($password) > 255) {
+        return ['errors' => ['password' => 'Password must be between 4 and 255 characters']];
+    }
+
+    $user->password = $password;
+    $user->password_confirmation = $passwordConfirmation;
+    $user->is_activated = 1;
+    $user->save();
+
+    return ['message' => 'Account successfully activated. Please click the Sign In button at the top to proceed.'];
+}
+==
+{% put header %}
+
+<div class="section_header">
+    <h3>{{'Activate Account'|_}}</h3>
+</div>
+
+{% endput %}
+
+
+{% put middle_column %}
+
+<form
+        data-request="onActivate"
+        data-request-success="handleResponse(data)"
+        data-request-error="displayErrors()"
+>
+    <input type="hidden" name="activationToken" value="{{ this.page.activationToken }}">
+
+    <div class="form-group">
+        <label for="email">{{'Email'|_}}</label>
+        <input class="form-control" placeholder="{{'Email'|_}}" id="email" type="text" name="email" />
+        <span class="help-block"></span>
+    </div>
+    <div class="form-group">
+        <label for="password">{{'New Password'|_}}</label>
+        <input class="form-control" placeholder="{{'New Password'|_}}" id="password" type="password" name="password" />
+        <span class="help-block"></span>
+    </div>
+    <div class="form-group">
+        <label for="password_confirmation">{{'Confirm Password'|_}}</label>
+        <input class="form-control" placeholder="{{'Confirm Password'|_}}" id="password_confirmation" type="password" name="password_confirmation" />
+        <span class="help-block"></span>
+    </div>
+
+    <button type="submit" class="btn btn-info">{{'Submit'|_}}</button>
+</form>
+
+{% endput %}
+
+{% put scripts %}
+<script>
+    $(function() {
+        $('input').change(function() {
+            $(this).closest('.form-group')
+                    .removeClass('has-error')
+                    .find('.help-block').text('');
+        });
+    });
+    function displayErrors() {
+        alert('Server Error');
+    }
+
+    function handleResponse(data) {
+        $(function() {
+
+            if(typeof data.errors === 'object') {
+                for(var e in data.errors) {
+                    if (typeof data.errors[e] === 'string') {
+                        var formGroup = $('input[name="'+e+'"]').closest('.form-group');
+                        formGroup.addClass('has-error');
+                        formGroup.find('.help-block').text(data.errors[e]);
+                    }
+                }
+            }
+
+            if(typeof data.message === 'string') {
+                $('form').before('<div class="alert alert-info"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'+data.message+'</div>');
+            }
+        });
+    }
+</script>
+{% endput %}

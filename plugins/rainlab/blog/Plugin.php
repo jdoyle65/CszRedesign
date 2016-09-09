@@ -25,7 +25,8 @@ class Plugin extends PluginBase
         return [
             'RainLab\Blog\Components\Post'       => 'blogPost',
             'RainLab\Blog\Components\Posts'      => 'blogPosts',
-            'RainLab\Blog\Components\Categories' => 'blogCategories'
+            'RainLab\Blog\Components\Categories' => 'blogCategories',
+            'RainLab\Blog\Components\RssFeed'    => 'blogRssFeed',
         ];
     }
 
@@ -35,7 +36,9 @@ class Plugin extends PluginBase
             'rainlab.blog.access_posts'         => ['tab' => 'rainlab.blog::lang.blog.tab', 'label' => 'rainlab.blog::lang.blog.access_posts'],
             'rainlab.blog.access_categories'    => ['tab' => 'rainlab.blog::lang.blog.tab', 'label' => 'rainlab.blog::lang.blog.access_categories'],
             'rainlab.blog.access_other_posts'   => ['tab' => 'rainlab.blog::lang.blog.tab', 'label' => 'rainlab.blog::lang.blog.access_other_posts'],
-            'rainlab.blog.access_import_export' => ['tab' => 'rainlab.blog::lang.blog.tab', 'label' => 'rainlab.blog::lang.blog.access_import_export']
+            'rainlab.blog.access_import_export' => ['tab' => 'rainlab.blog::lang.blog.tab', 'label' => 'rainlab.blog::lang.blog.access_import_export'],
+            // A new permission for restricting access  to publish posts
+            'rainlab.blog.access_publish'       => ['tab' => 'rainlab.blog::lang.blog.tab', 'label' => 'rainlab_blog::lang.blog.access_publish']
         ];
     }
 
@@ -46,8 +49,9 @@ class Plugin extends PluginBase
                 'label'       => 'rainlab.blog::lang.blog.menu_label',
                 'url'         => Backend::url('rainlab/blog/posts'),
                 'icon'        => 'icon-pencil',
+                'iconSvg'     => 'plugins/rainlab/blog/assets/images/blog-icon.svg',
                 'permissions' => ['rainlab.blog.*'],
-                'order'       => 500,
+                'order'       => 30,
 
                 'sideMenu' => [
                     'new_post' => [

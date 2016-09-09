@@ -8,31 +8,52 @@ fields:
         disabled: true
     title_en:
         label: Title (EN)
+        span: left
     title_fr:
         label: Title (FR)
+        span: right
     category_id:
         label: Category
         type: dropdown
+        span: left
     name:
         label: Name
+        span: right
     address_line_one:
         label: Address Line One
     address_line_two:
         label: Address Line Two
     city:
         label: City
+        span: left
     province:
         label: Province
+        span: right
     postal_code:
         label: Postal Code
+        span: left
     email:
         label: Email
+        span: right
     home_phone:
         label: Home Phone
+        span: left
     work_phone:
         label: Work Phone
+        span: right
     mobile_phone:
         label: Mobile Phone
+        span: left
+    start_date:
+        label: Start Date
+        type: datepicker
+        mode: date
+        span: left
+    end_date:
+        label: End Date
+        type: datepicker
+        mode: date
+        span: right
     profile_image:
         label: Profile Image
         type: mediafinder

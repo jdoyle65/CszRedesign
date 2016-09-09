@@ -14,6 +14,7 @@ class Category extends Model
     use \October\Rain\Database\Traits\NestedTree;
 
     public $table = 'rainlab_blog_categories';
+    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
 
     /*
      * Validation
@@ -22,6 +23,13 @@ class Category extends Model
         'name' => 'required',
         'slug' => 'required|between:3,64|unique:rainlab_blog_categories',
         'code' => 'unique:rainlab_blog_categories',
+    ];
+
+    /**
+     * @var array Attributes that support translation, if available.
+     */
+    public $translatable = [
+        'name',
     ];
 
     protected $guarded = [];
@@ -131,7 +139,7 @@ class Category extends Model
 
     protected static function listSubCategoryOptions()
     {
-        $category = self::make()->getAllRoot();
+        $category = self::getNested();
 
         $iterator = function($categories) use (&$iterator) {
             $result = [];
@@ -195,7 +203,7 @@ class Category extends Model
             $result['mtime'] = $category->updated_at;
 
             if ($item->nesting) {
-                $categories = $category->getAllRoot();
+                $categories = $category->getNested();
                 $iterator = function($categories) use (&$iterator, &$item, &$theme, $url) {
                     $branch = [];
 

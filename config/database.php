@@ -54,10 +54,10 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => 'csz-mysql.cpgline6hcxe.us-west-2.rds.amazonaws.com',
+            'host'      => 'localhost',
             'port'      => '3306',
-            'database'  => 'october',
-            'username'  => 'jdoyle65',
+            'database'  => 'cszscz1_octobercms',
+            'username'  => 'cszscz1_root',
             'password'  => '4662abCD!238541',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',

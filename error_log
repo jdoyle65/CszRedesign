@@ -1,0 +1,9 @@
+[01-Aug-2016 20:35:19 UTC] PHP Fatal error:  Class 'PHPExcel_IOFactory' not found in /home/cszscz1/public_html/plugins/justindoyle/userimport/controllers/Import.php on line 51
+[01-Aug-2016 20:38:24 UTC] PHP Fatal error:  Class 'October\Rain\Halcyon\HalcyonServiceProvider' not found in /home/cszscz1/public_html/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php on line 150
+[01-Aug-2016 20:38:32 UTC] PHP Fatal error:  Class 'October\Rain\Halcyon\HalcyonServiceProvider' not found in /home/cszscz1/public_html/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php on line 150
+[01-Aug-2016 20:38:59 UTC] PHP Fatal error:  Class 'October\Rain\Halcyon\HalcyonServiceProvider' not found in /home/cszscz1/public_html/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php on line 150
+[01-Aug-2016 20:39:49 UTC] PHP Fatal error:  Class 'PHPExcel_IOFactory' not found in /home/cszscz1/public_html/plugins/justindoyle/userimport/controllers/Import.php on line 51
+[01-Aug-2016 20:41:25 UTC] PHP Fatal error:  Class 'PHPExcel_IOFactory' not found in /home/cszscz1/public_html/plugins/justindoyle/userimport/controllers/Import.php on line 51
+[01-Aug-2016 20:44:33 UTC] PHP Fatal error:  Class 'PHPExcel_IOFactory' not found in /home/cszscz1/public_html/plugins/justindoyle/userimport/controllers/Import.php on line 51
+[01-Aug-2016 20:54:57 UTC] PHP Fatal error:  Class 'PHPExcel_IOFactory' not found in /home/cszscz1/public_html/plugins/justindoyle/userimport/controllers/Import.php on line 51
+[12-Aug-2016 18:02:57 UTC] PHP Parse error:  syntax error, unexpected ';' in /home/cszscz1/public_html/plugins/justindoyle/userimport/controllers/Import.php on line 152

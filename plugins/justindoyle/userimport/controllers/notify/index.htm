@@ -1,0 +1,51 @@
+<h1>Send notification emails</h1>
+
+
+<form method="post" action="<?php echo Backend::url('justindoyle/userimport/notify/send') ?>">
+<p>
+    <button type="submit" class="btn btn-primary btn-lg">Send Notifications For Selected</button>
+</p>
+<div class="control-list list-unresponsive">
+    <table class="table data" data-control="rowlink">
+        <thead>
+        <tr>
+            <th class="list-checkbox">
+                <input type="checkbox" id="checkboxAll" />
+            </th>
+            <th class="sort-asc"><a href="#">Email</a></th>
+            <th class="sort-asc"><a href="#">Name</a></th>
+            <th class="sort-asc"><a href="#">Surname</a></th>
+            <th class="sort-desc"><a href="#">Member Number</a></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php $i = 0; ?>
+        <?php foreach($usersToActivate as $user): ?>
+        <tr>
+            <td class="list-checkbox nolink">
+                <input class="member-checkbox" name="member-checkbox[]" id="member-checkbox[]" type="checkbox" value="<?php echo $user->member_number ?>" />
+            </td>
+            <td><?php echo $user->email ?></td>
+            <td><?php echo $user->name ?></td>
+            <td><?php echo $user->surname ?></td>
+            <td><?php echo $user->member_number ?></td>
+        </tr>
+        <?php $i++; ?>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+</form>
+
+<script>
+    $(function() {
+        $('#checkboxAll').change(function() {
+            var checked = $(this).prop('checked');
+            $('.member-checkbox').each(function() {
+                $(this).prop('checked', checked);
+            })
+        });
+    });
+</script>
+
+

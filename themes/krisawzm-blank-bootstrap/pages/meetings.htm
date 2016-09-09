@@ -1,7 +1,7 @@
 title = "Meetings"
 url = "/meetings"
 layout = "one_column"
-description = "New Page"
+description = "Meetings and courses of interest to CSZ members"
 is_hidden = 0
 
 [editable column_middle]
@@ -18,51 +18,6 @@ file = "meetings/column_middle.htm"
 
 {% put middle_column %}
 
-<div class="row csz-meetings-row">
-    <div class="col-sm-6">
-        <img src="http://ec2-52-10-108-58.us-west-2.compute.amazonaws.com/themes/krisawzm-blank-bootstrap/assets/images/CSZ%20logo%202017.jpeg" alt=""
-             style="width: 100%;">
-    </div>
-    <div class="col-sm-6">
-        <h3>CSZ 2017 - Winnipeg</h3>
-        <p>
-            University of Manitoba (Fort Garry Campus)
-        </p>
-        <p>
-            Date: May 15-19, 2017
-        </p>
-        <p>
-            Web Site: Coming soon!
-        </p>
-    </div>
-</div>
+{% component "column_middle" %}
 
-
-<div class="section_header" style="margin-top: 75px;">
-    <h3>Courses</h3>
-</div>
-
-<div class="row courses-row">
-    <div class="col-sm-12">
-        <table class="table">
-            <tbody>
-            <tr>
-                <td>Columbia Mountains Institute of Applied Ecology</td>
-                <td><a href="http://www.cmiae.org/">http://www.cmiae.org/</a></td>
-            </tr>
-            <tr>
-                <td>Distributed European School of Taxonomy</td>
-                <td><a href="http://taxonomytraining.eu/">http://taxonomytraining.eu/</a></td>
-            </tr>
-            <tr>
-                <td>Eagle Hill Institute Summer Field Courses in Zoology</td>
-                <td><a href="http://www.eaglehill.us/">http://www.eaglehill.us/</a></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-
-<!--{% component "column_middle" %}-->
 {% endput %}

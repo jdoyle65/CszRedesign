@@ -1,7 +1,9 @@
+
 <form
     data-request="onSignin"
+    data-request-success="handleResponse(data)"
     data-request-data="redirect: '/profile'"
-    data-request-error="displayErrors()"
+    data-request-error="displayErrors(jqXHR)"
 >
     <div class="form-group">
         <label for="userSigninLogin">{{ 'Email'|_ }}</label>
@@ -33,11 +35,40 @@
 
 {% put scripts %}
 <script>
-    function displayErrors() {
+    $(function() {
+        $('input').change(function() {
+            $(this).closest('.form-group')
+                    .removeClass('has-error');
+            $('#login-error-block').hide();
+        });
+    });
+    function displayErrors(jqXHR) {
         $(function() {
-            $('input[name="login"]').closest('.form-group').addClass('has-error');
-            $('input[name="password"]').closest('.form-group').addClass('has-error');
-            $('#login-error-block').show();
+            $('#login-error-block').show().closest('.form-group').addClass('has-error');
+            var data = jqXHR.responseJSON;
+            if(typeof data.X_OCTOBER_ERROR_FIELDS === 'object') {
+                for(var e in data.X_OCTOBER_ERROR_FIELDS) {
+                    if (typeof data.X_OCTOBER_ERROR_FIELDS[e][0] === 'string') {
+                        var formGroup = $('input[name="'+e+'"]').closest('.form-group');
+                        formGroup.addClass('has-error');
+                    }
+                }
+            }
+        });
+    }
+
+    function handleResponse(data) {
+        $(function() {
+
+            if(typeof data.errors === 'object') {
+                $('#login-error-block').show().closest('.form-group').addClass('has-error');
+                for(var e in data.errors) {
+                    if (typeof data.errors[e] === 'string') {
+                        var formGroup = $('input[name="'+e+'"]').closest('.form-group');
+                        formGroup.addClass('has-error');
+                    }
+                }
+            }
         });
     }
 </script>

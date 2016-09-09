@@ -4,6 +4,8 @@ layout = "one_column"
 description = "Jobs page"
 is_hidden = 0
 
+[editable column_middle]
+file = "jobs/middle_column.htm"
 ==
 <?php
 use JustinDoyle\Jobs\Models\Job;
@@ -18,6 +20,18 @@ function onStart() {
 {% put header %}
 <div class="section_header">
     <h3>{{'Job Postings'|_}}</h3>
+</div>
+{% endput %}
+
+{% put middle_column %}
+
+{% component "column_middle" %}
+
+{% endput %}
+
+{% put middle_column %}
+<div class="section_header">
+
 </div>
 {% endput %}
 
@@ -76,7 +90,7 @@ function onStart() {
 </script>
 {% endput %}
 
-<div class="row">
+<div class="row" style=padding:10px>
     <div class="col-md-12">
         <div id="filters-container">
             <ul id="filters">

@@ -5,6 +5,9 @@
     </IfModule>
 
     RewriteEngine On
+    
+    RewriteCond %{SERVER_PORT} 80 
+    RewriteRule ^(.*)$ https://www.csz-scz.ca/$1 [R,L]
 
     ##
     ## You may need to uncomment the following line for some hosting environments,
@@ -72,3 +75,4 @@
     RewriteRule ^ index.php [L]
 
 </IfModule>
+

@@ -1,34 +1,27 @@
 {% set post = __SELF__.post %}
 
-{% if activeLocale == 'fr' %}
-<p class="text-muted">{{ post.published_at|date('d') }} {{ post.published_at|date('M')|_ }} {{ post.published_at|date('y') }}</p>
-{% else %}
-<p class="text-muted">{{ post.published_at|date('M d, y') }}</p>
-{% endif %}
-{% if post.featured_images[0] %}
-<div class="col-sm-12">
-    <img
-            class="post-pic centered img-responsive"
-            data-src="{{ post.featured_images[0].filename }}"
-            src="{{ post.featured_images[0].path }}"
-            alt="{{ post.featured_images[0].description }}"
-            style="max-width: 100%"/>
-</div>
-{% endif %}
-
-<div class="content" style="margin-top: 50px; margin-bottom: 50px">{{ post.content_html|raw }}</div>
+<div class="content">{{ post.content_html|raw }}</div>
 
 {% if post.featured_images.count %}
-<div class="featured-images text-center row">
-    {% for image in post.featured_images %}
-    <div class="col-md-3">
-        <img
-                class="post-pic img-responsive"
-                data-src="{{ image.filename }}"
-                src="{{ image.path }}"
-                alt="{{ image.description }}"
-                style="max-width: 100%"/>
+    <div class="featured-images text-center">
+        {% for image in post.featured_images %}
+            <p>
+                <img
+                    data-src="{{ image.filename }}"
+                    src="{{ image.path }}"
+                    alt="{{ image.description }}"
+                    style="max-width: 100%" />
+            </p>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 {% endif %}
+
+<p class="info">
+    Posted
+    {% if post.categories.count %} in
+        {% for category in post.categories %}
+            <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
+        {% endfor %}
+    {% endif %}
+    on {{ post.published_at|date('M d, Y') }}
+</p>

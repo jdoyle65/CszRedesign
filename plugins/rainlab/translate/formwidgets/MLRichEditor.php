@@ -5,7 +5,7 @@ use RainLab\Translate\Models\Locale;
 
 /**
  * ML Rich Editor
- * Renders a multi-lingual WYSIWYG edtiro.
+ * Renders a multi-lingual WYSIWYG editor.
  *
  * @package rainlab\translate
  * @author Alexey Bobkov, Samuel Georges
@@ -55,6 +55,15 @@ class MLRichEditor extends RichEditor
     }
 
     /**
+     * Returns an array of translated values for this field
+     * @return array
+     */
+    public function getSaveValue($value)
+    {
+        return $this->getLocaleSaveValue($value);
+    }
+
+    /**
      * {@inheritDoc}
      */
     protected function loadAssets()
@@ -65,7 +74,7 @@ class MLRichEditor extends RichEditor
 
         if (Locale::isAvailable()) {
             $this->loadLocaleAssets();
-            $this->addJs('js/mlswitcher.js');
+            $this->addJs('js/mlricheditor.js');
         }
     }
 

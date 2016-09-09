@@ -2,6 +2,7 @@
 
 use RainLab\Translate\Models\Locale;
 use Backend\Classes\FormWidgetBase;
+use October\Rain\Html\Helper as HtmlHelper;
 
 /**
  * Generic ML Control
@@ -13,11 +14,6 @@ use Backend\Classes\FormWidgetBase;
 trait MLControl
 {
     /**
-     * @var string Form field column name.
-     */
-    public $columnName;
-
-    /**
      * @var boolean Determines whether translation services are available
      */
     public $isAvailable;
@@ -28,13 +24,17 @@ trait MLControl
     protected $parentViewPath;
 
     /**
+     * @var RainLab\Translate\Models\Locale Object
+     */
+    protected $defaultLocale;
+
+    /**
      * Initialize control
      * @return void
      */
     public function initLocale()
     {
-        $this->columnName  = $this->formField->fieldName;
-        $this->defaultLocale  = Locale::getDefault();
+        $this->defaultLocale = Locale::getDefault();
         $this->parentViewPath = $this->guessViewPathFrom(__TRAIT__, '/partials');
         $this->isAvailable = Locale::isAvailable();
     }
@@ -90,7 +90,10 @@ trait MLControl
     public function getLocaleValue($locale)
     {
         if ($this->model->methodExists('getTranslateAttribute')) {
-            return $this->model->noFallbackLocale()->getTranslateAttribute($this->columnName, $locale);
+            return $this->model->noFallbackLocale()->getTranslateAttribute(
+                $this->valueFrom ?: $this->fieldName,
+                $locale
+            );
         }
         else {
             return $this->formField->value;
@@ -115,7 +118,7 @@ trait MLControl
     /**
      * {@inheritDoc}
      */
-    public function getSaveValue($value)
+    public function getLocaleSaveValue($value)
     {
         $localeData = $this->getLocaleSaveData();
 
@@ -124,7 +127,11 @@ trait MLControl
          */
         if ($this->model->methodExists('setTranslateAttribute')) {
             foreach ($localeData as $locale => $value) {
-                $this->model->setTranslateAttribute($this->columnName, $value, $locale);
+                $this->model->setTranslateAttribute(
+                    $this->valueFrom ?: $this->fieldName,
+                    $value,
+                    $locale
+                );
             }
         }
 
@@ -137,14 +144,17 @@ trait MLControl
      */
     public function getLocaleSaveData()
     {
+        $values = [];
         $data = post('RLTranslate');
+
         if (!is_array($data)) {
-            return [];
+            return $values;
         }
 
-        $values = [];
+        $fieldName = implode('.', HtmlHelper::nameToArray($this->fieldName));
+
         foreach ($data as $locale => $_data) {
-            $values[$locale] = array_get($_data, $this->columnName);
+            $values[$locale] = array_get($_data, $fieldName);
         }
 
         return $values;

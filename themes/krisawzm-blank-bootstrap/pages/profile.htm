@@ -21,12 +21,14 @@ $validator = Validator::make(post(),
 [
 'title' => 'between:1,10',
 'name' => 'required|between:2,255',
+'surname' => 'between:2,255',
 'degrees' => 'between:1,255',
 'institution' => 'between:2,511',
 'address-line-one' => 'between:2,255',
 'address-line-two' => 'between:2,255',
 'city' => 'between:2,255',
 'country' => 'between:2,255',
+'province' => 'between:2,255',
 'postal-code' => 'between:2,127',
 'phone-one' => 'between:10,127',
 'phone-two' => 'between:10,127',
@@ -38,11 +40,13 @@ throw new \October\Rain\Exception\ValidationException($validator);
 }
 $user->title = post('title');
 $user->name = post('name');
+$user->surname = post('surname');
 $user->degrees = post('degrees');
 $user->institution = post('institution');
 $user->address_line_one = post('address-line-one');
 $user->address_line_two = post('address-line-two');
 $user->city = post('city');
+$user->province = post('province');
 $user->country = post('country');
 $user->postal_code = post('postal-code');
 $user->phone_one = post('phone-one');
@@ -82,7 +86,7 @@ return $user;
 
 <div class="row">
     <div class="col-md-4">
-        <h3>{{ user.title }} {{ user.name }}</h3>
+        <h3>{{ user.title }} {{ user.name }} {{ user.surname }}</h3>
         <table class="table">
             <tbody>
             <tr>
@@ -126,6 +130,12 @@ return $user;
                 <label for="title" class="col-sm-2 control-label">{{'Name'|_}}</label>
                 <div class="col-sm-10">
                     <input type="text" name="name" value="{{ user.name }}" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="title" class="col-sm-2 control-label">{{'Surname'|_}}</label>
+                <div class="col-sm-10">
+                    <input type="text" name="surname" value="{{ user.surname }}" class="form-control">
                 </div>
             </div>
             <div class="form-group">
