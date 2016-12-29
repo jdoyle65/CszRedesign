@@ -1,7 +1,7 @@
-url = "/profile"
 title = "Profile"
-description = "New Page"
+url = "/profile"
 layout = "one_column"
+description = "New Page"
 is_hidden = 0
 
 [editable column_middle]
@@ -11,58 +11,243 @@ file = "meetings/column_middle.htm"
 security = "user"
 redirect = "signin"
 ==
+<?php
+function onStart() {
+
+    try {
+    $user = Auth::getUser();
+    $user_id = $user->id;
+    $mtype = $user->member_type;
+    
+    try {
+        $cmd = Db::table('users_groups_cmd')
+                ->where( 'user_id', $user_id)
+                ->get();            
+    
+        $cpb = Db::table('users_groups_cpb')
+                ->where( 'user_id', $user_id)
+                ->get();
+                
+        $eee = Db::table('users_groups_eee')
+                ->where( 'user_id', $user_id)
+                ->get();
+                
+        $pie = Db::table('users_groups_pie')
+                ->where( 'user_id', $user_id)
+                ->get();
+                
+        $web = Db::table('users_groups_web')
+                ->where( 'user_id', $user_id)
+                ->get();
+    
+        $csz = Db::table('users_groups_csz')
+                ->where( 'user_id', $user_id)
+                ->get();
+                
+        $lapsed = Db::table('users_groups_lapsed')
+                ->where( 'user_id', $user_id)
+                ->get();
+                
+        $pdf = Db::table('users_groups_pdf')
+                ->where( 'user_id', $user_id)
+                ->get();
+    
+        $student = Db::table('users_groups_student')
+                ->where( 'user_id', $user_id)
+                ->get();
+    } catch (Exception $e) {
+        $this['mysql'] = $e;
+    }
+     
+    $this["cmd"] = null; 
+    $this["cpb"] = null; 
+    $this["pie"] = null; 
+    $this["eee"] = null; 
+    $this["web"] = null; 
+    $this["csz"] = null;
+    $this["lapsed"] = null;
+    $this["pdf"] = null;
+    $this["student"] = null;
+    $this["mtype"] = $mtype;
+    
+    if (isset($cmd) and count($cmd) > 0) {          
+        $this["cmd"] = $cmd[0]->name;
+    }
+    if (isset($pie) and count($pie) > 0) {
+        $this["pie"] = $pie[0]->name;
+    }
+    if (isset($cpb) and count($cpb) > 0) {
+        $this["cpb"] = $cpb[0]->name;
+    }
+    if (isset($eee) and count($eee) > 0) {
+        $this["eee"] = $eee[0]->name;
+    }  
+    if (isset($web) and count($web) > 0) {
+        $this["web"] = $web[0]->name;
+    }  
+    if (isset($csz) and count($csz) > 0) {
+        $this["csz"] = $csz[0]->name;
+    }  
+    if (isset($csz) and count($lapsed) > 0) {
+        $this["lapsed"] = $lapsed[0]->name;
+    }  
+    if (isset($pdf) and count($pdf) > 0) {
+        $this["pdf"] = $pdf[0]->name;
+    }  
+    if (isset($student) and count($student) > 0) {
+        $this["student"] = $student[0]->name;
+    }  
+     
+    try {
+        Db::table('users_groups')
+                ->where( 'user_id', $user_id)
+                ->delete();
+                
+        // 515 = Keith Tierney
+        // 537 = Ken Welch
+        // 556 = Kofi Garbrah
+        if ($user_id == 515 or $user_id == 555 or $user_id == 537) {
+            Db::table('users_groups')
+                ->insert( ['user_id' => $user_id, 'user_group_id' => '6'] );
+        }
+        
+        /* Everyone belongs to CSZ */
+        Db::table('users_groups')
+                ->insert( ['user_id' => $user_id, 'user_group_id' => '7'] );
+                
+        /* Retain lapsed member info */
+        if ($this['lapsed']) {
+            Db::table('users_groups')
+                ->insert( ['user_id' => $user_id, 'user_group_id' => '8'] );
+        }
+        
+        /* Add back students */
+        if ($mtype == "S2" or $mtype == "S") {
+            Db::table('users_groups')
+                ->insert( ['user_id' => $user_id, 'user_group_id' => '9'] );
+        }
+        
+        /* Add back Post-Docs */
+        if ($mtype == "P" or $mytpe == "P2") {
+            Db::table('users_groups')
+                ->insert( ['user_id' => $user_id, 'user_group_id' => '10'] );
+        }
+        
+    } catch (Exception $e) {
+        $this['mysql'] = $e;
+    }
+    
+    
+    
+    if ($user->cmd_member == 1) {
+        $this['cmd'] = 'CMD';
+            
+        try {
+            Db::table('users_groups')
+                ->insert( ['user_id' => $user_id, 'user_group_id' => '2'] );
+        } catch (Exception $e) {
+            $this['mysql'] .= $e;
+        }
+    } else {
+        $this['cmd'] = null;
+    }
+    
+    if ($user->pie_member == 1) {
+        $this['pie'] = 'PIE';
+        try {
+            Db::table('users_groups')
+                ->insert( ['user_id' => $user_id, 'user_group_id' => '3'] );
+        } catch (Exception $e) {
+            $this['mysql'] .= $e;
+        }
+    } else {
+        $this['pie'] = null;
+    }
+    
+    if ($user->cpb_member ==  1) {
+        $this['cpb'] = 'CPB';
+        try {
+            Db::table('users_groups')
+                ->insert( ['user_id' => $user_id, 'user_group_id' => '4'] );
+        } catch (Exception $e) {
+            $this['mysql'] .= $e;
+        }
+    } else {
+        $this['cpb'] = null;
+    }
+    
+    if ($user->eee_member == 1) {
+        $this['eee'] = 'EEE';
+        try {
+            Db::table('users_groups')
+                ->insert( ['user_id' => $user_id, 'user_group_id' => '5'] );
+        } catch (Exception $e) {
+            $this['mysql'] .= $e;
+        }
+    } else {
+        $this['eee'] = null;
+    }
+    
+    } catch (Exception $e) {
+               header( "location: https://csz-scz.ca" );
+    }
+
+}
+
 function onUpdateUser() {
-if (!Auth::check()) {
-return null;
-} else {
-$user = Auth::getUser();
-}
-$validator = Validator::make(post(),
-[
-'title' => 'between:1,10',
-'name' => 'required|between:2,255',
-'surname' => 'between:2,255',
-'degrees' => 'between:1,255',
-'institution' => 'between:2,511',
-'address-line-one' => 'between:2,255',
-'address-line-two' => 'between:2,255',
-'city' => 'between:2,255',
-'country' => 'between:2,255',
-'province' => 'between:2,255',
-'postal-code' => 'between:2,127',
-'phone-one' => 'between:10,127',
-'phone-two' => 'between:10,127',
-'email' => 'required|email|between:6,255',
-'website' => 'between:2,255',
-]);
-if($validator->fails()) {
-throw new \October\Rain\Exception\ValidationException($validator);
-}
-$user->title = post('title');
-$user->name = post('name');
-$user->surname = post('surname');
-$user->degrees = post('degrees');
-$user->institution = post('institution');
-$user->address_line_one = post('address-line-one');
-$user->address_line_two = post('address-line-two');
-$user->city = post('city');
-$user->province = post('province');
-$user->country = post('country');
-$user->postal_code = post('postal-code');
-$user->phone_one = post('phone-one');
-$user->phone_two = post('phone-two');
-$user->email = post('email');
-$user->website = post('website');
-$user->receive_emails = (post('receive-emails', 0) === 'on');
-$user->cmd_member = (post('cmd-member', 0) === 'on');
-$user->pie_member = (post('pie-member', 0) === 'on');
-$user->cpb_member = (post('cpb-member', 0) === 'on');
-$user->eee_member = (post('eee-member', 0) === 'on');
+    
+    if (!Auth::check()) {
+        return null;
+    } else {
+        $user = Auth::getUser();
+    }
+    $validator = Validator::make(post(),
+    [
+        'title' => 'between:1,10',
+        'name' => 'required|between:2,255',
+        'surname' => 'between:2,255',
+        'degrees' => 'between:1,255',
+        'institution' => 'between:2,511',
+        'address-line-one' => 'between:2,255',
+        'address-line-two' => 'between:2,255',
+        'city' => 'between:2,255',
+        'country' => 'between:2,255',
+        'province' => 'between:2,255',
+        'postal-code' => 'between:2,127',
+        'phone-one' => 'between:10,127',
+        'phone-two' => 'between:10,127',
+        'email' => 'required|email|between:6,255',
+        'website' => 'between:2,255',
+    ]);
+    if($validator->fails()) {
+        throw new \October\Rain\Exception\ValidationException($validator);
+    }
+    $user->title = post('title');
+    $user->name = post('name');
+    $user->surname = post('surname');
+    $user->degrees = post('degrees');
+    $user->institution = post('institution');
+    $user->address_line_one = post('address-line-one');
+    $user->address_line_two = post('address-line-two');
+    $user->city = post('city');
+    $user->province = post('province');
+    $user->country = post('country');
+    $user->postal_code = post('postal-code');
+    $user->phone_one = post('phone-one');
+    $user->phone_two = post('phone-two');
+    $user->email = post('email');
+    $user->website = post('website');
+    $user->receive_emails = (post('receive-emails', 0) === 'on');
+    $user->cmd_member = (post('cmd-member', 0) === 'on');
+    $user->pie_member = (post('pie-member', 0) === 'on');
+    $user->cpb_member = (post('cpb-member', 0) === 'on');
+    $user->eee_member = (post('eee-member', 0) === 'on');
 
-$user->save();
-
-return $user;
+    $user->save();
+    
+    return $user;
 }
+?>
 ==
 {% put header %}
 
@@ -96,22 +281,53 @@ return $user;
             <tr>
                 <th>Divisional Affiliation:</th>
                 <td>
-                    {% if user.cmd_member %}<span class="label label-warning">{{'CMD'|_}}</span> {% endif %}
-                    {% if user.pie_member %}<span class="label label-warning">{{'PIE'|_}}</span> {% endif %}
-                    {% if user.cpb_member %}<span class="label label-warning">{{'CPB'|_}}</span> {% endif %}
-                    {% if user.eee_member %}<span class="label label-warning">{{'EEE'|_}}</span> {% endif %}
-                </td>
-            </tr>
-            <tr>
-                <th>{{'Membership Status'|_}}:</th>
-                <td>
-                    <div style="text-transform: uppercase;" class="label label-info">{{ user.membership_status }}</div>
+                    {% if cmd%}<span class="label label-warning">{{'CMD'|_}}</span> {% endif %}
+                    {% if pie %}<span class="label label-warning">{{'PIE'|_}}</span> {% endif %}
+                    {% if cpb %}<span class="label label-warning">{{'CPB'|_}}</span> {% endif %}
+                    {% if eee %}<span class="label label-warning">{{'EEE'|_}}</span> {% endif %}
+                    {% if web %}<span class="label label-warning">{{'WEB'|_}}</span> {% endif %}
+                    {% if pdf %}<span class="label label-warning">{{'PDF'|_}}</span> {% endif %}
                 </td>
             </tr>
             <tr>
                 <th>{{'Membership Type'|_}}:</th>
-                <td>{{ user.membership_type }}</td>
+                <td>
+                {% if user.member_type == "R" %}Regular member<br>1 years{% endif %}
+                {% if user.member_type == "R2" %}Regular member<br>2 years{% endif %}
+                {% if user.member_type == "P" %}PDF member<br>1 years{% endif %}
+                {% if user.member_type == "P2" %}PDF member<br>2 years{% endif %}
+                {% if user.member_type == "S" %}Student member<br>1 years{% endif %}
+                {% if user.member_type == "S2" %}Student member<br>2 years{% endif %}
+                {% if user.member_type == "E" %}Emeritus member<br>1 years{% endif %}
+                {% if user.member_type == "E2" %}Emeritus member<br>2 years{% endif %}
+                {% if user.member_type == "H" %}Honorary member{% endif %}
+                </td>
             </tr>
+	    <tr>
+                <th>{{'Year Joined'|_}}:</th>
+                <td>{{ user.year_joined }}</td>
+            </tr>
+	    <tr>
+                <th>{{'Expiry Year'|_}}:</th>
+                <td>{% if user.year_expires <= "now"|date("Y") %}<span style="color: red;">{{ user.year_expires }} (due this year)</span>{% else %}{{ user.year_expires }}{% endif %}</td>
+            </tr>
+            <!-- -->
+        <tr>
+            <th>TO RENEW:</th>
+            <td>
+                    <form action="renewal" method="post">
+        <button type="submit" class="btn btn-info">{{'RENEW MEMBERSHIP'|_}}</button>
+        </form>
+        </td>
+        </tr>
+        <tr>
+            <th>To Donate:</th>
+            <td>
+                    <form action="donation" method="post">
+        <button type="submit" class="btn btn-default">{{'DONATE'|_}}</button>
+        </form>
+        </td>
+        </tr><!-- -->
             </tbody>
         </table>
     </div>
@@ -215,8 +431,6 @@ return $user;
                 <div class="col-sm-2">
                     <input type="checkbox" name="cmd-member" {% if user.cmd_member %}checked{% endif %}>
                 </div>
-            </div>
-            <div class="form-group">
                 <label for="title" class="col-sm-2 control-label">{{'PIE Member'|_}}</label>
                 <div class="col-sm-2">
                     <input type="checkbox" name="pie-member" {% if user.pie_member %}checked{% endif %}>
@@ -227,8 +441,6 @@ return $user;
                 <div class="col-sm-2">
                     <input type="checkbox" name="cpb-member" {% if user.cpb_member %}checked{% endif %}>
                 </div>
-            </div>
-            <div class="form-group">
                 <label for="title" class="col-sm-2 control-label">{{'EEE Member'|_}}</label>
                 <div class="col-sm-2">
                     <input type="checkbox" name="eee-member" {% if user.eee_member %}checked{% endif %}>

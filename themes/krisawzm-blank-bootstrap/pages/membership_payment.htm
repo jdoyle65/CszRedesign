@@ -1,10 +1,16 @@
-url = "/membership/payment"
 title = "Membership Payment"
-description = "New Page"
+url = "/membership/payment"
 layout = "one_column"
+description = "New Page"
 is_hidden = 0
 
 [editable]
+==
+<?php
+function onStart() {
+     header( 'location: https://csz-scz.ca/registration');   
+}
+?>
 ==
 {% put header %}
 

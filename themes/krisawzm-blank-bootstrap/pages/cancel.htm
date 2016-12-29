@@ -1,0 +1,26 @@
+title = "Cancel"
+url = "/cancel"
+layout = "one_column"
+is_hidden = 0
+==
+<?php
+function onStart() {
+    
+	$this['get'] = print_r( $_GET, true );
+	$this['order'] = $_GET['order_id'];
+}
+?>
+==
+{% put header %}
+
+<div class="section_header">
+    <h3>{{'Transaction Cancelled'|_}}</h3>
+</div>
+
+{% endput %}
+
+{% put middle_column %}
+
+Transaction cancelled for Order {{order}}.<br>
+
+{% endput %}

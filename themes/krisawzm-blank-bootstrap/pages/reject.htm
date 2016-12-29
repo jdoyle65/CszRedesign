@@ -1,0 +1,54 @@
+title = "Reject"
+url = "/reject"
+layout = "one_column"
+is_hidden = 0
+==
+<?php
+function onStart() {
+    
+	$this['post'] = print_r( $_POST, true );
+	$this['order'] = $_POST['response_order_id'];
+	$this['date'] = $_POST['date_stamp'];
+	$this['time'] = $_POST['time_stamp'];
+	$this['message'] = $_POST['message'];
+	            
+    $cpb = "0";
+    $cmd = "0";
+    $eee = "0";
+    $pie = "0";
+            
+	try {
+        $sql = Db::table('prelim_users')
+                ->where( 'order_id', $this['order'])
+                ->get();   
+                
+        $this['result1'] = "Rejected a charge of $" . $_POST['charge_total'];
+        $this['result4'] = "Charge failed for: " . $sql[0]->name . " " . $sql[0]->surname;
+        $this['result5'] =  "<blockquote>" . str_replace( ";", "<br>", $sql[0]->desc) . "</blockquote>";
+        $results = $this['result1'] . "|" . $this['result4'] . "|" . $this['result5'];
+                    Db::table('transactions')
+                   ->insert([ 'results' => $results ]); 
+  
+        
+    } catch (Exception $e) {
+        $this['mysql'] = $e;
+    }
+	  
+}
+?>
+==
+{% put header %}
+
+<div class="section_header">
+    <h3>{{'Declined'|_}}</h3>
+</div>
+
+{% endput %}
+
+{% put middle_column %}
+
+{{result1}}<br>
+{{result4}}<br>
+{{result5|raw}}<br>
+
+{% endput %}

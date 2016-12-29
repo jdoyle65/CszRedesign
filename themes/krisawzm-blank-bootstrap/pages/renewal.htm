@@ -1,0 +1,667 @@
+title = "Renewal"
+url = "/renewal"
+layout = "one_column"
+is_hidden = 0
+
+[session]
+security = "all"
+==
+<?php
+function onStart() {
+    
+    $user = Auth::getUser();
+
+    try {
+    
+    $this['title'] = $user->title;
+    $this['name'] = $user->name;
+    $this['surname'] = $user->surname;
+    $this['degrees'] = $user->degrees;
+    $this['institution'] = $user->institution;
+    $this['address'] = $user->address_line_one;
+    $this['city'] = $user->city;
+    $this['prov'] = $user->province;
+    $this['country'] = $user->country;
+    $this['postal'] = $user->postal_code;
+    $this['telephone'] = $user->phone_one;
+    $this['email'] = $user->email;
+    $this['year_joined'] = $user->year_joined;
+    $this['year_expires'] = $user->year_expires;
+    
+	$this['post'] = print_r( $_POST, true );
+	
+	$err = 0;
+	$this['year_joined'] = date("Y");
+	$this['displayForm'] = true;
+	$this['donation'] = false;
+	$this['sku'] = "registration";
+	
+	$i = 0;
+    foreach($_POST as $key => $value) {
+        $this[$key] = $value;
+        $i++;
+    }
+	
+	$this['cost'] = 0.0;
+
+	$this['count'] = $i;
+	$this['type'] = "";
+	$this['paid'] = false;  
+	
+	if ($i > 0) {
+    	if (strlen($this['name']) == 0 ) {
+    		$this['errorName'] .= "No name. ";
+    		$err++;
+    	}
+    	
+		if (strlen($this['surname']) == 0 ) {
+    		$this['errorName'] .= "No surname.";
+    		$err++;
+    	}
+    	
+    	if (strlen($this['address']) == 0 ) {
+    		$this['errorAddress'] .= "No address.";
+			$err++;
+    	}
+    	
+    	if (strlen($this['city']) == 0 ) {
+    		$this['errorCity'] .= "No city.";
+			$err++;
+    	}
+    	
+    	if (strlen($this['country']) == 0 ) {
+    		$this['errorCountry'] .= "No country.";
+			$err++;
+    	}
+		
+		if (strlen($this['telephone']) == 0 ) {
+    		$this['errorTelephone'] .= "No telephone number.";
+			$err++;
+    	}
+		
+		if (strlen($this['prov']) == 0 ) {
+    		$this['errorProvince'] .= "No province.";
+			$err++;
+    	}
+		
+		if (strlen($this['postal']) == 0 ) {
+    		$this['errorPostal'] .= "No postal code.";
+			$err++;
+    	}
+		
+		if (strlen($this['email']) == 0 ) {
+    		$this['errorEmail'] .= "No email.";
+			$err++;
+    	}
+		
+		if (!filter_var($this['email'], FILTER_VALIDATE_EMAIL)) {
+    		$this['errorEmail'] .= "Email is not valid. ";
+			$err++;
+    	}
+    	
+    	
+		if (strlen($this['member_type']) == 0 ) {
+    		$this['errorMemtype'] .= "No member type selected.";
+			$err++;
+    	}
+		
+		$this['cost'] += floatval( $this['general_donation'] );
+		$this['cost'] += floatval( $this['lindsey_donation'] );
+		$this['cost'] += floatval( $this['hall_donation'] );
+		$this['cost'] += floatval( $this['fallis_donation'] );
+		$this['cost'] += floatval( $this['holeton_donation'] );
+		$this['donation'] = ($this['cost'] > 0)? true : false;
+
+		switch( $this['member_type']) {
+			case "R": $this['cost'] += 80.00; 
+				$this['type'] = "$80 for Regular 1 year";
+				$this['year_expires'] = $this['year_expires'] + 1;
+				break;
+			case "R2": $this['cost'] += 140.00; 
+				$this['type'] = "$140 for Regular 2 years";
+				$this['year_expires'] = $this['year_expires'] + 2;
+				break;
+				
+			case "E": $this['cost'] += 20.00; 
+				$this['type'] = "$20 for Emeriti 1 year";
+				$this['year_expires'] = $this['year_expires'] + 1;
+				break;
+			case "E2": $this['cost'] += 25.00; 
+				$this['type'] = "$25 for Emeriti 2 years";
+				$this['year_expires'] = $this['year_expires'] + 2;
+				break;
+				
+			case "P": $this['cost'] += 20.00;
+				$this['type'] = "$20 for PDF 1 year";
+				$this['year_expires'] = $this['year_expires'] + 1;
+				break;
+			case "P2": $this['cost'] += 25.00; 
+				$this['type'] = "$25 for PDF 2 years";
+				$this['year_expires'] = $this['year_expires'] + 2;
+				break;
+				
+			case "S": $this['cost'] += 20.00;
+				$this['type'] = "$20 for Student 1 year";
+				$this['year_expires'] = $this['year_expires'] + 1;
+				break;
+			case "S2": $this['cost'] += 25.00; 
+				$this['type'] = "$25 for Student 2 years";
+				$this['year_expires'] = $this['year_expires'] + 2;
+				break;
+				
+			case "A": $this['cost'] += 20.00; 
+				$this['type'] = "$20 for Associate 1 year";
+				$this['year_expires'] = $this['year_expires'] + 1;
+				break;
+			case "A2": $this['cost'] += 25.00; 
+				$this['type'] = "$25 for Associate 2 years";
+				$this['year_expires'] = $this['year_expires'] + 2;
+				break;
+		}
+		
+	}
+	
+	$this['strCost'] = number_format( $this['cost'], 2 );
+
+	if ($err == 0 and $this['count'] > 0) {
+		$this['displayForm'] = false;
+		$this['order'] = time(); 
+		Db::table('prelim_users')
+                ->delete();
+                
+        $this['sku'] = ($this['donation'])? "renewal & donation" : "renewal";
+    
+        $this['desc'] = "Renewal;" . $this['type'];  
+        
+        if ($this['donation']) {
+            $this['desc'] .= "; Canada charity registration BN 8756 3864 RR0001";
+        }
+        
+        if ($this['general_donation'] > 0) {
+            $this['desc'] .= "; Donation of $" . $this['general_donation'] . " to General Support Funds";
+        }
+        if ($this['hall_donation'] > 0) {
+            $this['desc'] .= "; Donation of $" . $this['hall_donation'] . " to Hall Fund";
+        }
+        if ($this['holeton_donation'] > 0) {
+            $this['desc'] .= "; Donation of $" . $this['holeton_donation'] . " to Holeton Fund";
+        }
+        if ($this['lindsey_donation'] > 0) {
+            $this['desc'] .= "; Donation of $" . $this['lindsey_donation'] . " to Lindsey Fund";
+        }
+        if ($this['fallis_donation'] > 0) {
+            $this['desc'] .= "; Donation of $" . $this['fallis_donation'] . " to Fallis Fund";
+        }
+		Db::table('prelim_users')
+               ->insert( [ 'name' => $this['name'], 'email' => $this['email'], 'username' => hash('ripemd160', $this['email']) , 'surname' => $this['surname'], 'degrees' => $this['degrees'], 'institution' => $this['institution'], 'address' => $this['address'], 'city' => $this['city'], 'province' => $this['prov'], 'country' => $this['country'], 'postal' => $this['postal'], 'phone' => $this['telephone'], 'member_type' => $this['member_type'], 'title' => $this['title'], 'year_joined' => $this['year_joined'], 'year_expires' => $this['year_expires'], 'order_id' => $this['order'], 'desc' => $this['desc'], 'CPB' => (($this['cpb'] == "on")? "1" : ""), 'EEE' => (($this['eee'] == "on")? "1" : ""), 'PIE' => (($this['pie'] == "on")? "1" : ""), 'CMD' => (($this['cmd'] == "on")? "1" : "") ] );
+               
+
+	} 
+    } catch (Exception $e) {
+               header( "location: https://csz-scz.ca" );
+    }
+}
+?>
+==
+{% put header %}
+
+<div class="section_header">
+    <h3>{{'Renewal'|_}}</h3>
+</div>
+
+{% endput %}
+
+{% put middle_column %}
+
+{% if count > 0 %}
+<div class="col-md-12" style="color: red">
+{{errorName}}
+</div>
+<div class="col-md-12" style="color: red">
+{{errorAddress}}
+</div>
+<div class="col-md-12" style="color: red">
+{{errorCity}}
+</div>
+<div class="col-md-12" style="color: red">
+{{errorProvince}}
+</div>
+<div class="col-md-12" style="color: red">
+{{errorCountry}}
+</div>
+<div class="col-md-12" style="color: red">
+{{errorPostal}}
+</div>
+<div class="col-md-12" style="color: red">
+{{errorEmail}}
+</div>
+<div class="col-md-12" style="color: red">
+{{errorTelephone}}
+</div>
+<div class="col-md-12" style="color: red">
+{{errorUsername}}
+</div>
+<div class="col-md-12" style="color: red">
+{{errorMemtype}}
+</div>
+<div class="col-md-12" style="color: red">
+{{errorDonation}}
+</div>
+{% endif %}
+
+
+{% if displayForm %}
+<form action="renewal" method="post">
+
+<h4>Contact Information</h4>
+<div class="col-md-1">
+
+        <label for="registerTitle">Title</label>
+        <select  name="title"
+            class="form-control"
+            id="registerTitle" 
+            style="width:70px;">
+		  <option value=""{% if title == "" %}selected{% endif %}></option>
+		  <option value="Mr."{% if title == "Mr." %}selected{% endif %}>Mr.</option>
+		  <option value="Ms."{% if title == "Ms." %}selected{% endif %}>Ms.</option>
+		  <option value="Mrs."{% if title == "Mrs." %}selected{% endif %}>Mrs.</option>
+		  <option value="Miss"{% if title == "Miss" %}selected{% endif %}>Miss</option>
+		  <option value="Dr."{% if title == "Dr." %}selected{% endif %}>Dr.</option>
+		</select>
+</div>
+<div class="col-md-5">
+
+        <label for="registerName">First Name</label>
+        <input
+            name="name"
+            type="text"
+            class="form-control"
+            id="registerName"
+            value="{{ name }}"
+            placeholder="Enter your first name" />
+</div>
+<div class="col-md-6">
+
+        <label for="registerSurname">Last Name</label>
+        <input
+            name="surname"
+            type="text"
+            class="form-control"
+            id="registerSurname"
+            value="{{ surname }}"
+            placeholder="Enter your last name" />
+</div>
+<br clear="all">
+<div class="col-md-12">
+        <label for="registerAddress">Address</label>
+        <input
+            name="address"
+            type="text"
+            class="form-control"
+            id="registeAddress"
+            value="{{address}}"
+            placeholder="Enter your Address" />
+</div>
+<div class="col-md-6">
+        
+
+        <label for="registerCity">City</label>
+        <input
+            name="city"
+            type="text"
+            class="form-control"
+            id="registerCity"
+            value="{{city}}"
+            placeholder="Enter your city" />
+
+        <label for="registerCountry">Country</label>
+        <input
+            name="country"
+            type="text"
+            class="form-control"
+            id="registerCountry"
+            value="{{country}}"
+            placeholder="Enter your Country" />
+    
+        <label for="registerTelephone">Telephone</label>
+        <input
+            name="telephone"
+            type="text"
+            class="form-control"
+            id="registerTelephone"
+            value="{{telephone}}"
+            placeholder="Enter your Telephone" />  
+              
+        <label for="registerDegrees">Degrees</label>
+        <input
+            name="degrees"
+            type="text"
+            class="form-control"
+            id="registerDegrees"
+            value="{{degrees}}"
+            placeholder="Degrees" />
+</div>
+
+<div class="col-md-6">
+
+        <label for="registerName">Province/State</label>
+        <input
+            name="prov"
+            type="text"
+            class="form-control"
+            id="registerProv"
+            value="{{prov}}"
+            placeholder="Enter your Province/State" />
+
+
+        <label for="registerPostal">Postal Code</label>
+        <input
+            name="postal"
+            type="postal"
+            class="form-control"
+            id="registerPostal"
+            value="{{postal}}"
+            placeholder="Enter your Postal Code" />
+
+        <label for="registerEmail">Email</label>
+        <input
+            name="email"
+            type="email"
+            class="form-control"
+            id="registerEmail"
+            value="{{email}}"
+            placeholder="Enter your email" />  
+    
+        <label for="registerInstitution">Institution</label>
+        <input
+            name="institution"
+            type="text"
+            class="form-control"
+            id="registerInstution"
+            value="{{institution}}"
+            placeholder="Institution" />
+</div>
+
+<br clear="all"/>
+<h4>Section Affiliation</h4>
+        
+       <input
+            name="cmd"
+            type="checkbox"
+            id="registerCMD"
+            {% if cmd %}checked{% endif %}
+            placeholder="Check for CMD" />
+        CMD (Comparative morphology & development)
+        <br/>
+       <input
+            name="cpb"
+            type="checkbox"
+            id="registerCPB"
+            {% if cpb %}checked{% endif %}
+            placeholder="Check for CPB" /> 
+        CPB (Comparative physiology & biochemistry)
+        <br/>
+        <input
+            name="eee"
+            type="checkbox"
+            id="registerEEE"
+            {% if eee %}checked{% endif %}
+            placeholder="Check for EEE" /> 
+        EEE (Ecology, ethology & evolution)
+        <br/>
+       <input
+            name="pie"
+            type="checkbox"
+            id="registerPIE"
+            {% if pie %}checked{% endif %}
+            placeholder="Check for PIE" /> 
+        PIE (Parasitism, immunity and environment)
+        <br clear="all">
+<br clear="all">
+<h4>Dues</h4>
+<div class="col-md-1">
+        Ordinary
+</div>
+<div class="col-md-2">    
+       <input
+            name="member_type"
+            id="member_type1"
+            type="radio"
+            value="R"
+            {% if member_type == "R" %}checked{% endif %}
+            placeholder="Ordinary" />
+        1-year ($80)
+</div>
+<div class="col-md-9">    
+       <input
+            name="member_type"
+            id="member_type2"
+            type="radio"
+            value="R2"
+            {% if member_type == "R2" %}checked{% endif %}
+            placeholder="Ordinary" />
+        2-year ($140)
+</div>
+<div class="col-md-1">   
+        Emeritus
+</div>
+<div class="col-md-2">   
+    <input
+            name="member_type"
+            id="member_type3"
+            type="radio"
+            value="E"
+            {% if member_type == "E" %}checked{% endif %}
+            placeholder="Emeritus" />
+        1-year ($20)
+</div>
+<div class="col-md-9">   
+    <input
+            name="member_type"
+            id="member_type4"
+            type="radio"
+            value="E2"
+            {% if member_type == "E2" %}checked{% endif %}
+            placeholder="Emeritus" />
+        2-year ($25)
+</div>
+<div class="col-md-1"> 
+        PDF
+</div>
+<div class="col-md-2">   
+    <input
+            name="member_type"
+            id="member_type5"
+            type="radio"
+            value="P"
+            {% if member_type == "P" %}checked{% endif %}
+            placeholder="PDF" />
+        1-year ($20)
+</div>
+<div class="col-md-9">   
+    <input
+            name="member_type"
+            id="member_type6"
+            type="radio"
+            value="P2"
+            {% if member_type == "P2" %}checked{% endif %}
+            placeholder="PDF" />
+        2-year ($25)
+</div>
+<div class="col-md-1"> 
+        Student
+</div>
+<div class="col-md-2">   
+    <input
+            name="member_type"
+            id="member_type7"
+            type="radio"
+            value="S"
+            {% if member_type == "S" %}checked{% endif %}
+            placeholder="Student" />
+        1-year ($20)
+</div>
+<div class="col-md-9">   
+    <input
+            name="member_type"
+            id="member_type8"
+            type="radio"
+            value="S2"
+            {% if member_type == "S2" %}checked{% endif %}
+            placeholder="Student" />
+        2-year ($25)
+</div>
+<div class="col-md-1"> 
+        Associate
+</div>
+<div class="col-md-2">   
+    <input
+            name="member_type"
+            id="member_type9"
+            type="radio"
+            value="A"
+            {% if member_type == "A" %}checked{% endif %}
+            placeholder="Associate" />
+        1-year ($20)
+</div>
+<div class="col-md-9">   
+    <input
+            name="member_type"
+            id="member_type10"
+            type="radio"
+            value="A2"
+            {% if member_type == "A2" %}checked{% endif %}
+            placeholder="Associate" />
+        2-year ($25)
+</div>
+<br clear="all"><br clear="all">
+<h4>DONATION TO ZET: Optional (Canada charity registration BN 8756 3864 RR0001)</h4>
+<br clear="all">
+<div class="col-md-6"> 
+General Support funds (Fry, Hoar, Battle, Margolis ... awards)
+</div>
+<div class="col-md-6"> 
+<input
+            name="general_donation"
+            type="text"
+            class="form-control"
+            id="general_donation"
+            value="{{general_donation}}"
+            placeholder="Donate" /> 
+</div>  
+<br clear="all">
+<div class="col-md-6"> 
+Hall Fund (CMD Section)
+</div> 
+<div class="col-md-6"> 
+<input
+            name="hall_donation"
+            type="text"
+            class="form-control"
+            id="hall_donation"
+            value="{{hall_donation}}"
+            placeholder="Donate" /> 
+</div>
+<br clear="all">
+<div class="col-md-6"> 
+Holeton Fund (CPB Section)
+</div> 
+<div class="col-md-6"> 
+<input
+            name="holeton_donation"
+            type="text"
+            class="form-control"
+            id="holeton_donation"
+            value="{{holeton_donation}}"
+            placeholder="Donate" /> 
+</div> 
+<br clear="all">
+<div class="col-md-6"> 
+Lindsey Fund (EEE Section)
+</div> 
+<div class="col-md-6"> 
+<input
+            name="lindsey_donation"
+            type="text"
+            class="form-control"
+            id="lindsey_donation"
+            value="{{lindsey_donation}}"
+            placeholder="Donate" /> 
+</div>
+<br clear="all">
+<div class="col-md-6"> 
+Fallis Fund (PIE Section)
+</div> 
+<div class="col-md-6"> 
+<input
+            name="fallis_donation"
+            type="text"
+            class="form-control"
+            id="fallis_donation"
+            value="{{fallis_donation}}"
+            placeholder="Donate" /> 
+</div>
+<br clear="all">
+<div class="col-md-12">
+  <button type="submit" class="btn btn-info">{{'Submit for Verification'|_}}</button>
+</div>
+</form>
+<br>
+<br>
+{% elseif paid %}
+Paid
+{% else %}
+<div class="col-md-12" style="color: green">
+Membership Type: {{type}}<br>
+{% if general_donation > 0 %}Donating to General Fund: ${{general_donation}}<br>{% endif %}
+{% if holeton_donation > 0 %}Donating to Holeton Fund: ${{holeton_donation}}<br>{% endif %}
+{% if fallis_donation > 0 %}Donating to Fallis Fund: ${{fallis_donation}}<br>{% endif %}
+{% if lindsey_donation > 0 %}Donating to Lindsey Fund: ${{lindsey_donation}}<br>{% endif %}
+{% if hall_donation > 0 %}Donating to Hall Fund: ${{hall_donation}}<br>{% endif %}
+Total Cost: ${{strCost}}
+
+<!--<FORM METHOD="POST" ACTION="https://esqa.moneris.com/HPPDP/index.php" >
+     <INPUT TYPE="HIDDEN" NAME="ps_store_id" VALUE="JLF7Utore1">
+     <INPUT TYPE="HIDDEN" NAME="hpp_key" VALUE="hpD7QHFRQP4M">-->
+
+<FORM METHOD="POST" ACTION="https://www3.moneris.com/HPPDP/index.php" >
+     <INPUT TYPE="HIDDEN" NAME="ps_store_id" VALUE="PLCGGG1065">
+     <INPUT TYPE="HIDDEN" NAME="hpp_key" VALUE="hpVN3IFHMCJL">
+     <INPUT TYPE="HIDDEN" NAME="charge_total" VALUE="{{strCost}}">
+
+     <!--MORE OPTIONAL VARIABLES CAN BE DEFINED HERE -->
+     
+     <INPUT TYPE="HIDDEN" NAME="cust_id" VALUE="{{username}}">     
+     <INPUT TYPE="HIDDEN" NAME="order_id" VALUE="{{order}}">
+     <INPUT TYPE="HIDDEN" NAME="bill_first_name" VALUE="{{name}}">
+     <INPUT TYPE="HIDDEN" NAME="bill_last_name" VALUE="{{surname}}">
+     <INPUT TYPE="HIDDEN" NAME="bill_address_one" VALUE="{{address}}">
+     <INPUT TYPE="HIDDEN" NAME="bill_city" VALUE="{{city}}">
+     <INPUT TYPE="HIDDEN" NAME="bill_state_or_province" VALUE="{{prov}}">
+     <INPUT TYPE="HIDDEN" NAME="bill_postal_code" VALUE="{{postal}}">
+     <INPUT TYPE="HIDDEN" NAME="bill_country" VALUE="{{country}}">
+     <INPUT TYPE="HIDDEN" NAME="bill_phone" VALUE="{{telephone}}">
+     <INPUT TYPE="HIDDEN" NAME="email" VALUE="{{email}}">
+     <INPUT TYPE="HIDDEN" NAME="ship_first_name" VALUE="{{name}}">
+     <INPUT TYPE="HIDDEN" NAME="ship_last_name" VALUE="{{surname}}">
+     <INPUT TYPE="HIDDEN" NAME="ship_address_one" VALUE="{{address}}">
+     <INPUT TYPE="HIDDEN" NAME="ship_city" VALUE="{{city}}">
+     <INPUT TYPE="HIDDEN" NAME="ship_state_or_province" VALUE="{{prov}}">
+     <INPUT TYPE="HIDDEN" NAME="ship_postal_code" VALUE="{{postal}}">
+     <INPUT TYPE="HIDDEN" NAME="ship_country" VALUE="{{country}}">
+     <INPUT TYPE="HIDDEN" NAME="ship_phone" VALUE="{{telephone}}">
+     <INPUT TYPE="HIDDEN" NAME="id1" VALUE="{{sku}}">
+     <INPUT TYPE="HIDDEN" NAME="description1" VALUE="{{desc}}">
+     <INPUT TYPE="HIDDEN" NAME="price1" VALUE="{{strCost}}">
+     <INPUT TYPE="HIDDEN" NAME="quantity1" VALUE="1">
+     <INPUT TYPE="HIDDEN" NAME="subtotal1" VALUE="{{strCost}}">
+     <INPUT TYPE="HIDDEN" NAME="email" VALUE="{{email}}">
+     
+     <INPUT TYPE="SUBMIT" NAME="SUBMIT" VALUE="Click to proceed to Secure Page" class="btn btn-info">
+
+</FORM>
+</div>
+{% endif %}
+
+
+{% endput %}

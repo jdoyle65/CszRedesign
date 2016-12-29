@@ -1,0 +1,22 @@
+title = "Who we are"
+url = "/who-we-are"
+layout = "one_column"
+description = "About the Canadian Society of Zoologists and its mission"
+is_hidden = 0
+
+[editable column_middle]
+file = "who_we_are/column_middle.htm"
+==
+{% put header %}
+
+<div class="section_header">
+    <h3>{{'About the Society'|_}}</h3>
+</div>
+
+{% endput %}
+
+
+
+{% put middle_column %}
+{% component "column_middle" %}
+{% endput %}

@@ -1,0 +1,127 @@
+title = "Accept"
+url = "/accept"
+layout = "one_column"
+is_hidden = 0
+==
+<?php
+function onStart() {
+    
+	$this['post'] = print_r( $_POST, true );
+	$this['order'] = $_POST['response_order_id'];
+	$this['date'] = $_POST['date_stamp'];
+	$this['time'] = $_POST['time_stamp'];
+	$this['message'] = substr($_POST['message'], 0, strlen("approved") );
+	            
+    $cpb = "0";
+    $cmd = "0";
+    $eee = "0";
+    $pie = "0";
+            
+	try {
+        $sql = Db::table('prelim_users')
+                ->where( 'order_id', $this['order'])
+                ->get();   
+                
+        if ($this['message'] == "APPROVED") {
+            
+            $this['result1'] = "Approved a charge of $" . $_POST['charge_total'];
+            $this['result2'] = "Date: " . $this['date'];
+            $this['result3'] = "Time: " . $this['time'];
+            $this['result4'] = "Charged to: " . $sql[0]->name . " " . $sql[0]->surname;
+            $this['result5'] =  "<blockquote>" . str_replace( ";", "<br>", $sql[0]->desc) . "</blockquote>";
+            $this['result6'] = "Login: " .  $sql[0]->email;
+
+            $results = $this['result1'] . "|" . $this['result4'] . "|" . $this['result5'];
+                    Db::table('transactions')
+                   ->insert([ 'results' => $results ]); 
+                   
+            if ($sql[0]->CPB == "1")
+                $cpb = "1";
+     
+            if ($sql[0]->CMD == "1")
+                $cmd = "1";
+                
+            if ($sql[0]->EEE == "1")
+                $eee = "1";
+                
+            if ($sql[0]->PIE == "1")
+                $pie = "1";
+                
+            $this['register'] = "Registration";
+            $registration = substr( $sql[0]->desc, 0, strlen("registration"));
+            $renewal = substr( $sql[0]->desc, 0, strlen("renewal"));
+            $donation = substr( $sql[0]->desc, 0, strlen("donation"));
+            
+            if ($registration == "Registration") {
+                $this['register'] = "Registered until " . $sql[0]->year_expires; 
+                
+                /**/
+                Db::table('users')
+                   ->insert( [ 'name' => $sql[0]->name, 'email' => $sql[0]->email, 'username' => $sql[0]->email, 'surname' => $sql[0]->surname, 'degrees' => $sql[0]->degrees, 'institution' => $sql[0]->institution, 'address_line_one' => $sql[0]->address, 'city' => $sql[0]->city, 'province' => $sql[0]->province, 'country' => $sql[0]->country, 'postal_code' => $sql[0]->postal, 'phone_one' => $sql[0]->phone, 'member_type' => $sql[0]->member_type, 'title' => $sql[0]->title, 'year_joined' => $sql[0]->year_joined , 'year_expires' => $sql[0]->year_expires, 'is_activated' => 1, 'activated_at' => date("Y-m-d H:i:s"), 'created_at' => date("Y-m-d H:i:s"), 'member_number' => strtoupper($sql[0]->name) . "1",                   'cpb_member' => $cpb, 'cmd_member' => $cmd, 'eee_member' => $eee, 'pie_member' => $pie ] );  
+                /**/
+            }
+            
+            $sql2 = Db::table('users')
+                    ->where( 'email', $sql[0]->email)
+                    ->get();
+
+            if ($renewal == "Renewal") {
+                $this['register'] = "Renewed until " . $sql[0]->year_expires;
+                /**/
+                Db::table('users')
+                    ->where( 'email', $sql[0]->email )
+                    ->update( [ 'degrees' => $sql[0]->degrees, 'institution' => $sql[0]->institution, 'address_line_one' => $sql[0]->address, 'city' => $sql[0]->city, 'province' => $sql[0]->province, 'country' => $sql[0]->country, 'postal_code' => $sql[0]->postal, 'phone_one' => $sql[0]->phone, 'member_type' => $sql[0]->member_type, 'year_expires' => $sql[0]->year_expires ] );  
+                    
+                /**/
+            }
+                        
+            Db::table('users_groups')
+                   ->insert([ 'user_id' => $sql2[0]->id, 'user_group_id' => '7' ]);
+                   
+            if ($cmd == "1") {
+                Db::table('users_groups')
+                   ->insert([ 'user_id' => $sql2[0]->id, 'user_group_id' => '2' ]); 
+            }        
+            if ($pie == "1") {
+                Db::table('users_groups')
+                   ->insert([ 'user_id' => $sql2[0]->id, 'user_group_id' => '3' ]); 
+            }
+            if ($cpb == "1") {
+                Db::table('users_groups')
+                   ->insert([ 'user_id' => $sql2[0]->id, 'user_group_id' => '4' ]); 
+            }
+            if ($eee == "1") {
+                Db::table('users_groups')
+                   ->insert([ 'user_id' => $sql2[0]->id, 'user_group_id' => '5' ]); 
+            }
+  
+        }
+        
+        
+        
+    } catch (Exception $e) {
+        $this['mysql'] = $e;
+    }
+	  
+}
+?>
+==
+{% put header %}
+
+<div class="section_header">
+    <h3>{{'Accept'|_}}</h3>
+</div>
+
+{% endput %}
+
+
+{% put middle_column %}
+
+{{result1}}<br>
+{{result2}}<br>
+{{result3}}<br>
+{{result4}}<br>
+{{result5|raw}}
+{{register}}
+
+{% endput %}
